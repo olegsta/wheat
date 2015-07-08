@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+html
+  head
+    meta charset="UTF-8"
+    title WheatPRO
+    = stylesheet_link_tag    'application'
+    = csrf_meta_tags
+  body ng-app="app"
+    #map map=""
+    .search
+      .search__input
+        input type="text" placeholder="Купить пшеницу"
+      .search__btn
+        a.btn.btn-yellow Найти
+
+    aside
+      a.logo.noselect href=""
+        = render "svg/logo"
+        div Wheat PRO
+      
+      a.btn.btn-yellow.noselect.create__position_btn Создать позицию
+
+      ul.nav
+        li.nav__item
+          a.nav__link Поиск
+        li.nav__item
+          a.nav__link.active Мои позиции
+        li.nav__item
+          a.nav__link Сообщения
+        li.nav__item
+          a.nav__link Мой профиль
+        li.nav__item
+          a.nav__link Настройки
+        li.nav__item
+          a.nav__link Помощь
+
+      footer
+        | © Wheat PRO, 2015
+
+    script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"
+    = javascript_include_tag 'application'
