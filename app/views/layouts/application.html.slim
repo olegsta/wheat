@@ -20,19 +20,19 @@ html
       
       a.btn.btn-yellow.noselect.create__position_btn Создать позицию
 
-      ul.nav
-        li.nav__item
-          a.nav__link Поиск
-        li.nav__item
-          a.nav__link.active Мои позиции
-        li.nav__item
-          a.nav__link Сообщения
-        li.nav__item
-          a.nav__link Мой профиль
-        li.nav__item
-          a.nav__link Настройки
-        li.nav__item
-          a.nav__link Помощь
+      ul.nav ng-init="active='search'"
+        li.nav__item ng-click="active='search'"
+          a.nav__link ng-class="{active: active=='search'}" Поиск
+        li.nav__item ng-click="active='positions'"
+          a.nav__link ng-class="{active: active=='positions'}" Мои позиции
+        li.nav__item ng-click="active='messages'"
+          a.nav__link ng-class="{active: active=='messages'}" Сообщения
+        li.nav__item ng-click="active='profile'"
+          a.nav__link ng-class="{active: active=='profile'}" Мой профиль
+        li.nav__item ng-click="active='settings'"
+          a.nav__link ng-class="{active: active=='settings'}" Настройки
+        li.nav__item ng-click="active='help'"
+          a.nav__link ng-class="{active: active=='help'}" Помощь
 
       footer
         | © Wheat PRO, 2015

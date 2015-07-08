@@ -29,6 +29,7 @@ footer {
   font-size: 17px;
   text-shadow: 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white;
   text-decoration: none;
+  color: #230c0f;
 
   svg {
     display: block;
@@ -44,7 +45,7 @@ footer {
 
 .create__position_btn {
   border-radius: 20px;
-  height: 35px;
+  height: 37px;
   line-height: 35px;
   margin-top: 20px;
   padding: 0 25px;
@@ -83,7 +84,8 @@ footer {
 .search {
   position: absolute;
   left: 215px;
-  right: 200px;
+  right: 300px;
+  min-width: 450px;
   top: 25px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px 0px;
 
