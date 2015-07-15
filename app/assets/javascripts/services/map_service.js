@@ -72,7 +72,7 @@ app.service('YandexMaps', ['pluralize', '$http', function(pluralize, $http) {
 
     YandexMaps.clusterer = new ymaps.Clusterer({
       clusterIconLayout: YandexMaps.clustererLayout,
-      gridSize: 128
+      gridSize: 256
     });
   }
 

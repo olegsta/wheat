@@ -7,35 +7,51 @@ html
     = csrf_meta_tags
   body ng-app="app"
     #map map=""
+
+    .logo
+      span.red Agro 
+      span.black for PRO
     .search
-      .search__input
-        input type="text" placeholder="Купить пшеницу"
-      .search__btn
-        a.btn.btn-yellow Найти
+      .search__form
+        .search__input
+          input type="text"
+          i
+          i
+        .search__btn
+          span Найти
+      .search__popup
+    .controls
+      a.controls__item Избранное
+      a.controls__item Отслеживание
 
-    aside
-      a.logo.noselect href=""
-        = render "svg/logo"
-        div Wheat PRO
-      
-      a.btn.btn-yellow.noselect.create__position_btn Создать позицию
 
-      ul.nav ng-init="active='search'"
-        li.nav__item ng-click="active='search'"
-          a.nav__link ng-class="{active: active=='search'}" Поиск
-        li.nav__item ng-click="active='positions'"
-          a.nav__link ng-class="{active: active=='positions'}" Мои позиции
-        li.nav__item ng-click="active='messages'"
-          a.nav__link ng-class="{active: active=='messages'}" Сообщения
-        li.nav__item ng-click="active='profile'"
-          a.nav__link ng-class="{active: active=='profile'}" Мой профиль
-        li.nav__item ng-click="active='settings'"
-          a.nav__link ng-class="{active: active=='settings'}" Настройки
-        li.nav__item ng-click="active='help'"
-          a.nav__link ng-class="{active: active=='help'}" Помощь
+    nav.sidebar
+      a.btn.btn-primary.sidebar__create Создать позицию
 
-      footer
-        | © Wheat PRO, 2015
+      ul
+        li
+          a.sidebar__link Мои позиции
+        li
+          a.sidebar__link Сообщения
+        li
+          a.sidebar__link Аналитика
+        li
+          a.sidebar__link Справка
+        li
+          a.sidebar__link Поддержка
+
+      .sidebar-gray
+        .sidebar__user
+          img.sidebar__user__avatar src="/avatar.png"
+          .sidebar__user__info
+            .sidebar__user__info__name Кононенко П.
+            .sidebar__user__info__status Фермер
+        hr
+        ul
+          li
+            a.sidebar__link Настройки
+          li
+            a.sidebar__link Выйти
 
     script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"
     = javascript_include_tag 'application'
