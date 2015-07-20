@@ -17,8 +17,6 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic);
 
-@import 'colors';
-
 html, body, #map {
     width: 100%;
     height: 100%;
@@ -32,67 +30,49 @@ html, body, #map {
   box-sizing: border-box;    
 }
 
-.noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+h2 {
+  font-size: 18px;
+  color: #414141;
+  margin: 0 0 20px 0;
+  font-weight: normal;
 }
 
-input {
-  outline: none !important;
+.pull-right {
+  float: right !important;
 }
 
-a {
-  cursor: pointer;
+.pull-left {
+  float: left !important;
 }
 
-.btn {
-  height: 32px;
-  line-height: 31px;
-  padding: 0 15px;
-  text-align: center;
-  border-radius: 2px;
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-block;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
 
-  @mixin btn ($color) {
-    background: $color;
-    color: #2B2B2B;
-    
-    &:hover {
-      background: lighten($color, 5%);
-    }
+.red {
+  color: red;
+}
 
-    &:active {
-      -moz-box-shadow: inset 0 1px 3px -1px rgba(0,0,0,.5);
-      -webkit-box-shadow: inset 0 1px 3px -1px rgba(0,0,0,.5);
-      box-shadow: inset 0 1px 3px -1px rgba(0,0,0,.5);
-    }
+.canvas {
+  height: 400px;
+  width: 700px;
+  position: absolute;
+  top: 100px;
+  left: 275px;
+  z-index: 1;
+  background: white;
+  padding: 20px;
+
+  .dimension {
+    width: 125px
   }
 
-  &-default {
-    @include btn(white);
+  .row {
+    margin: 20px 0;
   }
-
-  &-primary {
-    @include btn($yellow);
-    border: 1px solid #D7B940;
-  }
-
-}
-
-hr {
-  border: none;
-  border-top: 1px solid #D8D8D8;
-  margin: 0;
 }

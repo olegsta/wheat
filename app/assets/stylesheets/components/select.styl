@@ -1,0 +1,43 @@
+@import 'colors'
+
+.select
+  display: inline-block
+  border: 1px solid #ccc
+  height: 32px
+  border-radius: 2px
+  min-width: 120px
+  cursor: pointer
+  position: relative
+
+  &__current
+    padding: 7px 25px 7px 6px
+    position: relative
+    background: white
+    
+    &:hover
+    &.active
+      background: #F7F7F7
+    
+    i
+      font-size: 14px
+      position: absolute
+      right: 6px;
+      top: 8px;
+      
+  &__list
+    position: absolute
+    top: 33px
+    left: 0
+    right: 0
+    max-height: 100px
+    border: 1px solid #ccc
+
+  &__item
+    padding: 6px
+    background: white
+
+    &:hover
+      background: #fee9a5
+
+    &.active
+      background: $yellow

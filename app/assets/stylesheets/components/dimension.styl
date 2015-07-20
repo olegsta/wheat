@@ -1,0 +1,64 @@
+@import 'colors'
+
+.dimension
+  display: inline-block
+  border: 1px solid #ccc
+  border-radius: 2px
+  position: relative
+  
+  table
+    width: 100%
+  
+  &.focus
+    border-color: #d0ba65;
+    -webkit-box-shadow: 0 0 10px #fc0;
+    box-shadow: 0 0 10px #fc0;
+  
+  input[type="text"]
+    border: none
+    width: 100%
+    min-width: 60px
+    
+    &:focus
+      border: none
+      box-shadow: none
+      -webkit-box-shadow: none
+
+  &__before
+    margin: 0 0 0 8px
+    color: #9E9E9E
+    cursor: default
+  
+  &__after
+    position: relative
+      
+  &__current
+    color: #333
+    margin: 0 8px
+    border-bottom: 1px dotted
+    display: inline-block
+    cursor: pointer
+
+    &:not(.disabled):hover
+      color: #E8BD11
+    
+    &.disabled
+      cursor: default
+  
+  &__list
+    position: absolute
+    top: 20px
+    left: 8px
+    background: white
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2)
+    
+  
+  &__item
+    cursor: pointer
+    padding: 4px 16px;
+    
+    &:hover
+      background: #fee9a5
+    
+    &.active
+      background: $yellow

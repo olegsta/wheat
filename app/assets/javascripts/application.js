@@ -12,11 +12,11 @@
 //
 //= require underscore
 //= require angular
+//= require perfect-scrollbar.min
+//= require dcbox
 //= require angular-route
 //= require angular-resource
 //= require angular-animate
-//= require perfect-scrollbar.min
-//= require dcbox
 //= require_self
 //= require_tree .
 

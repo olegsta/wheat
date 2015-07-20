@@ -1,0 +1,9 @@
+script id="select.html" type="text/ng-template"
+  .select
+    .select__current ng-click="toggle($event)" ng-class="{active: isShow}"
+      span
+        | {{currentOption}}
+      i.icon-chevron-down
+    .select__list ng-show="isShow"
+      .select__item ng-repeat="option in options" ng-click="setActive(option.id)" ng-class="{active: option.id == ngModel}"
+        | {{option.title}}

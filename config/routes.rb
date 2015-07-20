@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "application#index"
 
+  get "components" => "application#components"
+
   get "positions" => "positions#index"
   get "positions/search" => "positions#search"
   # The priority is based upon order of creation: first created -> highest priority.

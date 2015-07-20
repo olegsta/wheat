@@ -1,0 +1,82 @@
+@import 'colors'
+
+.row
+  margin-bottom: 20px
+
+label.label
+  color: #414141
+  display: block
+  margin-bottom: 7px
+  font-size: 13px
+
+input[type="text"]
+input[type="email"]
+input[type="password"]
+input[type="number"]
+  height: 30px
+  padding-left: 8px
+  border: 1px solid #CCCCCC
+  border-radius: 2px
+  font-size: 13px
+  
+  &.autosize {
+    min-width: 82.5px;
+  }
+  
+  &:focus
+    border-color: #d0ba65;
+    -webkit-box-shadow: 0 0 10px #fc0;
+    box-shadow: 0 0 10px #fc0;
+
+.noselect
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+input
+  outline: none !important
+
+a
+  cursor: pointer
+
+.btn
+  height: 32px
+  line-height: 31px
+  padding: 0 15px
+  text-align: center
+  border-radius: 2px
+  cursor: pointer
+  white-space: nowrap
+  display: inline-block
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+  btn($color)
+    background: $color
+    color: #2B2B2B
+
+    &:hover
+      background: lighten($color, 15%)
+
+    &:active
+      -moz-box-shadow: inset 0 1px 3px -1px rgba(0, 0, 0, 0.5)
+      -webkit-box-shadow: inset 0 1px 3px -1px rgba(0, 0, 0, 0.5)
+      box-shadow: inset 0 1px 3px -1px rgba(0, 0, 0, 0.5)
+
+  &-default
+    btn(white)
+
+  &-primary
+    btn($yellow)
+    border: 1px solid #D7B940
+hr
+  border: none
+  border-top: 1px solid #D8D8D8
+  margin: 0
