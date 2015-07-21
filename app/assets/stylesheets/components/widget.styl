@@ -3,17 +3,40 @@
 .widget
   width: 300px
   background: white
-  -webkit-box-shadow: 0 2px 3px 1px rgba(0,0,0,.2)
-  box-shadow: 0 2px 3px 1px rgba(0,0,0,.2)
-  margin-bottom: 10px
+  -webkit-box-shadow: 0 1px 3px 1px rgba(0,0,0,.1)
+  box-shadow: 0 1px 3px 1px rgba(0,0,0,.1)
   border-radius: 3px
+
+  &:not(:last-child)
+    border-radius: 0
+  
+  &.active
+    .close
+      display: block
+    
+  &:not(.active)
+    .widget__header
+      background-color: rgba(240, 240, 240, 0.38);
+      cursor: pointer
+      height: 30px
+      
+      .widget__title
+        line-height: 30px;
+
+      &:hover
+        background: white
+    
+    .widget__body
+      height: 0
   
   &__header
-    height: 40px
     position: relative
+    height: 40px
     border-bottom: 1px solid rgba(0,0,0,.1)
+    transition: .3s
     
     .close
+      display: none
       font-size: 16px
       position: absolute
       right: 12px;
@@ -22,6 +45,11 @@
       &:hover
         color: $red
         cursor: pointer
+  
+  &__body
+    height: 350px
+    overflow: hidden
+    transition: .3s
 
   &__title
     font-size: 16px
@@ -35,3 +63,4 @@
     font-size: 12px
     text-align: center
     color: #666
+    

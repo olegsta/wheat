@@ -39,12 +39,12 @@ html
           b 12
           | . В области карты – 
           b 2
-    .p-widget
-      .widget
-        .widget__header
+    .p-widget ng-init="activeWidget='suit'"
+      .widget.z3 ng-class="{active: activeWidget=='suit'}"
+        .widget__header ng-click="activeWidget='suit'"
           .widget__title Подходящие
           .close
-            .icon-close ng-click="myPositions.push({})"
+            .icon-close
         .widget__body ng-init="myPositions=[1,2,3,4,5]"
           .widget__description
             | Выберите свою позицию и мы подберем подходящие для нее
@@ -61,12 +61,25 @@ html
                 .position-list__category Зерновые / Пшеница
                 .position-list__info Закупка 644 л, 444.92 руб/л
 
-      .widget
-        .widget__header
+      .widget.z2 ng-class="{active: activeWidget=='favorite'}"
+        .widget__header ng-click="activeWidget='favorite'"
           .widget__title Избранное
           .close
             .icon-close
         .widget__body
+          .widget__description
+            | Выберите свою позицию и мы подберем подходящие для нее
+          label.position-list__item.noselect ng-repeat="position in myPositions"
+
+      .widget.z1 ng-class="{active: activeWidget=='market'}"
+        .widget__header ng-click="activeWidget='market'"
+          .widget__title Отслеживание
+          .close
+            .icon-close
+        .widget__body
+          .widget__description
+            | Выберите свою позицию и мы подберем подходящие для нее
+          label.position-list__item.noselect ng-repeat="position in myPositions"
 
     /.canvas
       .row
