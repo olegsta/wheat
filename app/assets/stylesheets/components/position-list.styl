@@ -1,0 +1,46 @@
+@import 'colors'
+
+.position-list
+  font-size: 13px
+  max-height: 300px
+  position: relative
+  
+  &__item
+    height: 75px
+    display: block
+    line-height: 18px
+    padding: 10px
+    position: relative
+    cursor: pointer
+    
+    &:hover
+      background: #f7f7f7
+  
+  input[type=checkbox]:checked ~ &__bg
+    position: absolute
+    z-index: 0
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    background: #fee9a5
+
+  &__left
+    width: 40px
+    height: 100%
+    float: left
+    padding: 18px 6px
+  
+  &__right
+    position: relative
+    z-index: 1
+
+  &__title
+    font-size: 14px
+    font-weight: normal
+
+  &__category
+    font-weight: lighter
+    
+  &__info
+    font-weight: lighter

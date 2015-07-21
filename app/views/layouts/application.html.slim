@@ -39,12 +39,34 @@ html
           b 12
           | . В области карты – 
           b 2
-  
-    .control.p-suit-control
-      | Подходящие
+    .p-widget
+      .widget
+        .widget__header
+          .widget__title Подходящие
+          .close
+            .icon-close ng-click="myPositions.push({})"
+        .widget__body ng-init="myPositions=[1,2,3,4,5]"
+          .widget__description
+            | Выберите свою позицию и мы подберем подходящие для нее
+          .position-list scroll="{{myPositions}}"
+            label.position-list__item.noselect ng-repeat="position in myPositions"
+              .position-list__left
+                .checkbox
+                  input type="checkbox"
+                  .checker
+                  .position-list__bg
 
-    .control.p-favorite-control
-      | Избранное
+              .position-list__right
+                .position-list__title Закупка баклажанов
+                .position-list__category Зерновые / Пшеница
+                .position-list__info Закупка 644 л, 444.92 руб/л
+
+      .widget
+        .widget__header
+          .widget__title Избранное
+          .close
+            .icon-close
+        .widget__body
 
     /.canvas
       .row
