@@ -1,0 +1,51 @@
+.modal.p-extended-search ng-class="{show: isShowExtendedSearch && showSearchFooter}"
+  .close ng-click="isShowExtendedSearch=false"
+    .icon-close
+  .modal__title Расширенный поиск
+
+  .modal__body
+    .row
+      .ib#location
+        label.label Местоположение
+        label.input
+          input type="text"
+      .sep
+        | ±
+      .ib#radius
+        label.label &nbsp;
+        label.input
+          af-dimension.disabled options="[{id: 1, title: 'км'}]"
+    .row
+      .ib#type
+        label.label Тип
+        label.input
+          af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
+      .sep
+      .ib#category
+        label.label Категория
+        label.input
+          af-select options="[{id: 1, title: 'км'}]"
+    .row
+      .ib#price_from
+        label.label Вес (объем)
+        .input
+          af-dimension options="[{id: 1, title: 'кг'}]" before="'от'"
+      .sep
+        | —
+      .ib#price_to
+        label.label &nbsp;
+        .input
+          af-dimension options="[{id: 1, title: 'кг'}]" before="'до'"
+    .row
+      .ib#price_from
+        label.label Стоимость
+        .input
+          af-dimension options="[{id: 1, title: 'руб'}]" before="'от'"
+      .sep
+        | —
+      .ib#price_to
+        label.label &nbsp;
+        .input
+          af-dimension options="[{id: 1, title: 'руб'}]" before="'до'"
+  .modal__footer
+    a.btn.btn-primary.pull-right Принять

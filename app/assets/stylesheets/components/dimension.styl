@@ -6,6 +6,15 @@
   border-radius: 2px
   position: relative
   
+  &.disabled
+    .dimension__current
+      border: none
+      color: #989898 !important
+      cursor: default
+      
+    .dimension__list
+      display: none
+  
   table
     width: 100%
   
@@ -18,6 +27,7 @@
     border: none
     width: 100%
     min-width: 60px
+    height: 28px
     
     &:focus
       border: none

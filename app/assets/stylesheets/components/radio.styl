@@ -1,0 +1,37 @@
+.radio
+  overflow: hidden
+  list-style: none
+  padding: 0
+  margin: 0
+  
+  &__button
+    margin: 0
+    height: 30px
+    border: 1px solid #ccc
+    float: left
+    text-align: center
+    font-size: 12px
+    padding: 7px 10px
+    cursor: pointer
+    position: relative
+    z-index: 1
+    color: #2B2B2B
+    
+    &:hover
+      border: 1px solid #A9A9A9
+      z-index: 3
+    
+    
+    &.active
+      border: 1px solid #CDBD80 !important
+      background: #FFECA6
+      z-index: 2
+    
+    &:not(:first-child)
+      margin-left: -1px
+      
+    &:first-child
+      border-radius: 2px 0 0 2px
+      
+    &:last-child
+      border-radius: 0 2px 2px 0

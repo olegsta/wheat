@@ -1,0 +1,4 @@
+script id="radio.html" type="text/ng-template"
+  ul.radio
+    li.radio__button ng-repeat="option in options" ng-class="{active: option.id == $parent.ngModel}" ng-click="$parent.ngModel = option.id"
+      | {{option.title}}

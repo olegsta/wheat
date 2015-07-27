@@ -59,6 +59,10 @@ h2 {
   color: red;
 }
 
+.ib {
+  display: inline-block;
+}
+
 .canvas {
   height: 400px;
   width: 700px;
@@ -92,4 +96,16 @@ h2 {
 
 .z3 {
   z-index: 3;
+}
+
+.dotted {
+  border-bottom: 1px dotted;
+}
+
+.padding-0 {
+  padding: 0 !important;
+}
+
+.margin-0 {
+  margin: 0 !important;
 }

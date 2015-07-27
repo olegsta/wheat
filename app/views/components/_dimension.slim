@@ -2,7 +2,7 @@ script id="dimension.html" type="text/ng-template"
   .dimension ng-class="{focus: focus}"
     table
       tr
-        td
+        td ng-show="before"
           label for="{{uid}}"
             .dimension__before от
         td

@@ -1,0 +1,1344 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"re",
+				"relative"
+			],
+			[
+				"is",
+				"isShow"
+			],
+			[
+				"val",
+				"value	AngularJS"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"$root",
+				"$rootScope	AngularJS"
+			],
+			[
+				"di",
+				"verbose_directive	AngularJS"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"sear",
+				"search_height"
+			],
+			[
+				"va",
+				"val"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"input",
+				"input_width"
+			],
+			[
+				"tab",
+				"table-cell"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"fonts",
+				"font-size"
+			],
+			[
+				"border-bo",
+				"border-bottom-color"
+			],
+			[
+				"margi",
+				"margin-right"
+			],
+			[
+				"list-s",
+				"list-style-type"
+			],
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"border-top",
+				"border-top-color"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"geo",
+				"geoObjects"
+			],
+			[
+				"cluste",
+				"cluster"
+			],
+			[
+				"pos",
+				"positionResource"
+			],
+			[
+				"se",
+				"service	AngularJS"
+			],
+			[
+				"clus",
+				"clustererLayout"
+			],
+			[
+				"pro",
+				"properties"
+			],
+			[
+				"con",
+				"controller	AngularJS"
+			],
+			[
+				"not",
+				"not_found"
+			],
+			[
+				"it",
+				"its_ok"
+			],
+			[
+				"ex",
+				"expire_date"
+			],
+			[
+				"exp",
+				"expire_info"
+			],
+			[
+				"box",
+				"box-shadow"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"expire",
+				"expire_date"
+			],
+			[
+				"Pos",
+				"Position"
+			],
+			[
+				"favo",
+				"favorite_ids"
+			],
+			[
+				"reu",
+				"return"
+			],
+			[
+				"$inter",
+				"$interval	AngularJS"
+			],
+			[
+				"curre",
+				"currency"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"positi",
+				"positions"
+			],
+			[
+				"user",
+				"user_id"
+			],
+			[
+				"use",
+				"user_id"
+			],
+			[
+				"currenc",
+				"currency_id"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"thi",
+				"thinking_sphinx"
+			],
+			[
+				"new",
+				"newOfferFromStream"
+			],
+			[
+				"rec",
+				"recipient_id"
+			],
+			[
+				"sen",
+				"sender"
+			],
+			[
+				"curr",
+				"current_user"
+			],
+			[
+				"cu",
+				"current_user"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"class",
+				"class_name"
+			],
+			[
+				"rep",
+				"reputations"
+			],
+			[
+				"deal",
+				"deal_with"
+			],
+			[
+				"ne",
+				"negative"
+			],
+			[
+				"$loca",
+				"$location	AngularJS(DI)"
+			],
+			[
+				"Posi",
+				"positive"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"dea",
+				"deal_with"
+			],
+			[
+				"confi",
+				"confirmation"
+			],
+			[
+				"curren",
+				"current"
+			],
+			[
+				"Ic",
+				"incorrect"
+			],
+			[
+				"you",
+				"your"
+			],
+			[
+				"trade",
+				"trade_types"
+			],
+			[
+				"TRA",
+				"TRADE_TYPES_ASOCIATION"
+			],
+			[
+				"status",
+				"statuses"
+			],
+			[
+				"me",
+				"methods"
+			],
+			[
+				"z-",
+				"z-index"
+			],
+			[
+				"$rout",
+				"$routeParams	AngularJS(DI)"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"var",
+				"variants"
+			],
+			[
+				"posi",
+				"position"
+			],
+			[
+				"positio",
+				"position"
+			],
+			[
+				"pho",
+				"phone_number"
+			],
+			[
+				"messge",
+				"message_type"
+			],
+			[
+				"conve",
+				"conversation"
+			],
+			[
+				"conver",
+				"conversation_id"
+			],
+			[
+				"conv",
+				"conversation_id"
+			],
+			[
+				"act",
+				"active_conversation"
+			],
+			[
+				"u",
+				"unless	unless … end"
+			],
+			[
+				"offe",
+				"offer_id"
+			],
+			[
+				"offer",
+				"offer_id"
+			],
+			[
+				"conversa",
+				"conversation"
+			],
+			[
+				"подт",
+				"подтверждено"
+			],
+			[
+				"reci",
+				"recipient"
+			],
+			[
+				"firs",
+				"first_position"
+			],
+			[
+				"positiono",
+				"position_not_agree"
+			],
+			[
+				"ofee",
+				"offerer_id"
+			],
+			[
+				"posa",
+				"position_and_offer"
+			],
+			[
+				"posit",
+				"positions"
+			],
+			[
+				"price_",
+				"price_etalon"
+			],
+			[
+				"be",
+				"between_positions"
+			],
+			[
+				"open",
+				"opened"
+			],
+			[
+				"convers",
+				"conversation"
+			],
+			[
+				"messa",
+				"message"
+			],
+			[
+				"posti",
+				"positions"
+			],
+			[
+				"сде",
+				"сделку"
+			],
+			[
+				"пот",
+				"подтвержденную"
+			],
+			[
+				"mes",
+				"Message"
+			],
+			[
+				"cove",
+				"conversation_type"
+			],
+			[
+				"un",
+				"unreadable_count"
+			],
+			[
+				"$route",
+				"$routeParams	AngularJS"
+			],
+			[
+				"price",
+				"price_to"
+			],
+			[
+				"pa",
+				"page"
+			],
+			[
+				"recip",
+				"recipient_id"
+			],
+			[
+				"crea",
+				"create_between_users"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"weigh",
+				"weight_min"
+			],
+			[
+				"weight_",
+				"weight_min"
+			],
+			[
+				"pri",
+				"price_in_currency"
+			],
+			[
+				"title",
+				"title"
+			],
+			[
+				"over",
+				"overflow_x"
+			],
+			[
+				"of",
+				"offer"
+			],
+			[
+				"whe",
+				"where"
+			],
+			[
+				"opo",
+				"opponent"
+			],
+			[
+				"posito",
+				"position"
+			],
+			[
+				"position",
+				"position"
+			],
+			[
+				"impo",
+				"important"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"off",
+				"offer_id"
+			],
+			[
+				"co",
+				"conversation"
+			],
+			[
+				"ac",
+				"active_conversation"
+			],
+			[
+				"sender",
+				"sender_id"
+			],
+			[
+				"la",
+				"last_message"
+			],
+			[
+				"map",
+				"mapPage"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/pavelkononenko/devel/Новая папка/hermes/app/controllers/events_controller.rb",
+			"settings":
+			{
+				"buffer_size": 2125,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/pavelkononenko/devel/Новая папка/hermes/config/secrets.yml",
+			"settings":
+			{
+				"buffer_size": 1712,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 327.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remocve",
+				"Package Control: Remove Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"remoce",
+				"Package Control: Remove Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"inat",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"jsli",
+				"JSLint"
+			],
+			[
+				"insa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/pavelkononenko/devel/Новая папка/hermes",
+		"/Users/pavelkononenko/devel/Новая папка/hermes/app",
+		"/Users/pavelkononenko/devel/Новая папка/hermes/app/controllers"
+	],
+	"file_history":
+	[
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/position.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/ responsive.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/application.js",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/components/widget.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/components/tags.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/application.scss",
+		"/Users/pavelkononenko/devel/wheat/app/views/layouts/application.html.slim",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/components/search.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/components/select.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/directives/dimension_directive.js",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/directives/select_directive.js",
+		"/Users/pavelkononenko/devel/wheat/app/views/components/_select.slim",
+		"/Users/pavelkononenko/devel/wheat/app/views/components/_dimension.slim",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/components/dimension.styl",
+		"/Users/pavelkononenko/devel/Новая папка/agrofor/app/assets/javascripts/directives/dimension_directive.js",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/directives/input_autosize.js",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/form.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/components/elements.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/components.scss",
+		"/Users/pavelkononenko/devel/wheat/config/initializers/stylus.rb",
+		"/Users/pavelkononenko/devel/wheat/config/application.rb",
+		"/Users/pavelkononenko/devel/wheat/Gemfile",
+		"/Users/pavelkononenko/devel/wheat/app/views/application/components.html.slim",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/components/search.css",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/map.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/colors.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/location.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/header.scss",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/blocks/sidebar.styl",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/sidebar.styl",
+		"/Users/pavelkononenko/devel/wheat/config/routes.rb",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/directives/dimension.scss",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/lib.js",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/search.scss",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/form.scss",
+		"/Users/pavelkononenko/devel/wheat/app/controllers/application_controller.rb",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/colors.scss",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/ responsive.scss",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/directives/radio.scss",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/directives/radio_directive.js",
+		"/Users/pavelkononenko/devel/Новая папка/agrofor/app/assets/javascripts/directives/radio_directive.js",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/style.scss",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/sidebar.scss",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/map.scss",
+		"/Users/pavelkononenko/devel/wheat/app/views/application/_nav.html.slim",
+		"/Users/pavelkononenko/devel/wheat/app/views/layouts/_nav.html.slim",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/nav.scss",
+		"/Users/pavelkononenko/devel/wheat/app/views/layouts/nav.html.slim",
+		"/Users/pavelkononenko/devel/wheat/app/views/layouts/na",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/services/map_service.js",
+		"/Users/pavelkononenko/devel/wheat/db/seeds.rb",
+		"/Users/pavelkononenko/devel/Новая папка/agrofor/app/controllers/application_controller.rb",
+		"/Users/pavelkononenko/devel/Новая папка/agrofor/public/index.html",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/directives/map_directive.js",
+		"/Users/pavelkononenko/devel/wheat/config/secrets.yml",
+		"/Users/pavelkononenko/devel/Новая папка/agrofor/config/nginx.conf",
+		"/Users/pavelkononenko/devel/wheat/config/nginx.conf",
+		"/Users/pavelkononenko/devel/wheat/Capfile",
+		"/Users/pavelkononenko/devel/wheat/config/deploy/production.rb",
+		"/Users/pavelkononenko/devel/wheat/config/deploy.rb",
+		"/Users/pavelkononenko/devel/wheat/.gitignore",
+		"/Users/pavelkononenko/devel/wheat/app/views/svg/_logo.html.erb",
+		"/Users/pavelkononenko/devel/wheat/app/views/svg",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/controllers/map_controller.js",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/services/pluralize_sevice.js",
+		"/Users/pavelkononenko/devel/Новая папка/agrofor/app/assets/javascripts/controllers/map_ctrl.js",
+		"/Users/pavelkononenko/devel/wheat/config/database.yml",
+		"/Users/pavelkononenko/devel/wheat/db/migrate/20150707204759_create_positions.rb",
+		"/Users/pavelkononenko/devel/wheat/app/controllers/positions_controller.rb",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/services/position_service.js",
+		"/Users/pavelkononenko/devel/wheat/app/assets/javascripts/services/marker_service.js",
+		"/Users/pavelkononenko/devel/Новая папка/agrofor/test/factories/users.rb",
+		"/Users/pavelkononenko/devel/wheat/app/assets/stylesheets/application.css",
+		"/Users/pavelkononenko/devel/wheat/app/views/layouts/application.html.erb",
+		"/Users/pavelkononenko/devel/wheat/.ruby-version",
+		"/Users/pavelkononenko/devel/wheat/.ruby-gemset",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/views/layouts/application.html.slim",
+		"/Users/pavelkononenko/devel/apple_product_scraping/spec/rails_helper.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/spec/spec_helper.rb",
+		"/Users/pavelkononenko/devel/hermes/Gemfile",
+		"/Users/pavelkononenko/devel/apple_product_scraping/config/application.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/assets/javascripts/services/devices_service.js",
+		"/Users/pavelkononenko/devel/apple_product_scraping/spec/requests/devices_spec.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/assets/javascripts/controllers/devices_ctrl.js",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/assets/javascripts/application.js",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/models/device.rb",
+		"/Users/pavelkononenko/devel/hermes/spec/features/calendar/create_spec.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/controllers/devices_controller.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/Gemfile",
+		"/Users/pavelkononenko/devel/apple_product_scraping/spec/features/device_spec.rb",
+		"/Users/pavelkononenko/devel/hermes/spec/rails_helper.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/assets/javascripts/private_pub.js",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/controllers/application_controller.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/lib/tasks/apikeys.rake",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/models/apikey.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/README.rdoc",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/assets/stylesheets/application.less",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/views/devices/_form.html.slim",
+		"/Users/pavelkononenko/devel/apple_product_scraping/private_pub.ru",
+		"/Users/pavelkononenko/devel/apple_product_scraping/spec/models/device_spec.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/views/devices/show.html.slim",
+		"/Users/pavelkononenko/devel/apple_product_scraping/spec/models/apikey_spec.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/views/devices/index.html.slim",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/views/devices/edit.html.slim",
+		"/Users/pavelkononenko/devel/apple_product_scraping/app/assets/stylesheets/spinner.scss",
+		"/Users/pavelkononenko/devel/apple_product_scraping/test/models/apikey_test.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/config/database.yml.example",
+		"/Users/pavelkononenko/devel/apple_product_scraping/config/routes.rb",
+		"/Users/pavelkononenko/devel/apple_product_scraping/config/database.yml",
+		"/Users/pavelkononenko/devel/agrofor/config/database.yml",
+		"/Users/pavelkononenko/devel/hermes/config.yml",
+		"/Users/pavelkononenko/devel/hermes/app/views/portal/publications/_form.html.slim",
+		"/Users/pavelkononenko/devel/hermes/app/models/user.rb",
+		"/Users/pavelkononenko/devel/agrofor/app/assets/javascripts/directives/categories_directive.js",
+		"/Users/pavelkononenko/devel/agrofor/app/assets/javascripts/directives/dimension_directive.js",
+		"/Users/pavelkononenko/devel/agrofor/app/models/position.rb",
+		"/Users/pavelkononenko/devel/agrofor/.erdconfig",
+		"/Users/pavelkononenko/devel/agrofor/Gemfile",
+		"/Users/pavelkononenko/devel/agrofor/Gemfile.lock",
+		"/Users/pavelkononenko/devel/agrofor/config/routes.rb",
+		"/Users/pavelkononenko/devel/agrofor/app/controllers/application_controller.rb",
+		"/Users/pavelkononenko/devel/agrofor/app/models/offer.rb",
+		"/Users/pavelkononenko/devel/agrofor/app/assets/stylesheets/content/position.less",
+		"/Users/pavelkononenko/devel/agrofor/app/views/layouts/application.html.slim",
+		"/Users/pavelkononenko/devel/agrofor/app/models/user.rb",
+		"/Users/pavelkononenko/devel/agrofor/app/assets/javascripts/application.js",
+		"/Users/pavelkononenko/devel/agrofor/app/controllers/positions_controller.rb",
+		"/Users/pavelkononenko/Desktop/application_controller.rb"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"showDimension",
+			"2px",
+			"5%",
+			"none",
+			".p-",
+			"$",
+			"&",
+			"@",
+			"$",
+			"@blue",
+			"url('",
+			"li\n          a",
+			".nav",
+			"$green",
+			"ng-click",
+			"agrofor",
+			" !important",
+			"$resource",
+			"positionResource",
+			"Position",
+			"position",
+			"Position",
+			"position",
+			"Position",
+			"position",
+			"Position",
+			"position",
+			"Position",
+			"all",
+			"argoagora",
+			"@",
+			"spri",
+			"use_transactional_fixtures",
+			"rspec",
+			"connectToFaye",
+			"@@redis",
+			"strong",
+			"generate_key",
+			"_key",
+			"013896000639712",
+			"support",
+			"argoagora",
+			"deal_with",
+			"GEM",
+			"\"",
+			"Поле",
+			">>>>>>",
+			"I18nData",
+			"\": \"",
+			"list",
+			"найден",
+			"nothing",
+			"list",
+			"Search.result",
+			"Search.position_info",
+			"positionInfoInProgress",
+			"td",
+			".w0",
+			".completed__",
+			".completed",
+			"reputations",
+			"profile.type",
+			"Search.find_all",
+			"__btn",
+			"unread",
+			"current_user",
+			".spinner",
+			"not_auth",
+			".rating",
+			"margin:0 1em 0 0;",
+			"margin",
+			"margin: 0",
+			"margin: 0 1em 0 0",
+			".pure-form-aligned",
+			"получ",
+			" ap ",
+			"dcbox",
+			"new_offers_count",
+			".ng-cloak",
+			"proxy_set_header Connection $connection_upgrade;",
+			"proxy_set_header Upgrade $http_upgrade;",
+			"proxy_set_header X-Real-IP $remote_addr;",
+			"proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;",
+			"proxy_set_header Host $host;",
+			"proxy_http_version 1.1;",
+			"proxy_pass http://127.0.0.1:9292;",
+			"example.com",
+			"webs",
+			"messages",
+			"dispatcher.bind",
+			"thin",
+			"now",
+			"resque",
+			"ap ",
+			"ap \"",
+			"ap ",
+			"delta",
+			"app",
+			"puma",
+			"rails",
+			"rmagick",
+			"devise",
+			"gon",
+			"carrierwave",
+			"squeel",
+			"username",
+			"appname",
+			"checke",
+			"ФИО",
+			"rvm_bin_path",
+			"checker",
+			"прикрепит",
+			"reputat",
+			"user",
+			"form.commen",
+			"red",
+			"position",
+			"isOffer",
+			"deal_with",
+			"deal_w",
+			"deal_wi",
+			"go_to_position",
+			"myOffer",
+			"cancell",
+			"statuses_group",
+			"TRADE_TYPES",
+			"trade_types",
+			"trade_types_group"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Correspondence",
+			"correspondence",
+			"/",
+			"th.th",
+			"td.td"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/pavelkononenko/devel/Новая папка/hermes/app/controllers/events_controller.rb",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2125,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								566,
+								566
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/pavelkononenko/devel/Новая папка/hermes/config/secrets.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1712,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								488,
+								488
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 85.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.MarGo-output":
+	{
+		"height": 118.0
+	},
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "hermes.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"sec",
+				"config/secrets.yml"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"rou",
+				"config/routes.rb"
+			],
+			[
+				"user",
+				"app/models/user.rb"
+			],
+			[
+				"posir",
+				"agrofor/app/models/position.rb"
+			],
+			[
+				"layapp",
+				"agrofor/app/views/layouts/application.html.slim"
+			],
+			[
+				"userrb",
+				"agrofor/app/models/user.rb"
+			],
+			[
+				"layoapp",
+				"agrofor/app/views/layouts/application.html.slim"
+			],
+			[
+				"posictrrb",
+				"agrofor/app/controllers/positions_controller.rb"
+			],
+			[
+				"aplijs",
+				"agrofor/app/assets/javascripts/application.js"
+			],
+			[
+				"appli",
+				"agrofor/app/assets/javascripts/application.js"
+			],
+			[
+				"route",
+				"agrofor/config/routes.rb"
+			],
+			[
+				"posiless",
+				"agrofor/app/assets/stylesheets/content/position.less"
+			],
+			[
+				"appl",
+				"agrofor/app/controllers/application_controller.rb"
+			],
+			[
+				"userser",
+				"agrofor/app/assets/javascripts/services/user_service.js"
+			],
+			[
+				"applica",
+				"agrofor/app/controllers/application_controller.rb"
+			],
+			[
+				"correles",
+				"agrofor/app/assets/stylesheets/content/correspondences.less"
+			],
+			[
+				"usese",
+				"agrofor/app/assets/javascripts/services/user_service.js"
+			],
+			[
+				"applicactr",
+				"agrofor/app/controllers/application_controller.rb"
+			],
+			[
+				"theme",
+				"agrofor/app/assets/stylesheets/theme.less"
+			],
+			[
+				"applijs",
+				"app/assets/javascripts/application.js"
+			],
+			[
+				"appjs",
+				"hermes/app/assets/javascripts/application.js"
+			],
+			[
+				"ruym",
+				"config/locales/ru/ru.yml"
+			],
+			[
+				"iconles",
+				"app/assets/stylesheets/icons.less"
+			],
+			[
+				"posiym",
+				"config/locales/ru/position.ru.yml"
+			],
+			[
+				"posoy",
+				"config/locales/en/position.en.yml"
+			],
+			[
+				"positicon",
+				"app/controllers/positions_controller.rb"
+			],
+			[
+				"posictr",
+				"app/assets/javascripts/controllers/position_ctrl.js"
+			],
+			[
+				"correru",
+				"config/locales/ru/correspondence.ru.yml"
+			],
+			[
+				"correym",
+				"config/locales/en/correspondence.en.yml"
+			],
+			[
+				"corre",
+				"app/controllers/correspondences_controller.rb"
+			],
+			[
+				"applictr",
+				"app/controllers/application_controller.rb"
+			],
+			[
+				"appct",
+				"app/controllers/application_controller.rb"
+			],
+			[
+				"datase",
+				"app/assets/javascripts/services/data_service.js"
+			],
+			[
+				"miposi",
+				"db/migrate/20150321115122_create_positions.rb"
+			],
+			[
+				"sche",
+				"db/schema.rb"
+			],
+			[
+				"rout",
+				"config/routes.rb"
+			],
+			[
+				"posiser",
+				"app/assets/javascripts/services/position_service.js"
+			],
+			[
+				"ooferr",
+				"app/controllers/offers_controller.rb"
+			],
+			[
+				"ru",
+				"config/locales/ru.yml"
+			],
+			[
+				"lay",
+				"agroagora/app/views/layouts/application.html.slim"
+			],
+			[
+				"sideb",
+				"agroagora/app/assets/stylesheets/content/side-bar.less"
+			],
+			[
+				"side",
+				"agroagora/app/assets/stylesheets/content/side-bar.less"
+			],
+			[
+				"creatmess",
+				"agroagora/db/migrate/20150418145657_create_messages.rb"
+			],
+			[
+				"applca",
+				"agroagora/app/controllers/application_controller.rb"
+			],
+			[
+				"poles",
+				"agroagora/app/assets/stylesheets/content/position.less"
+			],
+			[
+				"modall",
+				"agroagora/app/assets/stylesheets/content/modals.less"
+			],
+			[
+				"applicjs",
+				"agroagora/app/assets/javascripts/application.js"
+			],
+			[
+				"_di",
+				"agroagora/app/views/application/_directives.html.slim"
+			],
+			[
+				"confappl",
+				"agroagora/config/application.rb"
+			],
+			[
+				"seed",
+				"agroagora/db/seeds.rb"
+			],
+			[
+				"sele",
+				"agroagora/app/assets/stylesheets/directives/select.less"
+			],
+			[
+				"catego",
+				"agroagora/test/factories/category.rb"
+			],
+			[
+				"styl",
+				"app/assets/stylesheets/app.less"
+			],
+			[
+				"them",
+				"app/assets/stylesheets/theme.less"
+			],
+			[
+				"apples",
+				"ripk/app/assets/stylesheets/app.less"
+			],
+			[
+				"appless",
+				"ripk/app/assets/stylesheets/app.less"
+			],
+			[
+				"applles",
+				"ripk/app/assets/stylesheets/application.css.less"
+			],
+			[
+				"applicless",
+				"ripk/app/assets/stylesheets/application.css.less"
+			],
+			[
+				"cours",
+				"app/assets/stylesheets/course.css.scss"
+			],
+			[
+				"flatle",
+				"app/assets/stylesheets/flaticon.css.less"
+			],
+			[
+				"appliles",
+				"app/assets/stylesheets/application.css.less"
+			],
+			[
+				"apple",
+				"app/assets/stylesheets/app.less"
+			],
+			[
+				"the",
+				"assets/stylesheets/theme.less"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "ag",
+		"selected_items":
+		[
+			[
+				"ag",
+				"~/devel/agrofor new.sublime-project"
+			],
+			[
+				"",
+				"~/devel/agrofor.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 325.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
