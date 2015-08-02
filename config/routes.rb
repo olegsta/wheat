@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   
+
   root "application#index"
 
   scope :ajax do
-    get 'profile' => 'profile#index'
     get 'messages' => 'messages#index'
     get 'analytics' => 'analytics#index'
     get 'search' => 'search#index'
     get 'support' => 'support#index'
     get 'help' => 'help#index'
+    get 'profile' => 'profile#index'
+    get 'settings' => 'settings#index'
 
     resources :positions
   end

@@ -32,6 +32,10 @@ app.config(['$routeProvider', function ($routeProvider) {
       templateUrl: Routes.profile_path(),
       controller: 'ProfileCtrl as profile',
     })
+    .when('/settings', {
+      templateUrl: Routes.settings_path(),
+      controller: 'SettingsCtrl as settings',
+    })
     .otherwise({
       redirectTo: '/'
     })

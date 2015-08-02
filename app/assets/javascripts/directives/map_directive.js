@@ -1,4 +1,4 @@
-app.directive('map', ['YandexMaps', 'Search', function(YandexMaps, Search) {
+app.directive('map', ['YandexMaps', 'Search', '$timeout', function(YandexMaps, Search, $timeout) {
   // Runs during compile
   return {
     // name: '',
@@ -15,10 +15,12 @@ app.directive('map', ['YandexMaps', 'Search', function(YandexMaps, Search) {
     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
     link: function($scope, iElm, iAttrs, controller) {
       ymaps.ready(function () {
-        YandexMaps.create();
-        Search.all({}, function (points) {
-          YandexMaps.drawMarkers(points);
-        })
+        $timeout(function () {
+          YandexMaps.create();
+          Search.all({}, function (points) {
+            YandexMaps.drawMarkers(points);
+          })
+        }, 300)
       })
     }
   };
