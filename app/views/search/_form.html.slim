@@ -1,0 +1,29 @@
+.search
+  .search__form
+    .search__input
+      input type="text" placeholder="Купить пщеницу" ng-focus="showSearchFooter = true"
+      .search__addons
+        i.icon-extended ng-click="showSearchFooter=!showSearchFooter"
+    .search__btn
+      span Найти
+  
+  .p-search__footer ng-class="{active: showSearchFooter}"
+    .search__tags.p-search__tags
+      .tags
+        a.btn.btn-primary.ripple.add-tag ng-click="isShowExtendedSearch = !isShowExtendedSearch"
+          | Добавить условие
+
+        .tags__area
+          .tag
+            .tag__title Пшеница
+            .delete-tag
+              | &times;
+    .search__count
+      | Найдено 
+      b 100 
+      | позиций. В Ростовской области – 
+      b 12
+      | . В области карты – 
+      b 2
+
+  = render "search/extended"

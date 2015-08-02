@@ -11,112 +11,15 @@ html
     a.logo.p-logo href=""
       span.red Agro 
       span.black for PRO
-    .search.p-search
-      .search__form
-        .search__input
-          input type="text" placeholder="Купить пщеницу" ng-focus="showSearchFooter = true"
-          .search__addons
-            i.icon-extended ng-click="showSearchFooter=!showSearchFooter"
-        .search__btn
-          span Найти
-      
-      .p-search__footer ng-class="{active: showSearchFooter}"
-        .search__tags.p-search__tags
-          .tags
-            a.btn.btn-primary.ripple.add-tag ng-click="isShowExtendedSearch = !isShowExtendedSearch"
-              | Добавить условие
+    .p-search
+      = render "search/form"
 
-            .tags__area
-              .tag
-                .tag__title Пшеница
-                .delete-tag
-                  | &times;
-        .search__count
-          | Найдено 
-          b 100 
-          | позиций. В Ростовской области – 
-          b 12
-          | . В области карты – 
-          b 2
+    .p-widget.collapse-widget ng-class="{'collapse-widget': !activeWidget}"
+      = render "application/widget"
 
-      = render partial: "search/extended"
-
-    .p-widget ng-class="{'collapse-widget': !activeWidget}"
-      .widget.z3 ng-class="{active: activeWidget=='suit'}"
-        .widget__header ng-click="activeWidget='suit'"
-          .widget__title Подходящие
-          .close ng-click="activeWidget=''; $event.stopPropagation()"
-            .icon-close
-        .widget__body ng-init="myPositions=[1,2,3,4,5]"
-          .widget__description
-            | Выберите свою позицию и мы подберем подходящие для нее
-          .position-list scroll="{{myPositions}}"
-            label.position-list__item.noselect ng-repeat="position in myPositions"
-              .position-list__left
-                .checkbox
-                  input type="checkbox"
-                  .checker
-                  .position-list__bg
-
-              .position-list__right
-                .position-list__title Закупка баклажанов
-                .position-list__category Зерновые / Пшеница
-                .position-list__info Закупка 644 л, 444.92 руб/л
-
-      .widget.z2 ng-class="{active: activeWidget=='favorite'}"
-        .widget__header ng-click="activeWidget='favorite'"
-          .widget__title Избранное
-          .close ng-click="activeWidget=''; $event.stopPropagation()"
-            .icon-close
-        .widget__body
-          label.position-list__item.noselect ng-repeat="position in myPositions"
-
-      .widget.z1 ng-class="{active: activeWidget=='market'}"
-        .widget__header ng-click="activeWidget='market'"
-          .widget__title Отслеживание
-          .close ng-click="activeWidget=''; $event.stopPropagation()"
-            .icon-close
-        .widget__body
-          label.position-list__item.noselect ng-repeat="position in myPositions"
-
-    /.canvas
-      .row
-        .tags
-          .add-tag +
-          .tags__area
-            .tag
-              .tag__title Пшеница
-              .delete-tag
-                | &times;
-      .row
-        af-dimension options="[{id: 1, title: 'кг'}, {id: 2, title: 'т'}]"
-      .row
-        af-select options="[{id: 1, title: 'Пшеница'}, {id: 2, title: 'Ячмень'}]"
 
     .sidebar.p-sidebar
-      a.btn.btn-primary.btn-create.ripple Создать позицию
-      nav
-        a href="" Мои позиции
-        a href="" Сообщение
-        a href="" Аналитика
-        a href="" Справка
-        a href="" Поддержка
-      
-      footer
-        .user
-          .user__avatar
-            img src="/avatar.png"
-          .user__info
-            .user__name Кононенко П.
-            .user__status Фермер
-
-          
-        .user_name
-        hr
-
-        nav
-         a href="" Настройки
-         a href="" Выход
+      = render "application/sidebar"
     
     = render partial: "components/dimension"
     = render partial: "components/radio"
