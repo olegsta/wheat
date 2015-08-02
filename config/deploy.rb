@@ -9,7 +9,7 @@ set :bundle_flags, '--system'
 
 set :deploy_to, '/home/deploy/wheat'
 
-set :linked_files, %w{config/database.yml config/thinking_sphinx.yml}
+set :linked_files, %w{config/database.yml config/thinking_sphinx.yml config/production.sphinx.conf}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 # Default branch is :master

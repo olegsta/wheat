@@ -35,23 +35,17 @@
   .add-tag
     float: right
     margin: 5px
-    line-height: 27px
     height: 28px
-    padding-left: 30px
-    padding-right: 10px
-    position: relative
+    line-height: 27px
+    padding: 0 8px 0 0
     
-    span
-      padding-left: 8px
-
-    .addon-plus
-      position: absolute
-      left: 0
-      top: 0
-      bottom: 0
+    &:before
+      content: "+"
+      display: block
       height: 26px
-      width: 28px
-      text-align: center
+      float: left
+      margin-right: 8px
       border-right: 1px solid #d7b940
       font-size: 20px
+      padding: 0 7px 0 8px
       font-weight: lighter

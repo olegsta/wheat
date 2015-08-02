@@ -1,11 +1,24 @@
 @import 'colors'
 
+.collapse-widget
+  .widget
+    width: 140px
+    margin-bottom: 5px
+    
+    &:hover
+      transform: scale(1.1)
+      -moz-transform: scale(1.1)
+      -o-transform: scale(1.1)
+      -ms-transform: scale(1.1)
+      -webkit-transform: scale(1.1)
+
 .widget
   width: 300px
   background: white
   -webkit-box-shadow: 0 1px 3px 1px rgba(0,0,0,.1)
   box-shadow: 0 1px 3px 1px rgba(0,0,0,.1)
   border-radius: 3px
+  transition: .3s
 
   &:not(:last-child)
     border-radius: 0

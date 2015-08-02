@@ -23,9 +23,8 @@ html
       .p-search__footer ng-class="{active: showSearchFooter}"
         .search__tags.p-search__tags
           .tags
-            .add-tag.btn.btn-primary ng-click="isShowExtendedSearch = !isShowExtendedSearch"
-              .addon.addon-plus +
-              span Добавить условие
+            a.btn.btn-primary.ripple.add-tag ng-click="isShowExtendedSearch = !isShowExtendedSearch"
+              | Добавить условие
 
             .tags__area
               .tag
@@ -42,7 +41,7 @@ html
 
       = render partial: "search/extended"
 
-    .p-widget ng-init="activeWidget='suit'"
+    .p-widget ng-class="{'collapse-widget': !activeWidget}"
       .widget.z3 ng-class="{active: activeWidget=='suit'}"
         .widget__header ng-click="activeWidget='suit'"
           .widget__title Подходящие
@@ -95,7 +94,7 @@ html
         af-select options="[{id: 1, title: 'Пшеница'}, {id: 2, title: 'Ячмень'}]"
 
     .sidebar.p-sidebar
-      a.btn.btn-primary.btn-create Создать позицию
+      a.btn.btn-primary.btn-create.ripple Создать позицию
       nav
         a href="" Мои позиции
         a href="" Сообщение
