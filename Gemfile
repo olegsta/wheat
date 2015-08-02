@@ -91,5 +91,5 @@ gem 'aasm'
 gem 'faye'
 gem 'faye-redis'
 gem 'faye-rails'
-gem "private_pub"
-
+gem 'private_pub'
+gem 'js-routes'

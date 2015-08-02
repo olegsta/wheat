@@ -1,4 +1,4 @@
-app.directive('map', ['YandexMaps', 'Position', function(YandexMaps, Position) {
+app.directive('map', ['YandexMaps', 'Search', function(YandexMaps, Search) {
   // Runs during compile
   return {
     // name: '',
@@ -16,7 +16,7 @@ app.directive('map', ['YandexMaps', 'Position', function(YandexMaps, Position) {
     link: function($scope, iElm, iAttrs, controller) {
       ymaps.ready(function () {
         YandexMaps.create();
-        Position.search({}, function (points) {
+        Search.all({}, function (points) {
           YandexMaps.drawMarkers(points);
         })
       })

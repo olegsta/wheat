@@ -31,6 +31,15 @@ html, body, #map {
   box-sizing: border-box;    
 }
 
+h1 {
+  font-weight: 500;
+  font-size: 24px;
+  margin: 0 0 0 -30px;
+  padding: 0 0 0 30px;
+  border-bottom: 2px solid rgb(255, 219, 76);
+  display: inline-block;
+}
+
 h2 {
   font-size: 18px;
   color: #414141;
@@ -108,4 +117,12 @@ h2 {
 
 .margin-0 {
   margin: 0 !important;
+}
+
+.blur {
+  -webkit-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  -moz-filter: blur(3px);
+  filter: blur(3px);
 }

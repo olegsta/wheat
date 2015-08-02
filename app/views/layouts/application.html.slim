@@ -3,23 +3,21 @@ html
   head
     meta charset="UTF-8"
     title WheatPRO
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    base href="/"
     = stylesheet_link_tag    'application'
     = csrf_meta_tags
   body ng-app="app"
-    #map map="" ng-click="showSearchFooter = false"
-
-    a.logo.p-logo href=""
+    a.logo.p-logo ng-class="{'logo-map': Page.isMap}" href="/"
       span.red Agro 
       span.black for PRO
-    .p-search
-      = render "search/form"
-
-    .p-widget.collapse-widget ng-class="{'collapse-widget': !activeWidget}"
-      = render "application/widget"
-
-
-    .sidebar.p-sidebar
+    
+    .sidebar.p-sidebar ng-class="{'sidebar-map': Page.isMap}"
       = render "application/sidebar"
+    
+
+    ng-view
+
     
     = render partial: "components/dimension"
     = render partial: "components/radio"

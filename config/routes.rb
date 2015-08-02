@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  
   root "application#index"
 
-  get "components" => "application#components"
+  scope :ajax do
+    get '/search' => 'search#index'
 
-  get "positions" => "positions#index"
-  get "positions/search" => "positions#search"
+    resources :positions
+  end
+
+  get '/*path' => 'application#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

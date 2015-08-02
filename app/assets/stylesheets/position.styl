@@ -1,9 +1,10 @@
 .p
   &-sidebar
     position: absolute
-    top: 90px
-    left: 27px
-    z-index: 1
+    top: 0
+    left: 0
+    bottom: 0
+    z-index: 100
 
   &-search
     position: absolute
@@ -13,9 +14,10 @@
 
   &-logo
     position: absolute
-    z-index: 2
     left: 30px
     top: 25px
+    z-index: 101
+    
   
   &-search__footer
     position: absolute
@@ -70,3 +72,11 @@
 
     &:after
       border-color: transparent white transparent transparent
+  
+  &-page
+    position: absolute
+    left: 200px
+    right: 0
+    top: 0
+    bottom: 0
+    z-index: 100

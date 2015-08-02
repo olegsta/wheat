@@ -1,4 +1,4 @@
-app.service('YandexMaps', ['pluralize', '$http', function(pluralize, $http) {
+app.service('YandexMaps', ['pluralize', function(pluralize) {
   var YandexMaps = this, cluster;
 
   YandexMaps.registerFilters = function () {

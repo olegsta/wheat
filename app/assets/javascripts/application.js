@@ -17,7 +17,13 @@
 //= require angular-route
 //= require angular-resource
 //= require angular-animate
+
+//= require js-routes
 //= require_self
 //= require_tree .
 
-var app = angular.module("app", ["ngResource", "ngRoute", "ngAnimate"])
+var app = angular.module("app", ["ngResource", "ngRoute", "ngAnimate"]);
+
+app.run(['$rootScope', 'Page', function ($rootScope, Page) {
+  $rootScope.Page = Page;
+}])
