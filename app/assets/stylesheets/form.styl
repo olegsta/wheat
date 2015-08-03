@@ -1,8 +1,5 @@
 @import 'colors'
 
-.row
-  margin-bottom: 20px
-
 label.label
   color: #414141
   display: block
@@ -13,11 +10,11 @@ input[type="text"]
 input[type="email"]
 input[type="password"]
 input[type="number"]
-  height: 30px
-  padding-left: 8px
+textarea
   border: 1px solid #CCCCCC
   border-radius: 2px
   font-size: 13px
+  outline: none !important
   
   &.autosize {
     min-width: 82.5px;
@@ -27,6 +24,16 @@ input[type="number"]
     border-color: #d0ba65;
     -webkit-box-shadow: 0 0 10px #fc0;
     box-shadow: 0 0 10px #fc0;
+
+input[type="text"]
+input[type="email"]
+input[type="password"]
+input[type="number"]
+  height: 30px
+  padding-left: 8px
+  
+textarea
+  padding: 8px
 
 .noselect
   -webkit-touch-callout: none
@@ -58,6 +65,11 @@ a
   -moz-user-select: none
   -ms-user-select: none
   user-select: none
+  
+  &.btn-lg
+    height: 40px
+    line-height: 39px
+    padding: 0 25px
 
   btn($color)
     background: $color
@@ -126,7 +138,7 @@ label.input input
 .sep
   display: inline-block
   height: 30px
-  width: 25px
+  width: 12px
   line-height: 26px
   font-size: 16px
   text-align: center

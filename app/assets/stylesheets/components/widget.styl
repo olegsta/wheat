@@ -31,7 +31,7 @@
   box-shadow: 0 1px 3px 1px rgba(0,0,0,.1)
   border-radius: 3px
   transition: .3s
-  position: relative
+  float: none
 
   &:not(:last-child)
     border-radius: 0
@@ -39,6 +39,9 @@
   &.active
     .close
       display: block
+      
+    .widget__header
+      border-bottom: 1px solid rgba(0,0,0,.1)
     
   &:not(.active)
     .widget__header
@@ -58,7 +61,7 @@
   &__header
     position: relative
     height: 40px
-    border-bottom: 1px solid rgba(0,0,0,.1)
+    background: white
     
     .close
       display: none
@@ -89,4 +92,5 @@
     font-size: 12px
     text-align: center
     color: #666
+    background: white
     

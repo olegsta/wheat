@@ -5,45 +5,44 @@
 
   .modal__body
     .row
-      .ib#location
+      .col#location
         label.label Местоположение
         label.input
           input type="text"
       .sep
         | ±
-      .ib#radius
+      .col#radius
         label.label &nbsp;
         label.input
           af-dimension.disabled options="[{id: 1, title: 'км'}]"
     .row
-      .ib#type
+      .col#type
         label.label Тип
         label.input
           af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
-      .sep
-      .ib#category
+      .col#category
         label.label Категория
         label.input
-          af-select options="[{id: 1, title: 'км'}]"
+          af-select options="[{id: 1, title: 'Пшеница'}]"
     .row
-      .ib#price_from
+      .col#price_from
         label.label Вес (объем)
         .input
           af-dimension options="[{id: 1, title: 'кг'}]" before="'от'"
       .sep
         | —
-      .ib#price_to
+      .col#price_to
         label.label &nbsp;
         .input
           af-dimension options="[{id: 1, title: 'кг'}]" before="'до'"
     .row
-      .ib#price_from
-        label.label Стоимость
+      .col#price_from
+        label.label Цена
         .input
           af-dimension options="[{id: 1, title: 'руб'}]" before="'от'"
       .sep
         | —
-      .ib#price_to
+      .col#price_to
         label.label &nbsp;
         .input
           af-dimension options="[{id: 1, title: 'руб'}]" before="'до'"
