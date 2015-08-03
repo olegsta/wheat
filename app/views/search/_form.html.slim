@@ -11,7 +11,7 @@
     .search__tags.p-search__tags
       .tags
         a.btn.btn-primary.ripple.add-tag ng-click="isShowExtendedSearch = !isShowExtendedSearch"
-          | Добавить условие
+          span Добавить условие
 
         .tags__area
           .tag
@@ -26,4 +26,4 @@
       | . В области карты – 
       b 2
 
-  = render "search/extended"
+    = render "search/extended"

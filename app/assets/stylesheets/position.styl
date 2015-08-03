@@ -26,12 +26,15 @@
     right: 82px
     margin-top: -38px
     transition: .3s
+    max-width: 917px
     
     &.active
       margin-top: 0
+      min-width: 387px
 
       .search__tags
         box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.11)
+        min-width: 387px
 
   &-widget
     position: absolute
@@ -41,8 +44,8 @@
   &-extended-search
     position: absolute
     width: 310px
-    top: 40px
-    right: -255px
+    top: 2px
+    right: -340px
     visibility: hidden
     transition: visibility 0s linear 0.2s, opacity 0.2s linear, right 0.2s linear
     opacity: 0
@@ -51,7 +54,7 @@
     &.show
       visibility: visible
       transition-delay: 0s
-      right: -235px
+      right: -314px
       opacity: 1
     
     &:before, &:after
