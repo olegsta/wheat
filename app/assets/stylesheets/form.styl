@@ -34,6 +34,7 @@ input[type="number"]
   
 textarea
   padding: 8px
+  width: 100%
 
 .noselect
   -webkit-touch-callout: none
@@ -85,10 +86,15 @@ a
 
   &-default
     btn(white)
+    border: 1px solid rgba(0,0,0,.2)
+    
+    &:hover
+      border: 1px solid rgba(0,0,0,.3)
 
   &-primary
     btn($yellow)
     border: 1px solid #D7B940
+
 hr
   border: none
   border-top: 1px solid #D8D8D8

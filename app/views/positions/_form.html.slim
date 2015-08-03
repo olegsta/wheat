@@ -1,56 +1,53 @@
-form
+form.positions__form
   .row
     .col
-      label.label Дата
-      span 23.06.2014
-  .row
-    .col#category
-      label.label Шаблон
-      label.input
-        af-select options="[{id: 1, title: 'Шаблон 1'}]"
-  .row
-    .col#type
-      label.label Тип
-      label.input
-        af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
-  .row
-    .col#category
-      label.label Название
-      label.input
-        input type="text"
-  .row
+      .row
+        .col#type
+          label.label Тип
+          label.input
+            af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
+      .row
+        .col#title
+          label.label Название
+          label.input
+            input type="text"
+      .row
+        .col#category
+          label.label Категория
+          label.input
+            af-select options="[{id: 1, title: 'Пшеница'}]"
+      .row
+        .col#weight
+          label.label Вес (объем)
+          .input
+            af-dimension options="[{id: 1, title: 'кг'}]"
+        .col#weight_min
+          label.label Мин. заказ
+          .input
+            af-dimension options="[{id: 1, title: 'кг'}]"
+      .row
+        .col#price
+          label.label Цена
+          .input
+            af-dimension options="[{id: 1, title: 'руб/кг'}]"
+        .sep
+          | ±
+        .col#discount
+          label.label Допуск
+          .input
+            af-dimension.disabled options="[{id: 1, title: '%'}]"
     .col
-      label.label Адрес
-      span Ростов-на-Дону, Россия
+      .positions__address
+        label.label Местоположение
+        map#position_map.positions__map
+        label.label
+          | Россия, Ростов-на-Дону
+        #address
+          input type="text"
   .row
-    .col#category
-      label.label Категория
-      label.input
-        af-select options="[{id: 1, title: 'Пшеница'}]"
-  .row
-    .col#weight
-      label.label Вес (объем)
-      .input
-        af-dimension options="[{id: 1, title: 'кг'}]"
-    .col#weight_min
-      label.label Мин. заказ
-      .input
-        af-dimension options="[{id: 1, title: 'кг'}]"
-  .row
-    .col#weight
-      label.label Цена
-      .input
-        af-dimension options="[{id: 1, title: 'руб/кг'}]"
-    .sep
-      | ±
-    .col#discount
-      label.label Допуск
-      .input
-        af-dimension.disabled options="[{id: 1, title: '%'}]"
-  .row
-    .col
+    .col#description
       label.label Описание
-      .input
-        textarea
+      .textarea
+        textarea rows="5"
   .row.col
     a.btn.btn-primary.btn-lg.ripple Сохранить

@@ -58,11 +58,11 @@ app.service('YandexMaps', ['pluralize', function(pluralize) {
     });
   }
 
-  YandexMaps.create = function () {
+  YandexMaps.create = function (id) {
     YandexMaps.registerFilters();
     YandexMaps.registerTemplates();
 
-    YandexMaps.map = new ymaps.Map('map', {
+    YandexMaps.map = new ymaps.Map(id, {
         center: [55.7, 37.6],
         zoom: 10,
         controls: []

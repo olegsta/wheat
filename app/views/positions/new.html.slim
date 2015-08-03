@@ -1,6 +1,10 @@
 .page.p-page
   a.page__close.icon-close href="/"
-  h1 Создание позиции
+  .clearfix
+    h1.float-left Создание позиции
+    a.btn.btn-default.float-left.positions__template-btn
+      | Использовать шаблон
+      i.icon-chevron-down
 
   .page__body
     = render "form"

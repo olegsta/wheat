@@ -4,7 +4,8 @@ script id="dimension.html" type="text/ng-template"
       tr
         td ng-show="before"
           label for="{{uid}}"
-            .dimension__before от
+            .dimension__before
+              | {{before}}
         td
           input id="{{uid}}" type="text" ng-focus="focus=true" ng-blur="focus=false" ng-model="ngModel"
         td
