@@ -1,10 +1,17 @@
 .row
   margin: 0 -8px 15px -8px
+  
+  &:after
+    visibility: hidden
+    display: block
+    font-size: 0
+    content: " "
+    clear: both
+    height: 0
 
 .col
   padding: 0 8px
-  display: inline-block
-  vertical-align: top
+  float: left
 
 [class*="col-xs-"]
   float: left
