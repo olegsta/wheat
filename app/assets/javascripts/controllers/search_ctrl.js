@@ -2,6 +2,7 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', 'Page', 'YandexMaps', 'Sea
   var map = this;
 
   Page.isMap = true;
+  Page.current = 'search';
 
   $scope.$on("$destroy", function(){
     mapListner();

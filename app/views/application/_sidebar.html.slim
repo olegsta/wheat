@@ -1,10 +1,10 @@
 a.btn.btn-primary.btn-create.ripple href="/positions/new" Создать позицию
 nav
-  a href="/positions" Мои позиции
-  a href="/messages" Сообщение
-  a href="/analytics" Аналитика
-  a href="/help" Справка
-  a href="/support" Поддержка
+  a ng-class="{active: Page.current == 'positions'}" href="/positions" Мои позиции
+  a ng-class="{active: Page.current == 'messages'}" href="/messages" Сообщения
+  a ng-class="{active: Page.current == 'analytics'}" href="/analytics" Аналитика
+  a ng-class="{active: Page.current == 'help'}" href="/help" Справка
+  a ng-class="{active: Page.current == 'support'}" href="/support" Поддержка
 
 footer
   a.user href="/profile"
