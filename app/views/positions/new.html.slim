@@ -1,10 +1,17 @@
 .page.p-page
   a.page__close.icon-close href="/"
   .clearfix
-    h1.float-left Создание позиции
-    a.btn.btn-default.float-left.positions__template-btn
-      | Использовать шаблон
-      i.icon-chevron-down
+    h1.pull-left Создание позиции
+
+    .pull-left.positions__template-btn
+      a.btn.btn-default ng-click="opened=!opened"
+        | Использовать шаблон
+        i.icon-chevron-down
+
+      .dropdown.positions__template-dropdown ng-class="{open: opened}"
+        | djflksjflk
+
+
 
   .page__body
     = render "form"

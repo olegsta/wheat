@@ -1,0 +1,37 @@
+.dropdown
+  background: white
+  padding: 15px
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .2)
+  position: absolute
+  visibility: hidden
+  margin-top: 3px
+  
+  &.open
+    visibility: visible
+    -webkit-animation-name: flipInX
+    -moz-animation-name: flipInX
+    -o-animation-name: flipInX
+    animation-name: flipInX
+    -webkit-animation-duration: .4s
+    -moz-animation-duration: .4s
+    -o-animation-duration: .4s
+    animation-duration: .4s
+    -webkit-animation-fill-mode: both
+    -moz-animation-fill-mode: both
+    -o-animation-fill-mode: both
+    animation-fill-mode: both
+
+@keyframes flipInX
+    0%
+      transform: perspective(400px) rotateX(90deg)
+      opacity: 0;
+
+    40%
+      transform: perspective(400px) rotateX(-10deg)
+
+    70%
+      transform: perspective(400px) rotateX(10deg)
+
+    100%
+      transform: perspective(400px) rotateX(0deg)
+      opacity: 1
