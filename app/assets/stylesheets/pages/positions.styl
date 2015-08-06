@@ -1,7 +1,7 @@
 .positions
   &__form
     padding-top: 25px
-    min-width: 410px
+    width: 720px
 
     .label
       font-size: 14px
@@ -51,27 +51,33 @@
     
     #address
       display: block
+      width: 352px
       
       input[type="text"]
         width: 100%
         
   &__template
-    &-btn
-      i
+    &-dropdown
+      &__list
+        width: 400px
+        max-height: 160px
+        padding: 0
+        margin: -15px
+        list-style: none
         position: relative
-        top: 2px
-        left: 8px
-        padding: 0 4px
+      
+      &__item
+        display: block
+        padding: 12px 17px
+        cursor: pointer
+        
+        &:hover
+          background: #f7f7f7
 
   &__address
     margin-left: 40px
       
   &__map
-    height: 247px
-    width: 410px
-    margin-bottom: 20px
+    height: 251px
+    width: 350px
     
-  &__template-dropdown
-    width: 300px
-    height: 100px
-    z-index: 2

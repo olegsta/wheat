@@ -1,21 +1,24 @@
 form.positions__form
-  .row
-    .col
+  .row.mb0
+    .col-xs-6.col
       .row
-        .col#type
-          label.label Тип
-          label.input
-            af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
+        .col
+          #type
+            label.label Тип
+            label.input
+              af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
       .row
-        .col#category
-          label.label Категория
-          label.input
-            af-select options="[{id: 1, title: 'Пшеница'}]"
+        .col
+          #category
+            label.label Категория
+            label.input
+              af-select options="[{id: 1, title: 'Пшеница'}]"
       .row
-        .col#title
-          label.label Название
-          label.input
-            input type="text"
+        .col
+          #title
+            label.label Название
+            label.input
+              input type="text"
       .row
         .col#weight
           label.label Вес (объем)
@@ -25,6 +28,13 @@ form.positions__form
           label.label Мин. заказ
           .input
             af-dimension options="[{id: 1, title: 'кг'}]"
+    .col-xs-6.col
+      .row
+        .col
+          label.label Местоположение
+          map#position_map.positions__map
+  .row
+    .col-xs-6.col
       .row
         .col#price
           label.label Цена
@@ -36,18 +46,19 @@ form.positions__form
           label.label Допуск
           .input
             af-dimension.disabled options="[{id: 1, title: '%'}]"
-    .col
-      .positions__address
-        label.label Местоположение
-        map#position_map.positions__map
-        label.label
-          | Россия, Ростов-на-Дону
-        #address
-          input type="text"
+    .col-xs-6.col
+      .row
+        .col
+          label.label
+            | Россия, Ростов-на-Дону
+          #address
+            input type="text"
   .row
-    .col#description.block.float-none
-      label.label Описание
-      .textarea
-        textarea rows="6"
-  .row.col
-    a.btn.btn-primary.btn-lg.ripple Сохранить
+    .col-xs-12.col
+      #description
+        label.label Описание
+        .textarea
+          textarea rows="6"
+  .row
+    .col
+      a.btn.btn-primary.btn-lg.ripple Сохранить

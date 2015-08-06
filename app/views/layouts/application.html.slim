@@ -5,6 +5,7 @@ html
     title WheatPRO
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     base href="/"
+    link href='http://fonts.googleapis.com/css?family=Roboto:400,500,300' rel='stylesheet' type='text/css'
     = stylesheet_link_tag    'application'
     = csrf_meta_tags
   body ng-app="app"
@@ -22,6 +23,7 @@ html
     = render partial: "components/dimension"
     = render partial: "components/radio"
     = render partial: "components/select"
+    = render partial: "components/dropdown"
 
     script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"
     = javascript_include_tag 'application'

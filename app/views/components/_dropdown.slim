@@ -1,0 +1,8 @@
+script id="dropdown.html" type="text/ng-template"
+  span
+    a.btn.btn-default.dropdown-btn ng-click="isOpened=!isOpened"
+      | Использовать шаблон
+      i.icon-chevron-down
+
+    .dropdown ng-class="{open: isOpened}"
+      div ng-transclude=""

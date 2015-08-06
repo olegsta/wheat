@@ -1,16 +1,14 @@
 .page.p-page
   a.page__close.icon-close href="/"
   .clearfix
-    h1.pull-left Создание позиции
+    .pull-left.positions__h1
+      h1 Создание позиции
 
-    .pull-left.positions__template-btn
-      a.btn.btn-default ng-click="opened=!opened"
-        | Использовать шаблон
-        i.icon-chevron-down
-
-      .dropdown.positions__template-dropdown ng-class="{open: opened}"
-        | djflksjflk
-
+    .positions__template-dropdown.pull-left
+      dropdown
+        ul.positions__template-dropdown__list scroll=""
+          li.positions__template-dropdown__item ng-repeat="item in [1,2,3,4,6]"
+            | Купить пшеницу {{item}} т
 
 
   .page__body

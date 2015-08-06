@@ -5,6 +5,7 @@
   position: absolute
   visibility: hidden
   margin-top: 3px
+  z-index: 10
   
   &.open
     visibility: visible
@@ -20,18 +21,40 @@
     -moz-animation-fill-mode: both
     -o-animation-fill-mode: both
     animation-fill-mode: both
+    
+  &-btn
+    i
+      position: relative
+      top: 2px
+      left: 8px
+      padding: 0 4px
 
 @keyframes flipInX
-    0%
-      transform: perspective(400px) rotateX(90deg)
-      opacity: 0;
+  0%
+    transform: perspective(400px) rotateX(90deg)
+    opacity: 0;
 
-    40%
-      transform: perspective(400px) rotateX(-10deg)
+  40%
+    transform: perspective(400px) rotateX(-10deg)
 
-    70%
-      transform: perspective(400px) rotateX(10deg)
+  70%
+    transform: perspective(400px) rotateX(10deg)
 
-    100%
-      transform: perspective(400px) rotateX(0deg)
-      opacity: 1
+  100%
+    transform: perspective(400px) rotateX(0deg)
+    opacity: 1
+
+@-webkit-keyframes flipInX
+  0%
+    -webkit-transform: perspective(400px) rotateX(90deg)
+    opacity: 0;
+
+  40%
+    -webkit-transform: perspective(400px) rotateX(-10deg)
+
+  70%
+    -webkit-transform: perspective(400px) rotateX(10deg)
+
+  100%
+    -webkit-transform: perspective(400px) rotateX(0deg)
+    opacity: 1
