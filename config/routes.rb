@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   
 
+
+  devise_for :users
   root "application#index"
 
   scope :ajax do
+    get 'offers' => 'offers#index'
     get 'messages' => 'messages#index'
     get 'analytics' => 'analytics#index'
     get 'search' => 'search#index'

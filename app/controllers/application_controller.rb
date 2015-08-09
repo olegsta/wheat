@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   layout :false
   
   def index
+    ap request.path
     render template: "layouts/application"
   end
 

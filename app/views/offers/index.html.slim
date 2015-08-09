@@ -1,7 +1,7 @@
 .page.p-page
   .positions
     a.page__close.icon-close href="/"
-    h1 Мои позиции
+    h1 Мои предложения
 
     .page__body
       .row
@@ -9,8 +9,6 @@
           .positions__search
             i.icon-search
             input type="text" placeholder="Поиск"
-        .col.pull-right
-          af-radio.lg options="[{id: 1, title: 'Открыто'}, {id: 2, title: 'В процессе'}, {id: 3, title: 'Завершено'}, {id: 4, title: 'В архиве'}]"
       table.positions__table
         tbody ng-class="{opened: isOpen}" ng-repeat="item in [1,2,3]"
           tr ng-click="isOpen = !isOpen"
@@ -47,6 +45,5 @@
             td
               | 555 руб/л
             td.w0.normal
-              a.positions__messages.pull-right.btn.btn-primary.ripple.positions__btn-hover
-                | В чат
-                .positions__messages__count 0
+              a.btn.btn-danger.ripple.pull-right.positions__btn-hover
+                | Отозвать

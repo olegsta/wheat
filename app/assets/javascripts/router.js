@@ -36,6 +36,10 @@ app.config(['$routeProvider', function ($routeProvider) {
       templateUrl: Routes.settings_path(),
       controller: 'SettingsCtrl as settings',
     })
+    .when('/offers', {
+      templateUrl: Routes.offers_path(),
+      controller: 'OffersCtrl as offers',
+    })
     .otherwise({
       redirectTo: '/'
     })

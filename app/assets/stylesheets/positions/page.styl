@@ -80,4 +80,64 @@
   &__map
     height: 251px
     width: 350px
+  
+  &__table
+    border: 1px solid #dddddd
+    
+    td
+      padding: 10px 8px
+      vertical-align: middle
+      font-size: 13px
+      border-top: 1px solid #dddddd
+
+    tr
+      cursor: pointer
+
+    tr:hover
+      background: #fafafa
+
+    tbody.opened
+      border: 1px solid #C0C0C0
+
+      tr
+        background: #fafafa
+        
+        &:hover .positions__btn-hover
+          visibility: visible
+        
+        &:not(:first-child)
+          &:hover
+            background-color: rgba(254, 233, 165, 0.34)
+
+        &.tr-shadow td
+          box-shadow: 0px 6px 5px -4px rgba(0, 0, 0, 0.15) inset
+  
+  &__search
+    i
+      position: absolute
+      font-size: 20px
+      padding: 8px
+      color: #757575
+    
+    input[type="text"]
+      height: 36px
+      width: 240px
+      padding-left: 34px
+
+  &__messages
+    position: relative
+    padding-right: 48px
+    visibility: hidden
+    
+    &__count
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      border-left: 1px solid #d7b940
+      width: 34px
+      background: rgba(255,255,255,.3)
+      
+  &__btn-hover
+    visibility: hidden
     

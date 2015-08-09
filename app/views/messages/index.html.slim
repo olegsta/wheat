@@ -1,5 +1,66 @@
 .page.p-page
-  a.page__close.icon-close href="/"
-  h1 Сообщения
+  .messages
+    .messages__contacts.p-messages__contacts
+      .messages__contacts__header.p-messages__contacts__header
+        .messages__contacts__search
+          i.icon-search
+          input type="text" placeholder="Поиск"
+      .messages__contacts__body.p-messages__contacts__body
+        .messages__contacts__tabs
+          af-radio.lg options="[{id: 1, title: 'Позиции'}, {id: 2, title: 'Пользователи'}]"
+        table
+          tr.messages__contacts__item ng-repeat="correspondence in [1,2,3]"
+            td.w0.messages__contacts__item__avatar
+              img src="/avatar.png"
+            td
+              .messages__contacts__item__title
+                | Покупаю молоко
+              .messages__contacts__item__description
+                | 644 л, мин.. 434 л, 7.23 €/л
 
-  .page__body
+
+
+
+
+    .messages__header.p-messages__header
+      .messages__header__user
+        table
+          tr
+            td.w0
+              .messages__header__user__avatar
+                img src="/avatar.png"
+            td
+              .messages__header__user__name
+                | Павел Кононенко
+              .messages__header__user__theme
+                | Покупаю «Кокос»
+      .messages__header__info
+        .messages__header__info__position
+          span Моя позиция:  
+          a href="" #118
+        .messages__header__info__position
+          span Предложение пользователя:  
+          a href="" #502
+
+
+    .messages__body.p-messages__body
+      .message
+        .message__avatar
+          img src="/avatar.png"
+        .message__body
+          pre Какой-то текст
+        .message__date
+
+    .messages__footer.p-messages__footer
+      textarea
+      .messages__footer__controll.clearfix
+        .pull-left
+          label.messages__footer__file
+            input#upload type="file"
+            span.btn.btn-primary.messages__footer__file-btn
+              i.icon-clip25
+            span.messages__footer__file-name
+              | Загрузить файл
+        .pull-right
+          span.send-by Отправка по Ctrl+Enter
+          a.btn.btn-primary.messages__send-btn.ripple Отправить

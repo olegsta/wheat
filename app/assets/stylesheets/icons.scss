@@ -26,11 +26,11 @@
 .icon-close:before {
 	content: "\e602";
 }
-.icon-suitable:before {
-	content: "\e600";
-}
 .icon-extended:before {
 	content: "\e601";
+}
+.icon-key:before {
+	content: "\e61a";
 }
 .icon-email:before {
 	content: "\e614";
@@ -38,17 +38,23 @@
 .icon-user:before {
 	content: "\e619";
 }
-.icon-croos:before {
-	content: "\e613";
+.icon-clock:before {
+	content: "\e609";
+}
+.icon-clip25:before {
+	content: "\e607";
+}
+.icon-marker:before {
+	content: "\e604";
+}
+.icon-search:before {
+	content: "\e600";
 }
 .icon-earth:before {
 	content: "\e603";
 }
 .icon-star-fill:before {
 	content: "\e60f";
-}
-.icon-calendar:before {
-	content: "\e621";
 }
 .icon-check:before {
 	content: "\e622";
