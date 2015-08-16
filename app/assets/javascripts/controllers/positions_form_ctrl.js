@@ -59,8 +59,10 @@ app.controller('PositionsFormCtrl', ['$scope', 'Page', '$routeParams', '$positio
 
         marker.properties.set(YandexMaps.markerProperties(position));
 
-        marker.geometry.setCoordinates(coords);
-        YandexMaps.map.setCenter(coords);
+        if (val.lng && val.lat) {
+          marker.geometry.setCoordinates(coords);
+          YandexMaps.map.setCenter(coords);
+        }
       }
     }, true)
   });
