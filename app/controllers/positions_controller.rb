@@ -18,7 +18,12 @@ class PositionsController < ApplicationController
   end
 
   def create
-    render json: position_params
+    position = Position.new(position_params.update(user_id: current_user.id))
+    if position.save
+      render json: position_params
+    else
+      render json: {errors: position.errors}, status: 422
+    end
   end
 
   private

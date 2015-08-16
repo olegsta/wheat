@@ -138,6 +138,7 @@ ru:
             category_id:
               not_a_number: Выберите категорию
             option_id:
+              inclusion: Выберите категорию
               not_a_number: Выберите категорию
             price:
               not_a_number: Цена должна быть числом
@@ -149,8 +150,10 @@ ru:
               greater_than: Вес должен быть больше нуля
             weight_min:
               not_a_number: Мин.заказ должен быть числом
-              less_then_weight: Должно быть меньше чем вес
+              invalid: Должно быть меньше чем вес
             weight_type:
               inclusion: Размерность указано неверно!
             delivery_type:
               inclusion: Тип указан неверно!
+            lat:
+              invalid: Выберите местоположение

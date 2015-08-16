@@ -22,7 +22,7 @@
 //= require_self
 //= require_tree .
 
-var app = angular.module("app", ["ngResource", "ngRoute", "ngAnimate"]);
+var app = angular.module("app", ["ngResource", "ngRoute", "ngAnimate", "ngNotify"]);
 
 app.run(['$rootScope', 'Page', function ($rootScope, Page) {
   $rootScope.Page = Page;

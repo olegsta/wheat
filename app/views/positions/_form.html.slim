@@ -9,7 +9,7 @@ form.form.positions__form
               af-radio ng-model="ctrl.position.trade_type_id" options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
       .row
         .col
-          #category
+          #option_id
             label.label Категория
             .input
               / af-select options="[{id: 1, title: 'Пшеница'}]"
@@ -31,7 +31,7 @@ form.form.positions__form
             af-dimension options="gon.data.weight_dimensions" ng-model="ctrl.position.weight_min" ng-model-dimension="ctrl.position.weight_min_dimension_id"
     .col-xs-6.col
       .row
-        .col
+        .col#lat
           label.label Местоположение
           map#position_map.positions__map
   .row

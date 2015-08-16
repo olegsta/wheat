@@ -22,7 +22,7 @@
             td
               | {{position.trade_type.title}}
             td.light
-              | {{position.category.title}}
+              | {{position.option.title}}
             td
               span ng-show="position.offers.length"
                 | {{position.offers.length | plur: gon.translation.offer.plur}}
@@ -43,7 +43,7 @@
             td
               | {{offer.trade_type.title}}
             td
-              | {{offer.category.title}}
+              | {{offer.option.title}}
             td
               | {{offer.city}}
             td
