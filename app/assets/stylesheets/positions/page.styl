@@ -56,6 +56,33 @@
       input[type="text"]
         width: 100%
         
+    #template
+      width: 300px
+      padding-left: 35px
+    
+    #is_template
+      position: absolute
+      z-index: 2
+      margin: 8px
+      
+    &__photo-uploader
+      display: block
+      height: 100px
+      width: 100px
+      border: 1px dashed #ccc
+      font-size: 40px
+      font-weight: lighter
+      padding: 25px 35px
+      text-align: center
+      color: #989898
+      cursor: pointer
+      
+      &:hover
+        background: #f7f7f7
+      
+      input[type="file"]
+        display: none
+        
   &__template
     &-dropdown
       &__list

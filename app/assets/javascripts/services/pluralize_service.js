@@ -17,5 +17,6 @@ app.factory("pluralize", function(){
       }
       
       return result;
-    }  
+    }
+    
 })

@@ -11,7 +11,13 @@ script id="dimension.html" type="text/ng-template"
         td
           .dimension__after
             .dimension__current ng-click="toggle($event)"
-              | {{currentOption}}
+              span ng-show="prefix"
+                | {{prefix}}
+              span
+                | {{currentOption}}
             .dimension__list ng-show="isShow"
               .dimension__item ng-repeat="option in options" ng-click="setActive(option.id)" ng-class="{active: ngModelDimension==option.id}"
-                | {{option.title}}
+                span ng-show="prefix"
+                  | {{prefix}}
+                span
+                  | {{option.title}}

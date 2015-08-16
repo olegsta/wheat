@@ -27,6 +27,8 @@ gem 'thin'
 
 gem 'stylus'
 
+gem 'active_model_serializers'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -93,3 +95,6 @@ gem 'faye-redis'
 gem 'faye-rails'
 gem 'private_pub'
 gem 'js-routes'
+
+gem 'money'
+gem 'google_currency'

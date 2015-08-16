@@ -21,6 +21,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_model_serializers (0.9.3)
+      activemodel (>= 3.2)
     activejob (4.2.1)
       activesupport (= 4.2.1)
       globalid (>= 0.3.0)
@@ -136,6 +138,8 @@ GEM
       json
       multi_json
       request_store (>= 1.0.5)
+    google_currency (3.2.0)
+      money (~> 6.5.0)
     hiredis (0.5.2)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
@@ -162,6 +166,8 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
+    money (6.5.1)
+      i18n (>= 0.6.4, <= 0.7.0)
     multi_json (1.11.2)
     mysql2 (0.3.18)
     net-scp (1.2.1)
@@ -327,6 +333,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  active_model_serializers
   awesome_print
   bullet
   byebug
@@ -344,10 +351,12 @@ DEPENDENCIES
   faye-rails
   faye-redis
   gon
+  google_currency
   hiredis
   jbuilder (~> 2.0)
   jquery-rails
   js-routes
+  money
   mysql2 (~> 0.3.13)
   pg
   private_pub

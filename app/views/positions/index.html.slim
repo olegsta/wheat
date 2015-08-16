@@ -10,42 +10,46 @@
             i.icon-search
             input type="text" placeholder="Поиск"
         .col.pull-right
-          af-radio.lg options="[{id: 1, title: 'Открыто'}, {id: 2, title: 'В процессе'}, {id: 3, title: 'Завершено'}, {id: 4, title: 'В архиве'}]"
+          af-radio.lg options="[{id: 1, title: 'Открыто'}, {id: 2, title: 'В процессе'}, {id: 3, title: 'Завершено'}, {id: 4, title: 'В архиве'}]" ng-model="ctrl.tab"
       table.positions__table
-        tbody ng-class="{opened: isOpen}" ng-repeat="item in [1,2,3]"
-          tr ng-click="isOpen = !isOpen"
+        tbody ng-class="{opened: isOpen}" ng-repeat="position in ctrl.positions"
+          tr ng-click="isOpen = position.offers.length ? !isOpen : false"
             td.align-center
               i.icon-chevron-right ng-hide="isOpen"
               i.icon-chevron-down ng-show="isOpen"
             td.light
-              | 30.06.2015
+              | {{position.updated_at | date: "dd.MM.yyyy"}}
             td
-              | Продаю
+              | {{position.trade_type.title}}
             td.light
-              | Кокос
+              | {{position.category.title}}
             td
-              | Нет предложений
-            td.light
-              | 644 л
-            td.light
-              | 555 руб/л
-            td.w0
-              a.btn.btn-default Редактировать
+              span ng-show="position.offers.length"
+                | {{position.offers.length | plur: gon.translation.offer.plur}}
 
-          tr.light ng-repeat="item in [1,2,3]" ng-class="{'tr-shadow':$index==0}" ng-show="isOpen"
+              span ng-hide="position.offers.length"
+                | Нет предложений
+            td.light
+              | {{position.weight}} {{position.weight_dimension.title}}
+            td.light
+              | {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}}
+            td.w0
+              a.btn.btn-default ng-href="/positions/{{position.id}}/edit" Редактировать
+
+          tr.light ng-repeat="offer in position.offers" ng-class="{'tr-shadow':$index==0}" ng-show="isOpen"
             td
             td
-              | 30.06.2015
+              | {{offer.updated_at | date: "dd.MM.yyyy"}}
             td
-              | Продаю
+              | {{offer.trade_type.title}}
             td
-              | Кокос
+              | {{offer.category.title}}
             td
-              | Нет предложений
+              | {{offer.city}}
             td
-              | 644 л
+              | {{offer.weight}} {{offer.weight_dimension.title}}
             td
-              | 555 руб/л
+              | {{offer.price}} {{offer.currency.title}}/{{offer.price_weight_dimension.title}}
             td.w0.normal
               a.positions__messages.pull-right.btn.btn-primary.ripple.positions__btn-hover
                 | В чат

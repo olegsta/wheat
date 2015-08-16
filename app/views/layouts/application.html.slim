@@ -27,4 +27,5 @@ html
     = render partial: "components/category"
 
     script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"
+    = Gon::Base.render_data({})
     = javascript_include_tag 'application'

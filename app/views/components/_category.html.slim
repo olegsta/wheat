@@ -1,14 +1,22 @@
 script id="category.html" type="text/ng-template"
-  dropdown.categories title="'Выберите категорию'"
+  dropdown.categories title="gon.group.options[ngModel].title || 'Выберите категорию'" is-opened="isOpened"
     .categories
       .categories__search
         i.icon-search
-        input.categories__search__input type="text" placeholder="Поиск"
+        input.categories__search__input type="text" placeholder="Поиск" ng-model="search"
 
       .categories__list
-        .categories__item
-          .categories__title
-            | Молочные продукты
-          .categories__options
-            .categories__option
-              | Молоко
+        .categories__column ng-repeat="column in gon.data.categories | filter:search"
+          .categories__item ng-repeat="category in column | filter:search"
+            .categories__title
+              | {{::category.title}}
+            .categories__options
+              .categories__option ng-click="setOption(option)" ng-repeat="option in category.options | filter:search" ng-class="{active: option.id == $parent.$parent.$parent._ngModel}"
+                .categories__option__title
+                  | {{::option.title}}
+
+      .categories__footer.clearfix
+        .pull-left
+          a.no-category href="" Не нашли подходящую категорию?
+        .pull-right
+          a.btn.btn-primary.ripple ng-click="apply()" Готово

@@ -6,8 +6,10 @@ app.directive('afDimension', ['$rootScope', function($rootScope) {
     // terminal: true,
     scope: {
       ngModel: "=ngModel",
+      ngModelDimension: "=ngModelDimension",
       options: "=options",
-      before: "=before"
+      before: "=before",
+      prefix: "=prefix"
     }, // {} = isolate, true = child, false/undefined = no change
     // controller: function($scope, $element, $attrs, $transclude) {},
     // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements

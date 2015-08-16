@@ -26,4 +26,5 @@ var app = angular.module("app", ["ngResource", "ngRoute", "ngAnimate"]);
 
 app.run(['$rootScope', 'Page', function ($rootScope, Page) {
   $rootScope.Page = Page;
+  $rootScope.gon = gon;
 }])

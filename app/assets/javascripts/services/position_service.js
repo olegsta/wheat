@@ -1,4 +1,4 @@
-app.service('Position', ['$resource', '$http', function($resource, $http) {
+app.service('Position', ['$http', function($http) {
   var Position = this;
 
 
@@ -8,16 +8,10 @@ app.service('Position', ['$resource', '$http', function($resource, $http) {
         fn(res.points)
       })
   }
-
-  Position.get = PositionResource.get;
-  Position.create = PositionResource.create;
-  Position.update = PositionResource.update;
-  Position.destroy = PositionResource.destroy;
-
 }])
 
-app.factory('$position', ['', function(){
-  return $resource(Routes.position_path(':id', {format: 'json'}), {
+app.factory('$position', ['$resource', function ($resource) {
+  return $resource(Routes.position_path(':id', {format: 'json'}), {id: "@id"}, {
     get: {method:'GET', params: {id: '@id'}},
     create: {method:'POST'},
     update: {method:'PUT', params: {id: '@id'}},

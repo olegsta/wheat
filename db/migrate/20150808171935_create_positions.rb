@@ -5,7 +5,7 @@ class CreatePositions < ActiveRecord::Migration
       t.string :status
 
       t.integer :position_id 
-      t.index :position_id 
+      t.index :position_id
 
       t.string :title
       t.text :description
@@ -16,19 +16,21 @@ class CreatePositions < ActiveRecord::Migration
       t.integer :option_id
       t.index :option_id
 
-      t.boolean :template
-      t.string :template
+      t.integer :category_id
+      t.index :category_id
 
-      t.integer :trade_type
-      t.index :trade_type
+      t.integer :trade_type_id
+      t.index :trade_type_id
 
       t.integer :currency_id
 
       t.float :price
+      t.index :price
       
       t.float :price_etalon
       t.index :price_etalon
       t.float :price_discount, :default => 0, :null => false
+      t.integer :price_weight_dimension_id
 
       t.float :weight
       t.float :weight_min, :default => 0, :null => false
@@ -42,11 +44,8 @@ class CreatePositions < ActiveRecord::Migration
       t.integer :weight_dimension_id
       t.index :weight_dimension_id
 
-      t.integer :deal_with_id
-      t.index :deal_with_id
-
-      t.boolean :is_offer, default: false, null: false
-      t.index :is_offer
+      t.integer :weight_min_dimension_id
+      t.index :weight_min_dimension_id
 
       t.string :index_field
 
@@ -55,7 +54,13 @@ class CreatePositions < ActiveRecord::Migration
       
       t.string :address
 
-      t.float :coords, array: true, default: []
+      t.float :lat
+      t.index :lat
+      t.float :lng
+      t.index :lng
+
+      t.integer :deal_with_id
+      t.index :deal_with_id
       
       t.timestamps null: false
     end

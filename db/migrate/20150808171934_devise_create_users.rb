@@ -31,7 +31,25 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
 
+
       t.timestamps null: false
+
+      t.string :fullname
+      t.string :avatar
+      t.string :phones, array: true, default: []
+      
+      t.string :city
+      t.string :address
+      t.float :lat
+      t.float :lng
+
+      t.integer :currency_id, default: 2, null: false
+      
+      t.string :company
+      t.text :additional
+      t.json :events, default: {}
+
+      t.string :locale, default: "ru", null: false
     end
 
     add_index :users, :email,                unique: true

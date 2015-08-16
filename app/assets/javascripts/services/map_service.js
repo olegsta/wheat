@@ -1,4 +1,4 @@
-app.service('YandexMaps', ['pluralize', function(pluralize) {
+app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize, $location, $http) {
   var YandexMaps = this, cluster;
 
   YandexMaps.registerFilters = function () {
@@ -23,17 +23,17 @@ app.service('YandexMaps', ['pluralize', function(pluralize) {
 
   YandexMaps.registerTemplates = function () {
     YandexMaps.markerLayout = ymaps.templateLayoutFactory.createClass(
-      "<div class='marker-label'>"
-          + "<div class='marker-label__head'>Купить 300 т, 8000 руб/т</div>"
+      "<a class='marker-label'>"
+          + "<div class='marker-label__head'>{{ properties.trade_type }} {{ properties.weight }} {{ properties.weight_dimension }}, {{ properties.price }} {{ properties.currency }}/{{ properties.price_weight_dimension }}</div>"
           + "<div class='marker-label__body'>{{ properties.title }}</div>"
-      + "</div>",
+      + "</a>",
       {
         build: function () {
           YandexMaps.markerLayout.superclass.build.call(this);
-
           this._events = ymaps.domEvent.manager.group(this.getElement());
-          this._events.add('click', function () {
-              alert("Модальное окно позиции");
+          this._events.add('click', function (event) {
+            if (this.getData().properties.get('id'))
+              $location.search({id: this.getData().properties.get('id')})
           }, this);
         },
         
@@ -76,19 +76,67 @@ app.service('YandexMaps', ['pluralize', function(pluralize) {
     });
   }
 
-  YandexMaps.drawMarkers = function (points) {
+  YandexMaps.drawMarkers = function (points, options) {
     var geoObjects = [];
     for(var i = 0, len = points.length; i < len; i++) {
+      var coords = options.short ? [points[i][1], points[i][2]] : [points[i].lng, points[i].lat],
+          properties = options.short ? YandexMaps.shortMarkerProperties(points[i]) : YandexMaps.markerProperties(points[i])
+
       geoObjects.push(new ymaps.Placemark(
-        points[i][0], {title: points[i][1]}, {
+        coords, properties, {
             iconLayout: YandexMaps.markerLayout,
-            iconPane: 'overlaps'
+            iconPane: 'overlaps',
+            draggable: options.draggable
         })
       );
     }
 
-    YandexMaps.clusterer.add(geoObjects);
-    YandexMaps.map.geoObjects.add(YandexMaps.clusterer);
+    if (points.length > 1) {
+      YandexMaps.clusterer.add(geoObjects);
+      YandexMaps.map.geoObjects.add(YandexMaps.clusterer);
+      return geoObjects;
+    } else {
+      YandexMaps.map.geoObjects.add(geoObjects[0]);
+      return geoObjects[0]
+    }
+  }
+
+  YandexMaps.markerProperties = function (point) {
+    var title = gon.group.options[point.option_id],
+        weight_dimension = gon.group.weight_dimensions[point.weight_dimension_id || 1].title,
+        price_weight_dimension = gon.group.weight_dimensions[point.price_weight_dimension_id || 1].title;
+
+    var result = {
+      id: point.id,
+      trade_type: gon.group.trade_types[point.trade_type_id] || "Тип",
+      title: title ? title.title : "Категория",
+      weight: point.weight || 0,
+      weight_dimension: weight_dimension,
+      price: point.price || 0,
+      currency: gon.user.currency.title,
+      price_weight_dimension: price_weight_dimension
+    }
+
+    return result;
+  }
+
+  YandexMaps.shortMarkerProperties = function (point) {
+    var title = gon.group.options[point[4]],
+        weight_dimension = gon.group.weight_dimensions[point[6] || 1].title,
+        price_weight_dimension = gon.group.weight_dimensions[point[9] || 1].title;
+
+    var result = {
+      id: point[0],
+      trade_type: gon.group.trade_types[point[3]] || "Тип",
+      title: title ? title.title : "Категория",
+      weight: point[5] || 0,
+      weight_dimension: weight_dimension,
+      price: point[7] || 0,
+      currency: gon.user.currency.title,
+      price_weight_dimension: price_weight_dimension
+    }
+
+    return result;
   }
 
 }])

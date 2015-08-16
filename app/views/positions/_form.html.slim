@@ -1,4 +1,4 @@
-form.positions__form
+form.form.positions__form
   .row.mb0
     .col-xs-6.col
       .row
@@ -6,29 +6,29 @@ form.positions__form
           #type
             label.label Тип
             label.input
-              af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
+              af-radio ng-model="ctrl.position.trade_type_id" options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]"
       .row
         .col
           #category
             label.label Категория
             .input
               / af-select options="[{id: 1, title: 'Пшеница'}]"
-              category
+              category ng-model="ctrl.position.option_id"
       .row
         .col
           #title
             label.label Название
             label.input
-              input type="text"
+              input type="text" ng-model="ctrl.position.title"
       .row
         .col#weight
           label.label Вес (объем)
           .input
-            af-dimension options="[{id: 1, title: 'кг'}]"
+            af-dimension options="gon.data.weight_dimensions" ng-model="ctrl.position.weight" ng-model-dimension="ctrl.position.weight_dimension_id"
         .col#weight_min
           label.label Мин. заказ
           .input
-            af-dimension options="[{id: 1, title: 'кг'}]"
+            af-dimension options="gon.data.weight_dimensions" ng-model="ctrl.position.weight_min" ng-model-dimension="ctrl.position.weight_min_dimension_id"
     .col-xs-6.col
       .row
         .col
@@ -40,26 +40,42 @@ form.positions__form
         .col#price
           label.label Цена
           .input
-            af-dimension options="[{id: 1, title: 'руб/кг'}]"
+            af-dimension prefix="gon.user.currency.title + '/'" options="gon.data.weight_dimensions" ng-model="ctrl.position.price" ng-model-dimension="ctrl.position.price_weight_dimension_id"
         .sep
           | ±
         .col#discount
           label.label Допуск
           .input
-            af-dimension.disabled options="[{id: 1, title: '%'}]"
+            af-dimension.disabled options="[{id: 1, title: '%'}]" ng-model="ctrl.position.price_discount"
     .col-xs-6.col
       .row
         .col
           label.label
-            | Россия, Ростов-на-Дону
+            | {{ctrl.position.city || 'Адрес'}}
           #address
-            input type="text"
+            input type="text" ng-model="ctrl.position.address"
   .row
     .col-xs-12.col
       #description
         label.label Описание
         .textarea
-          textarea rows="6"
+          textarea rows="6" ng-model="ctrl.position.description"
+  .row
+    .col-xs-12.col
+      #photo
+        label.label Загрузка фото
+        div
+          label.positions__form__photo-uploader
+            span +
+            input type="file"
+  .row ng-hide="isEdit"
+    .col
+      label.label Сохранить как шаблон
+      label.checkbox#is_template
+        input type="checkbox" ng-model="ctrl.position.isTemplate"
+        .checker
+
+      input#template ng-disabled="!ctrl.position.isTemplate" type="text" placeholder="Название шаблона" ng-model="ctrl.position.templateName"
   .row
     .col
-      a.btn.btn-primary.btn-lg.ripple Сохранить
+      a.btn.btn-primary.btn-lg.ripple ng-click="ctrl.save()" Сохранить

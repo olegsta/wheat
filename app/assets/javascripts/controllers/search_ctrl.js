@@ -1,4 +1,4 @@
-app.controller('SearchCtrl', ['$scope', '$rootScope', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, Page, YandexMaps, Search) {
+app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $location, Page, YandexMaps, Search) {
   var map = this;
 
   Page.isMap = true;
@@ -11,8 +11,16 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', 'Page', 'YandexMaps', 'Sea
 
   var mapListner = $rootScope.$on('map:build', function () {
     Search.all({}, function (points) {
-      YandexMaps.drawMarkers(points);
+      YandexMaps.drawMarkers(points, {short: true});
     })
+  })
+
+  $scope.$watch(function () {
+    return $location.search().id
+  }, function (id) {
+    if (id) {
+      // alert("Модальное окно позиции " + id)
+    }
   })
 
 }]);

@@ -17,9 +17,8 @@ textarea
   outline: none !important
   -webkit-appearance: none
   
-  &.autosize {
-    min-width: 82.5px;
-  }
+  &:disabled
+    background: rgba(240, 240, 240, 0.58)
   
   &:focus
     border-color: #d0ba65;
@@ -108,9 +107,8 @@ hr
 .checkbox
   width: auto !important
   cursor: pointer
-  font-weight: lighter !important
   display: inline-block !important
-  color: gray
+  color: #414141
   
 input[type="checkbox"]
   display: none
@@ -124,6 +122,7 @@ input[type="checkbox"]:checked ~ .checker:before
 
 .checker
   margin: -1px 7px 0 0
+  background: white
   width: 19px
   height: 19px
   color: black
