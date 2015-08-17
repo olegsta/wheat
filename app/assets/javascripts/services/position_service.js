@@ -13,8 +13,8 @@ app.service('Position', ['$http', function($http) {
 app.factory('$position', ['$resource', function ($resource) {
   return $resource(Routes.position_path(':id', {format: 'json'}), {id: "@id"}, {
     get: {method:'GET', params: {id: '@id'}},
-    create: {method:'POST'},
-    update: {method:'PUT', params: {id: '@id'}},
+    create: {method: 'POST', transformRequest: angular.identity, headers: {'Content-Type': undefined}},
+    update: {method: 'PUT', params: {id: '@id'}, transformRequest: angular.identity, headers: {'Content-Type': undefined}},
     destroy: {method:'DELETE', params: {id: '@id'}}
   });
 }])

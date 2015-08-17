@@ -79,7 +79,7 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
   YandexMaps.drawMarkers = function (points, options) {
     var geoObjects = [];
     for(var i = 0, len = points.length; i < len; i++) {
-      var coords = options.short ? [points[i][1], points[i][2]] : [points[i].lng, points[i].lat],
+      var coords = options.short ? [points[i][2], points[i][1]] : [points[i].lng, points[i].lat],
           properties = options.short ? YandexMaps.shortMarkerProperties(points[i]) : YandexMaps.markerProperties(points[i])
 
       geoObjects.push(new ymaps.Placemark(

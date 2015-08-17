@@ -12,15 +12,28 @@ class PositionsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: current_user.positions.find_by(id: params[:id]), serializer: PositionSerializer
+        render json: Position.find_by(id: params[:id]), serializer: PositionSerializer
       }
     end
   end
 
   def create
-    position = Position.new(position_params.update(user_id: current_user.id))
+    position = Position.new(position_params.update(user_id: current_user.id, images: params[:files]))
     if position.save
-      render json: position_params
+      render json: {msg: "Позиция успешно создана"}
+    else
+      render json: {errors: position.errors}, status: 422
+    end
+  end
+
+  def update
+    position = current_user.positions.find params[:id]
+    if position.update(position_params)
+      if params[:files].try(:any?)
+        position.images += params[:files]
+        position.save
+      end
+      render json: {msg: "Позиция успешно обновлена"}
     else
       render json: {errors: position.errors}, status: 422
     end
@@ -28,6 +41,6 @@ class PositionsController < ApplicationController
 
   private
     def position_params
-      params.require(:position).permit(:title, :trade_type_id, :option_id, :title, :weight, :weight_dimension_id, :weight_min, :weight_min_dimension_id, :price, :currency_id, :price_weight_dimension_id, :price_discount, :address, :city, :lat, :lng, :description)
+      temp = params.permit(:title, :trade_type_id, :option_id, :title, :weight, :weight_dimension_id, :weight_min, :weight_min_dimension_id, :price, :currency_id, :price_weight_dimension_id, :price_discount, :address, :city, :lat, :lng, :description)
     end
 end

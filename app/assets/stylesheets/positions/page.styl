@@ -64,9 +64,20 @@
       position: absolute
       z-index: 2
       margin: 8px
-      
+    
+    &__photo
+      height: 100px
+      display: inline-block
+      vertical-align: top
+
+      img
+        height: 100px
+        margin-right: 10px
+
     &__photo-uploader
-      display: block
+      position: relative
+      vertical-align: top
+      display: inline-block
       height: 100px
       width: 100px
       border: 1px dashed #ccc
@@ -76,6 +87,7 @@
       text-align: center
       color: #989898
       cursor: pointer
+      
       
       &:hover
         background: #f7f7f7

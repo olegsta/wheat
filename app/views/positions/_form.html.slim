@@ -65,9 +65,12 @@ form.form.positions__form
       #photo
         label.label Загрузка фото
         div
+          span.positions__form__photo.dcbox reload="{{ctrl.position.images.length}}"
+            a ng-href="{{photo.url}}" ng-repeat="photo in ctrl.position.images"
+              img ng-src="{{photo.url}}"
           label.positions__form__photo-uploader
             span +
-            input type="file"
+            input type="file" fileread="files" src="src" multiple="true"
   .row ng-hide="isEdit"
     .col
       label.label Сохранить как шаблон

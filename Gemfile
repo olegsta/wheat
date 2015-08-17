@@ -83,7 +83,7 @@ gem 'slim-rails'
 gem 'rmagick'
 gem 'devise'
 gem 'gon'
-gem 'carrierwave'
+gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 
 gem 'mysql2',          '~> 0.3.13', :platform => :ruby
 gem 'thinking-sphinx', '~> 3.1.0'

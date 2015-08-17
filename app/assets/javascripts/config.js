@@ -1,4 +1,6 @@
-app.config(['$httpProvider', '$locationProvider', function ($httpProvider, $locationProvider) {
+app.config(['$httpProvider', '$locationProvider', '$compileProvider', function ($httpProvider, $locationProvider, $compileProvider) {
+
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript|blob|data):/);
   /*
    *  Set token for AngularJS ajax methods
   */

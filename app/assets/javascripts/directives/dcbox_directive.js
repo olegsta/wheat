@@ -1,12 +1,10 @@
-app.directive('autosize', [function(){
+app.directive('dcbox', [function(){
   // Runs during compile
   return {
     // name: '',
     // priority: 1,
     // terminal: true,
-    scope: {
-      ngModel: "=ngModel"
-    }, // {} = isolate, true = child, false/undefined = no change
+    // scope: {}, // {} = isolate, true = child, false/undefined = no change
     // controller: function($scope, $element, $attrs, $transclude) {},
     // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
     restrict: 'C', // E = Element, A = Attribute, C = Class, M = Comment
@@ -16,9 +14,10 @@ app.directive('autosize', [function(){
     // transclude: true,
     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
     link: function($scope, iElm, iAttrs, controller) {
-      $scope.$watch('ngModel', function (val) {
-        var length = val ? val.length : 10;
-        iElm[0].style.width = (length + 1) * 7.5 + 'px';
+      $scope.$watch(function () {
+        return iAttrs.reload
+      }, function () {
+        dcboxInit();
       })
     }
   };
