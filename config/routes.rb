@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     get 'profile' => 'profile#index'
     get 'settings' => 'settings#index'
 
+
+    post 'attachments' => 'attachments#upload'
     resources :positions
+    resources :templates
   end
 
   get '/*path' => 'application#index'

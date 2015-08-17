@@ -98,3 +98,4 @@ gem 'js-routes'
 
 gem 'money'
 gem 'google_currency'
+gem 'mini_magick'

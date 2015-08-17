@@ -1,9 +1,8 @@
-app.controller('PositionsFormCtrl', ['$scope', 'Page', '$routeParams', '$position', '$rootScope', 'YandexMaps', function ($scope, Page, $routeParams, $position, $rootScope, YandexMaps) {
+app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', '$position', '$rootScope', 'YandexMaps', function ($scope, $http, Page, $routeParams, $position, $rootScope, YandexMaps) {
   var ctrl = this;
   ctrl.position = {
     trade_type_id: 1,
-    images: [],
-    files: []
+    attachments: [],
   };
 
   Page.current = $routeParams.id ? 'positions' : 'positions_new'
@@ -20,30 +19,46 @@ app.controller('PositionsFormCtrl', ['$scope', 'Page', '$routeParams', '$positio
     })
 
     ctrl.save = function () {
-      $position.update({id: $routeParams.id}, buildFormData(ctrl.position), function (res) {
+      $position.update({id: $routeParams.id}, {position: ctrl.position}, function (res) {
         Page.goToPosition(res.id)
       })
     }
   } else {
     ctrl.save = function () {
-      $position.create(buildFormData(ctrl.position), function (res) {
+      $position.create({position: ctrl.position}, function (res) {
         Page.goToPosition(res.id)
       })
     }
+
+    $http.get(Routes.templates_path())
+      .success(function (res) {
+        ctrl.templates = res.templates;
+      })
+
+    ctrl.setTemplate = function (position) {
+      ctrl.is_show_template = false;
+      ctrl.position = position;
+    }
   }
 
-  $scope.$watch('src', function (src) {
-    _.each(src, function (url) {
-      ctrl.position.images.push({url: url});
-    })
-  }, true)
-
   $scope.$watch('files', function (files) {
-    _.each(files, function (file) {
-      ctrl.position.files = ctrl.position.files || [];
-      ctrl.position.files.push(file)
-    })
+    if (files && files.length) {
+      var fd = new FormData();
+
+      _.each(files, function (file) {
+        fd.append("attachments[]", file);
+      })
+
+      $http.post(Routes.attachments_path(), fd, {headers: {'Content-Type': undefined}})
+        .success(function (res) {
+          _.each(res.attachments, function (attachment) {
+            ctrl.position.attachments = ctrl.position.attachments || [];
+            ctrl.position.attachments.push(attachment);
+          })
+        })
+    }
   })
+
 
   var mapListner = $rootScope.$on('map:build', function () {
     var marker = YandexMaps.drawMarkers(
@@ -84,22 +99,6 @@ app.controller('PositionsFormCtrl', ['$scope', 'Page', '$routeParams', '$positio
           YandexMaps.map.setCenter(coords);
         }
       }
-    }, true)
+    }, true);
   });
-
-  function buildFormData(fields) {
-    var fd = new FormData();
-
-    _.each(fields, function (v, k) {
-      if (_.isArray(v)) {
-        _.each(v, function (el) {
-          fd.append(k+"[]", el)
-        });
-      } else {
-        fd.append(k, v)
-      }
-    })
-
-    return fd;
-  }
 }])

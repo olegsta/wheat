@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :positions
+  has_many :attachments
+  has_many :templates
   
   belongs_to :currency
 end

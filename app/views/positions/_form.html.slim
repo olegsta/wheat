@@ -63,22 +63,22 @@ form.form.positions__form
   .row
     .col-xs-12.col
       #photo
-        label.label Загрузка фото
+        label.label Загрузка фото и документов
         div
-          span.positions__form__photo.dcbox reload="{{ctrl.position.images.length}}"
-            a ng-href="{{photo.url}}" ng-repeat="photo in ctrl.position.images"
-              img ng-src="{{photo.url}}"
+          span.positions__form__photo.dcbox reload="{{ctrl.position.attachments.length}}"
+            a ng-href="{{attachment.url.original}}" ng-repeat="attachment in ctrl.position.attachments"
+              img ng-src="{{attachment.url.thumb}}"
           label.positions__form__photo-uploader
             span +
-            input type="file" fileread="files" src="src" multiple="true"
+            input type="file" fileread="files" multiple="true"
   .row ng-hide="isEdit"
     .col
       label.label Сохранить как шаблон
       label.checkbox#is_template
-        input type="checkbox" ng-model="ctrl.position.isTemplate"
+        input type="checkbox" ng-model="ctrl.position.is_template"
         .checker
 
-      input#template ng-disabled="!ctrl.position.isTemplate" type="text" placeholder="Название шаблона" ng-model="ctrl.position.templateName"
+      input#template ng-disabled="!ctrl.position.is_template" type="text" placeholder="Название шаблона" ng-model="ctrl.position.template_title"
   .row
     .col
       a.btn.btn-primary.btn-lg.ripple ng-click="ctrl.save()" Сохранить

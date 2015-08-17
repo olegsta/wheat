@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817123651) do
+ActiveRecord::Schema.define(version: 20150817202400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "position_id"
+    t.string   "file"
+    t.string   "filename"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -64,7 +73,6 @@ ActiveRecord::Schema.define(version: 20150817123651) do
     t.integer  "deal_with_id"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.json     "images"
   end
 
   add_index "positions", ["category_id"], name: "index_positions_on_category_id", using: :btree
@@ -94,6 +102,16 @@ ActiveRecord::Schema.define(version: 20150817123651) do
   add_index "positions_offers", ["offer_id", "position_id"], name: "index_positions_offers_on_offer_id_and_position_id", using: :btree
   add_index "positions_offers", ["offer_id"], name: "index_positions_offers_on_offer_id", using: :btree
   add_index "positions_offers", ["position_id"], name: "index_positions_offers_on_position_id", using: :btree
+
+  create_table "templates", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.json     "position",   default: {}
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "templates", ["user_id"], name: "index_templates_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",   null: false

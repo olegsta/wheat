@@ -7,6 +7,11 @@ class PositionSerializer < ActiveModel::Serializer
   has_one :category, serializer: CategorySerializer
   has_one :weight_dimension
   has_one :weight_min_dimension
+  has_many :attachments
+
+  def images
+    
+  end
 
   def user
     {

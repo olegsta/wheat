@@ -4,9 +4,8 @@ class Position < ActiveRecord::Base
   has_many :positions_offers
   has_many :positions, through: :positions_offers
   has_many :offers, through: :positions_offers
+  has_many :attachments
   
-  mount_uploaders :images, ImageUploader
-
   belongs_to :user
   belongs_to :currency
   belongs_to :weight_dimension

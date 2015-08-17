@@ -5,10 +5,10 @@
       h1 Создание позиции
 
     .positions__template-dropdown.pull-left
-      dropdown title="'Использовать шаблон'"
+      dropdown title="'Использовать шаблон'" is-opened="ctrl.is_show_template"
         ul.positions__template-dropdown__list scroll=""
-          li.positions__template-dropdown__item ng-repeat="item in [1,2,3,4,6]"
-            | Купить пшеницу {{item}} т
+          li.positions__template-dropdown__item ng-click="ctrl.setTemplate(template.position)" ng-repeat="template in ctrl.templates"
+            | {{template.title}}
 
 
   .page__body

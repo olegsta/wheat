@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :image do
-    image "MyString"
-position_id 1
+    position_id 1
+photo "MyString"
   end
 
 end
