@@ -8,10 +8,12 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when('/positions/new', {
       templateUrl: Routes.new_position_path(),
       controller: 'PositionsFormCtrl as ctrl',
+      reloadOnSearch: false
     })
     .when('/positions', {
       templateUrl: Routes.positions_path(),
       controller: 'PositionsCtrl as ctrl',
+      reloadOnSearch: false
     })
     .when('/positions/:id/edit', {
       templateUrl: Routes.edit_position_path(0),

@@ -8,11 +8,12 @@
         .col
           .positions__search
             i.icon-search
-            input type="text" placeholder="Поиск"
+            input type="text" placeholder="Поиск" ng-model="search"
         .col.pull-right
-          af-radio.lg options="[{id: 1, title: 'Открыто'}, {id: 2, title: 'В процессе'}, {id: 3, title: 'Завершено'}, {id: 4, title: 'В архиве'}]" ng-model="ctrl.tab"
+          af-radio.lg options="gon.translation.position.statuses" ng-model="ctrl.tab"
+      .spinner ng-show="ctrl.spinner"
       table.positions__table
-        tbody ng-class="{opened: isOpen}" ng-repeat="position in ctrl.positions"
+        tbody ng-class="{opened: isOpen}" ng-repeat="position in ctrl.positions | filter:search"
           tr ng-click="isOpen = position.offers.length ? !isOpen : false"
             td.align-center
               i.icon-chevron-right ng-hide="isOpen"

@@ -64,17 +64,39 @@
       position: absolute
       z-index: 2
       margin: 8px
-    
-    &__photo
+    &__attachments
       height: 100px
       display: inline-block
       vertical-align: top
+      text-decoration: none
+      
+    &__attachment
+      position: relative
+      display: inline-block
 
+      &__delete
+        font-weight: lighter
+        font-size: 21px
+        color: #fff
+        background: #f00
+        border-radius: 15px
+        display: inline-block
+        position: absolute
+        right: 3px
+        top: -7px
+        height: 18px
+        width: 18px
+        text-align: center
+        line-height: 17px
+        opacity: 0.7
+        
+        &:hover
+          opacity: 1
       img
         height: 100px
         margin-right: 10px
 
-    &__photo-uploader
+    &__attachment-uploader
       position: relative
       vertical-align: top
       display: inline-block

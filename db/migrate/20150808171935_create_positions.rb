@@ -2,7 +2,7 @@ class CreatePositions < ActiveRecord::Migration
   def change
     create_table :positions do |t|
       t.boolean :delta, :default => true, :null => false
-      t.string :status
+      t.string :status, default: "opened"
 
       t.integer :position_id 
       t.index :position_id

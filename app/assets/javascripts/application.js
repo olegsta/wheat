@@ -14,6 +14,7 @@
 //= require angular
 //= require perfect-scrollbar.min
 //= require dcbox
+//= require pace.min
 //= require angular-route
 //= require angular-resource
 //= require angular-animate
@@ -24,7 +25,9 @@
 
 var app = angular.module("app", ["ngResource", "ngRoute", "ngAnimate", "ngNotify"]);
 
-app.run(['$rootScope', 'Page', function ($rootScope, Page) {
-  $rootScope.Page = Page;
+app.run(['$rootScope', 'Page', 'Action', function ($rootScope, Page, Action) {
   $rootScope.gon = gon;
+  $rootScope.Page = Page;
+  $rootScope.Action = Action;
+
 }])

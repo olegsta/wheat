@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 
     post 'attachments' => 'attachments#upload'
+    delete 'attachments' => 'attachments#destroy'
     resources :positions
     resources :templates
   end

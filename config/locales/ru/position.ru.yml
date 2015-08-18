@@ -22,10 +22,10 @@ ru:
       restored: Позиция успешно восстановлена в рынок
       timeout: "Вы создали предыдущую позицию менее минуты назад. Пожалуйста подождите %{wait_for} секунд и повторите действие"
     status:
-      archive: В архиве
-      completed: Завершено
-      in_process: В процессе
       opened: Открыто
+      in_process: В процессе
+      completed: Завершено
+      archive: В архиве
     dictionary:
       address: Адрес
       address_placeholder: Укажите адрес

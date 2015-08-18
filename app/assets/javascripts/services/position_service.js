@@ -1,12 +1,23 @@
-app.service('Position', ['$http', function($http) {
+app.service('Position', ['$http', 'Action', function($http, Action) {
   var Position = this;
 
 
   Position.search = function (params, fn) {
-    $http.get('/positions/search', {params: params})
+    $http.get(Routes.search_path(), {params: params})
       .success(function (res) {
         fn(res.points)
       })
+  }
+
+  Position.deleteAttachment = function (id, callback) {
+    Action.confirm({main: "Вы действительно хотите удалить файл?"}, function (confirmed) {
+      if (confirmed) {
+        $http.delete(Routes.attachments_path(), {params: {id: id}})
+          .success(function () {
+            callback();
+          })
+      }
+    });
   }
 }])
 

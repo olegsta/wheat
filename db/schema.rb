@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817202400) do
+ActiveRecord::Schema.define(version: 20150818203313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,11 +31,53 @@ ActiveRecord::Schema.define(version: 20150817202400) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "correspondence_positions", force: :cascade do |t|
+    t.integer  "position_id"
+    t.integer  "correspondence_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "correspondence_positions", ["correspondence_id"], name: "index_correspondence_positions_on_correspondence_id", using: :btree
+  add_index "correspondence_positions", ["position_id"], name: "index_correspondence_positions_on_position_id", using: :btree
+
+  create_table "correspondence_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "correspondence_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "correspondence_users", ["correspondence_id"], name: "index_correspondence_users_on_correspondence_id", using: :btree
+  add_index "correspondence_users", ["user_id"], name: "index_correspondence_users_on_user_id", using: :btree
+
+  create_table "correspondences", force: :cascade do |t|
+    t.json     "json_users"
+    t.json     "json_positions"
+    t.string   "correspondence_type"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "correspondences", ["correspondence_type"], name: "index_correspondences_on_correspondence_type", using: :btree
+
   create_table "currencies", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "correspondence_id"
+    t.text     "body"
+    t.integer  "user_id"
+    t.string   "message_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "messages", ["correspondence_id"], name: "index_messages_on_correspondence_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "options", force: :cascade do |t|
     t.string  "title"
@@ -45,8 +87,8 @@ ActiveRecord::Schema.define(version: 20150817202400) do
   add_index "options", ["category_id"], name: "index_options_on_category_id", using: :btree
 
   create_table "positions", force: :cascade do |t|
-    t.boolean  "delta",                     default: true, null: false
-    t.string   "status"
+    t.boolean  "delta",                     default: true,     null: false
+    t.string   "status",                    default: "opened"
     t.integer  "position_id"
     t.string   "title"
     t.text     "description"
@@ -57,12 +99,12 @@ ActiveRecord::Schema.define(version: 20150817202400) do
     t.integer  "currency_id"
     t.float    "price"
     t.float    "price_etalon"
-    t.float    "price_discount",            default: 0.0,  null: false
+    t.float    "price_discount",            default: 0.0,      null: false
     t.integer  "price_weight_dimension_id"
     t.float    "weight"
-    t.float    "weight_min",                default: 0.0,  null: false
+    t.float    "weight_min",                default: 0.0,      null: false
     t.float    "weight_etalon"
-    t.float    "weight_min_etalon",         default: 0.0,  null: false
+    t.float    "weight_min_etalon",         default: 0.0,      null: false
     t.integer  "weight_dimension_id"
     t.integer  "weight_min_dimension_id"
     t.string   "index_field"
@@ -71,8 +113,8 @@ ActiveRecord::Schema.define(version: 20150817202400) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "deal_with_id"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   add_index "positions", ["category_id"], name: "index_positions_on_category_id", using: :btree

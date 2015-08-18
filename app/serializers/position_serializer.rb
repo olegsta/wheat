@@ -1,6 +1,6 @@
 class PositionSerializer < ActiveModel::Serializer
   attributes :id, :updated_at, :weight, :weight_dimension, :weight_dimension_id, :title, :description, :images,
-             :trade_type, :trade_type_id, :currency, :price, :user, :weight_min, :weight_min_dimension_id,
+             :trade_type, :trade_type_id, :currency, :price, :user, :weight_min, :weight_min_dimension_id, :price_discount,
              :weight_min_dimension, :city, :lat, :lng, :address, :price_weight_dimension, :price_weight_dimension_id, :option, :option_id, :category
 
   has_one :option, serializer: OptionSerializer

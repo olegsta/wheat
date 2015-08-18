@@ -45,7 +45,7 @@ form.form.positions__form
           | ±
         .col#discount
           label.label Допуск
-          .input
+          .input#price_discount
             af-dimension.disabled options="[{id: 1, title: '%'}]" ng-model="ctrl.position.price_discount"
     .col-xs-6.col
       .row
@@ -62,13 +62,14 @@ form.form.positions__form
           textarea rows="6" ng-model="ctrl.position.description"
   .row
     .col-xs-12.col
-      #photo
+      #attachment
         label.label Загрузка фото и документов
         div
-          span.positions__form__photo.dcbox reload="{{ctrl.position.attachments.length}}"
-            a ng-href="{{attachment.url.original}}" ng-repeat="attachment in ctrl.position.attachments"
+          span.positions__form__attachments.dcbox reload="{{ctrl.position.attachments.length}}"
+            a.positions__form__attachment ng-href="{{attachment.url.original}}" ng-repeat="attachment in ctrl.position.attachments"
+              span.positions__form__attachment__delete ng-click="ctrl.deleteAttachment(attachment.id, $index, $event)" &times;
               img ng-src="{{attachment.url.thumb}}"
-          label.positions__form__photo-uploader
+          label.positions__form__attachment-uploader
             span +
             input type="file" fileread="files" multiple="true"
   .row ng-hide="isEdit"

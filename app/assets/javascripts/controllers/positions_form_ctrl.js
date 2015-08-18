@@ -1,4 +1,4 @@
-app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', '$position', '$rootScope', 'YandexMaps', function ($scope, $http, Page, $routeParams, $position, $rootScope, YandexMaps) {
+app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', '$position', '$rootScope', 'YandexMaps', 'Position', function ($scope, $http, Page, $routeParams, $position, $rootScope, YandexMaps, Position) {
   var ctrl = this;
   ctrl.position = {
     trade_type_id: 1,
@@ -54,10 +54,21 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
           _.each(res.attachments, function (attachment) {
             ctrl.position.attachments = ctrl.position.attachments || [];
             ctrl.position.attachments.push(attachment);
-          })
+          });
+
+          $scope.files = []
         })
     }
   })
+
+  ctrl.deleteAttachment = function (id, $index, $event) {
+    $event.preventDefault();
+    Position.deleteAttachment(id, function () {
+      ctrl.position.attachments.splice($index, 1);
+    })
+    $event.stopPropagation();
+    return false;
+  }
 
 
   var mapListner = $rootScope.$on('map:build', function () {

@@ -3,7 +3,7 @@ class PositionsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: current_user.positions.includes(:offers, :user, :option, :category, :weight_dimension, :price_weight_dimension, :weight_min_dimension, :currency, :attachments), each_serializer: PositionWithOffersSerializer
+        render json: current_user.positions.where(status: params[:status]).includes(:offers, :user, :option, :category, :weight_dimension, :price_weight_dimension, :weight_min_dimension, :currency, :attachments), each_serializer: PositionWithOffersSerializer
       }
     end
   end
@@ -35,7 +35,7 @@ class PositionsController < ApplicationController
       associate_attachment
       render json: {msg: "Позиция успешно обновлена"}
     else
-      render json: {errors: position.errors}, status: 422
+      render json: {errors: @position.errors}, status: 422
     end
   end
 

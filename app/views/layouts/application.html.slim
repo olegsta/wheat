@@ -17,14 +17,15 @@ html
       = render "application/sidebar"
     
 
-    ng-view.fade
+    ng-view.fade ng-class="{blur: blurContent}"
 
-    
+    .overlay ng-show="overlay"
     = render partial: "components/dimension"
     = render partial: "components/radio"
     = render partial: "components/select"
     = render partial: "components/dropdown"
     = render partial: "components/category"
+    = render partial: "components/confirm_window"
 
     script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"
     = Gon::Base.render_data({})

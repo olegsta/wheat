@@ -1,4 +1,6 @@
 class Position < ActiveRecord::Base
+  include AASM
+  
   before_save :set_category_id
 
   has_many :positions_offers
@@ -29,6 +31,31 @@ class Position < ActiveRecord::Base
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validates :price_weight_dimension_id, inclusion: { in: @@dimensions_ids }
   validates :price_discount, :allow_blank => true, numericality: { greater_than_or_equal_to: 0 }
+
+
+  aasm :column => :status do
+    state :opened, :initial => true
+    state :in_process
+    state :completed
+    state :archive
+
+    event :start_process do
+      transitions :to => :in_process, :from => [:opened]
+    end
+
+    event :complete do
+      transitions :to => :completed, :from => [:in_process]
+    end
+
+    event :move_to_archive do
+      transitions :to => :archive, :from => [:opened]
+    end
+
+    event :open do
+      transitions :to => :opened, :from => [:archive]
+    end
+  end
+
 
   private
 
