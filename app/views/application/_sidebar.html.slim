@@ -1,6 +1,6 @@
 a.btn.btn-primary.btn-create.ripple href="/positions/new" Создать позицию
 nav
-  a ng-class="{active: Page.current == 'positions'}" href="/positions" Мои позиции
+  a ng-class="{active: Page.current == 'positions'}" href="/positions?status=opened" Мои позиции
   a ng-class="{active: Page.current == 'offers'}" href="/offers" Мои предложения
   a ng-class="{active: Page.current == 'messages'}" href="/messages" Сообщения
   a ng-class="{active: Page.current == 'analytics'}" href="/analytics" Аналитика
@@ -8,17 +8,22 @@ nav
   a ng-class="{active: Page.current == 'support'}" href="/support" Поддержка
 
 footer
-  a.user href="/profile"
-    .user__avatar
-      img src="/avatar.png"
-    .user__info
-      .user__name Кононенко П.
-      .user__status Фермер
+  - if user_signed_in?
+    a.user href="/profile"
+      .user__avatar
+        img ng-src="{{gon.user.info.avatar.original}}"
+      .user__info
+        .user__name
+          | {{gon.user.info.fullname | shortname}}
+        .user__status Фермер
 
     
-  .user_name
   hr
 
   nav
-   a href="/settings" Настройки
-   a href="" Выход
+    - if user_signed_in?
+      a href="/settings" Настройки
+      a ng-click="User.signOut()" href="" Выход
+    - else
+      a href="" ng-click="User.isShowSign = 'up'" Регистрация
+      a href="" ng-click="User.isShowSign = 'in'" Вход

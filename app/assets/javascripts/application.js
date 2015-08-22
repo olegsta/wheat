@@ -25,9 +25,10 @@
 
 var app = angular.module("app", ["ngResource", "ngRoute", "ngAnimate", "ngNotify"]);
 
-app.run(['$rootScope', 'Page', 'Action', function ($rootScope, Page, Action) {
+app.run(['$rootScope', 'Page', 'Action', 'User', function ($rootScope, Page, Action, User) {
   $rootScope.gon = gon;
   $rootScope.Page = Page;
   $rootScope.Action = Action;
+  $rootScope.User = User;
 
 }])

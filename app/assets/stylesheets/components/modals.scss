@@ -1,12 +1,18 @@
 .md {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-top: 100px;
-  width: 50%;
+  left: 230px;
+  top: 0;
+  margin-top: 90px;
   height: auto;
-  z-index: -1;
   visibility: hidden;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  transform: scale(0.7);
+  opacity: 0;
+  
 
   &__center {
     -webkit-backface-visibility: hidden;
@@ -17,12 +23,11 @@
   &__body {
     padding: 20px;
     position: relative;
-    height: 250px;
   }
 
   &__head {
     height: 35px;
-    background: #F2F2F2;
+    // background: #F2F2F2;
     position: relative;
 
     &__img {
@@ -64,10 +69,6 @@
     }
   }
 
-  &__body {
-    padding: 20px;
-  }
-
   &__footer {
     margin-top: 5px;
   }
@@ -76,8 +77,6 @@
     position: absolute;
     right: 0;
     top: 0;
-    width: 35px;
-    height: 35px;
     color: #242424;
     cursor: pointer;
     font-size: 22px;
@@ -85,25 +84,18 @@
     z-index: 1;
     line-height: 40px;
     text-align: center;
-
-    .flaticon-croos {
-      font-size: 22px;
-      color: white;
-      position: relative;
-      top: -3px;
-      left: 7px;
-    }
+    padding: 12px;
 
     &:hover {
-      opacity: 1;
+      color: red;
     }
   }
 
   &__title {
-    font-size: 24px;
-    font-weight: lighter;
-    color: gray;
+    font-size: 18px;
+    color: #242424;
     margin-bottom: 10px;
+    padding: 15px 21px;
   }
 
   &__text {
@@ -128,30 +120,17 @@
     }
   }
 
-  &__content {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    background: white;
-    -webkit-transform: scale(0.7);
-    -moz-transform: scale(0.7);
-    -ms-transform: scale(0.7);
-    transform: scale(0.7);
-    opacity: 0;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-  }
-
-  &.md-show .md__content {
+  &.md-show {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
     opacity: 1;
-  }
-
-  &.md-show {
     visibility: visible;
     z-index: 9999;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
   }
 
   .page {
@@ -165,95 +144,12 @@
   }
 }
 
-.md__sign {
-  margin: -120px -345px;
-  width: 700px;
-  transition: .3s;
-
-  .icon-croos {
-    color: white;
-    font-size: 25px;
-  }
-  
-  &.sign_up {
-    margin-top: -150px;
-  }
-
-  .md__body {    
-    &.sign_in {
-      height: 250px;
-    }
-    &.sign_up {
-      height: 295px;
-    }
-  }
-
-  &__left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 56%;
-    padding: 20px 20px;
-  }
-
-  &__right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 44%;
-    background: blue;
-    text-align: center;
-    padding: 30px 20px;
-  }
-
-  &__title {
-    font-size: 20px;
-    color: white;
-    padding: 10px;
-    font-weight: lighter;
-  }
-
-  &__text {
-    color: rgba(255,255,255, .8);
-    font-weight: lighter;
-    font-size: 15px;
-    margin: 12px 0px 30px 0px;
-    line-height: 18px;
-  }
-
-  .link-align-button {
-    padding-top: 13px;
-
-    a:hover {
-      opacity: .8;
-    }
-  }
-
-  .md__form {
-    &__input {
-      input {
-        width: 100%;
-        border-radius: 0;
-        padding-left: 35px;
-      }
-    }
-  }
-
-  .right_link {
-    color: white;
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-  }
-}
-
 .confirm-modal {
   width: 460px;
   margin-left: -230px;
   margin-top: -110px;
+  left: 50%;
+  top: 50%;
   
   .md__head__title {
     padding: 10px 0 0 20px;

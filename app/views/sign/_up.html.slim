@@ -1,0 +1,42 @@
+form.sign__up ng-show="User.isShowSign=='up'"
+  .row
+    .col#fullname
+      label.label ФИО
+      label.input
+        input type="text" ng-model="sign_in_form.user.fullname"
+  .row
+    .col#company
+      label.label Компания
+      label.input
+        label.checkbox.small#is_company
+          input type="checkbox" ng-model="is_company"
+          .checker
+        input ng-disabled="!is_company" type="text" ng-value="{{(sign_in_form.user.fullname && !is_company) ? 'ИП «'+sign_in_form.user.fullname+'»' : ''}}" placeholder="Название компании"
+  .row
+    .col#email
+      label.label Электронная почта
+      label.input
+        input type="email" ng-model="sign_in_form.user.email"
+    .col
+      label.label Телефон
+      label.input ng-init="sign_in_form.user.phones=[]"
+        input type="text" ng-model="sign_in_form.user.phones[0]"
+  .row
+    .col#password
+      label.label Пароль
+      label.input
+        input type="password"  ng-model="sign_in_form.user.password"
+    .col#password_confirmation
+      label.label Пароль ещё раз
+      label.input
+        input type="password" ng-model="sign_in_form.user.password_confirmation"
+  .row
+    .col
+      label.checkbox.small
+        input type="checkbox" ng-model="sign_in_confirm"
+        .checker
+        | Я подтвержаю свое согласие с правилами работы сервиса
+
+  .row style="margin-bottom: 0"
+    .col
+      button.btn.btn-primary.ripple ng-disabled="!sign_in_confirm" ng-click="User.signUp(sign_in_form)" Зарегистрироваться

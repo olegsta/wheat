@@ -1,0 +1,20 @@
+form.sign__in ng-show="User.isShowSign=='in'"
+  .row
+    .col#email
+      label.label Электронная почта
+      label.input
+        input name="email" type="email" ng-model="form.user.email"
+  .row
+    .col#password
+      label.label Пароль
+      label.input
+        input name="password" type="password"  ng-model="form.user.password"
+  .row
+    .col
+      label.checkbox
+        input type="checkbox"
+        .checker
+        | Запомнить меня
+  .row style="margin-bottom: 0"
+    .col
+      button.btn.btn-primary.ripple ng-disabled="!form.user.email || !form.user.password" ng-click="User.signIn(form)" Войти

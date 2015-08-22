@@ -3,3 +3,25 @@
   h1 Профиль
 
   .page__body
+    .profile
+      .user.clearfix
+        .user__avatar
+          img ng-src="{{gon.user.info.avatar.original}}"
+          a.btn.btn-primary.ripple Загрузить
+        .user__info
+          .user__fullname.user__field
+            | {{gon.user.info.fullname}}
+          .user__company.user__field
+            | {{gon.user.info.company}}
+          a.user__address.user__field
+            | {{gon.user.info.city}}, {{gon.user.info.address}}
+          .user__description.user__field
+            | {{gon.user.info.about}}
+          hr
+          .user__phone.user__field
+            span ng-repeat="phone in gon.user.info.phones"
+              | {{phone}}
+          .user__email.user__field
+            a href="mailto:" storuky@gmail.com
+
+      .profile__positions

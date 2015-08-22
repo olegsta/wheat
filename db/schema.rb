@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 20150818203313) do
     t.string   "company"
     t.text     "additional"
     t.json     "events",                 default: {}
+    t.boolean  "banned"
     t.string   "locale",                 default: "ru", null: false
   end
 

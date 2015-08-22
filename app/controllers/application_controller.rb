@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   before_action :set_locale
   after_action :user_activity
+  # before_filter :user_needed, except: [:index]
+  before_action :user_banned
 
   protect_from_forgery with: :exception
 
@@ -12,11 +14,12 @@ class ApplicationController < ActionController::Base
   def index
     currency_name = current_user.currency.name rescue session[:currency]["name"]
 
-    if current_user
-      gon.user = {
-        currency: CurrencySerializer.new(Currency.find_by(name: currency_name)).as_json["currency"],
+    gon.user = {
+      currency: CurrencySerializer.new(Currency.find_by(name: currency_name)).as_json["currency"]
+    }
 
-      }
+    if current_user
+      gon.user[:info] = UserSerializer.new(current_user).as_json["user"]
     end
 
 
@@ -97,5 +100,18 @@ class ApplicationController < ActionController::Base
     
     def authorize_private_channel channel
       PrivatePub.subscription(:channel => channel).as_json
+    end
+
+    def user_needed
+      unless current_user
+        render :json => {'msg' => 'Вы не авторизованы'}, :status => 401
+      end
+    end
+
+    def user_banned
+      if current_user && current_user.banned?
+        render :json => {'msg' => 'Вы заблокированы'}, :status => 403
+        sign_out current_user
+      end
     end
 end

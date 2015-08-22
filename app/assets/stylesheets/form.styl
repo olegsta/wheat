@@ -29,7 +29,7 @@ input[type="text"]
 input[type="email"]
 input[type="password"]
 input[type="number"]
-  height: 30px
+  height: 34px
   padding-left: 8px
   
 textarea
@@ -71,12 +71,16 @@ a
     height: 40px
     line-height: 39px
     padding: 0 25px
+    
+  &:disabled
+    cursor: default
+    opacity: .7
 
   btn($color)
     background: $color
     color: #2B2B2B
 
-    &:hover
+    &:not(:disabled):hover
       background: lighten($color, 15%)
 
     &:active
@@ -109,6 +113,9 @@ hr
   cursor: pointer
   display: inline-block !important
   color: #414141
+  
+  &.small
+    font-size: 13px
   
 input[type="checkbox"]
   display: none

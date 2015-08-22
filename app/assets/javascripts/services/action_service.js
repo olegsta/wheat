@@ -10,11 +10,6 @@ app.service('Action', ['$rootScope', function ($rootScope) {
       Action.confirm_show = false;
     }
 
-    document.getElementById('confirm_no').onclick = function () {
-      // callback(false);
-      Action.confirm_show = false;
-    }
-
     $rootScope.$watch(function () {
       return Action.confirm_show
     }, function (v) {

@@ -13,19 +13,16 @@ html
       span.red Agro 
       span.black for PRO
     
-    .sidebar.p-sidebar ng-class="{'sidebar-map': Page.isMap}"
+    .sidebar.p-sidebar ng-class="{'sidebar-map': Page.isMap, 'not-sign': !gon.user.info}"
       = render "application/sidebar"
     
 
     ng-view.fade ng-class="{blur: blurContent}"
 
+    = render partial: "sign/index"
+
     .overlay ng-show="overlay"
-    = render partial: "components/dimension"
-    = render partial: "components/radio"
-    = render partial: "components/select"
-    = render partial: "components/dropdown"
-    = render partial: "components/category"
-    = render partial: "components/confirm_window"
+    = render partial: "components/components"
 
     script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"
     = Gon::Base.render_data({})

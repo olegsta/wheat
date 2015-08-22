@@ -1,0 +1,13 @@
+.sign.md ng-class="{'md-show': User.isShowSign}"
+  .md__head
+    .md__title
+      span ng-show="User.isShowSign=='in'"
+        | Вход
+      span ng-show="User.isShowSign=='up'"
+        | Регистрация
+    .md__close ng-click="User.isShowSign=''"
+      .icon-close
+  .md__content
+    .md__body
+      = render partial: "sign/in"
+      = render partial: "sign/up"

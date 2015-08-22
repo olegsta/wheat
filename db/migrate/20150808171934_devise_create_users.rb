@@ -49,6 +49,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.text :additional
       t.json :events, default: {}
 
+      t.boolean :banned
+
       t.string :locale, default: "ru", null: false
     end
 
