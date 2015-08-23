@@ -16,7 +16,8 @@ class PositionSerializer < ActiveModel::Serializer
   def user
     {
       id: object.user.id,
-      fullname: object.user.fullname
+      fullname: object.user.fullname,
+      avatar: object.user.avatar.thumb.url
     }
   end
 

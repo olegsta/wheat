@@ -1,0 +1,58 @@
+.suitable
+  position: relative
+  
+  &__current
+    border: 1px solid #e5e5e5
+    height: 90px
+    border-radius: 4px
+    cursor: pointer
+    padding: 8px 16px
+    position: relative
+    width: 100%
+    margin-top: 5px
+    line-height: 18px
+    
+    &:hover
+      background: #f7f7f7
+    
+      
+    .icon-chevron-down
+      position: absolute
+      top: 33px
+      right: 18px
+      font-size: 20px
+      color: #333
+      
+  b
+    font-weight: normal
+    display: block
+  
+  span
+    font-weight: lighter
+    display: block
+
+  &__list
+    border-radius: 3px
+    list-style: none
+    padding: 0
+    margin: 1px 0 10px 0
+    position: absolute
+    left: 0
+    right: 0
+    max-height: 180px
+    border: 1px solid #e5e5e5
+    background: white
+    z-index: 1
+    
+    &__item
+      padding: 8px 16px
+      cursor: pointer
+      
+      &:not(:first-child)
+        border-top: 1px solid #e5e5e5
+        
+      &:not(.active):hover
+        background: #f7f7f7
+        
+      &.active
+        background: #fee9a5

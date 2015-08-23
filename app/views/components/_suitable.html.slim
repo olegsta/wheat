@@ -1,0 +1,14 @@
+script id="suitable.html" type="text/ng-template"
+  .suitable
+    .suitable__current ng-click="opened=!opened"
+      i.icon-chevron-down
+      b 30.06.2015
+      b Заголовок
+      span Оливковое масло
+      span 236 л, мин.. 0 л, 3455.5 руб/л
+    ul.suitable__list scroll="" ng-show="opened"
+      li.suitable__list__item ng-repeat="i in [1,2,3,4]"
+        b 30.06.2015
+        b Заголовок
+        span Оливковое масло
+        span 236 л, мин.. 0 л, 3455.5 руб/л

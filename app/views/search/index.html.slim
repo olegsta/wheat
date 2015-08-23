@@ -5,12 +5,22 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="showSearchFooter = false"
 .p-widget.collapse-widget ng-class="{'collapse-widget': !activeWidget, blur: Page.blur}"
   = render "application/widget"
 
-.position-modal scroll=""
+.extended-search scroll=""
+  = render "search/extended"
+
+.position-modal scroll="" ng-class="{visible: ctrl.modalOpened}"
   .md ng-class="{'md-show': ctrl.modalOpened}"
     .md__head
       .md__title
+        .md__image
+          img ng-src="{{ctrl.active_position.user.avatar}}"
+        | {{ctrl.active_position.user.fullname}}
+        .rating
+          .rating__negative 1
+          .rating__positive 2
+        .md__sep
+          | |
         i.icon-star-fill
-        | Страница позиции
       .md__close ng-click="ctrl.closeModal()"
         a.icon-close
     .md__body.clearfix
@@ -27,7 +37,8 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="showSearchFooter = false"
         .row
           label.col.label Пользователь:
           .span
-            | {{ctrl.active_position.user.fullname}}
+            a.link href=""
+              | {{ctrl.active_position.user.fullname}}
         .row
           label.col.label Тип:
           .span
@@ -73,3 +84,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="showSearchFooter = false"
             | #{t "position.dictionary.attached_images_no"}
           a ng-href="{{photo.photo.url}}" ng-repeat="photo in Search.position_info.photos"
             img ng-src="{{photo.photo.thumb.url}}" height="70"
+      
+        label.label Выберите подходящую позицию:
+        suitable positions="[1,2,3]" ng-model="ctrl.suit_position"
+        a.btn.btn-primary.position-modal__send-offer.ripple Отправить предложение

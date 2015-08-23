@@ -4,6 +4,19 @@
   top: 0
   bottom: 0
   left: 230px
+  visibility: hidden
+  
+  .rating
+    margin: 0 15px
+
+  &__send-offer
+    margin-top: 15px
+    width: 100%
+    height: 42px
+    padding: 4px
+  
+  &.visible
+    visibility: visible
   
   .ps-scrollbar-y-rail
     display: none !important
@@ -11,6 +24,30 @@
   .md
     width: 760px
     left: 0
+    margin-bottom: 14px
+    
+    &__image
+      display: inline-block
+      vertical-align: middle
+      margin-right: 10px
+
+      img
+        height: 35px
+        width: 35px
+    
+    &__head
+      height: auto
+      
+    &__body
+      padding-top: 0
+
+    &__title
+      font-size: 16px
+      margin: 0
+      
+    &__sep
+      display: inline-block
+      margin: 0 15px
     
     &:after
       content: ""
@@ -28,9 +65,9 @@
   
   .icon-star-fill
     position: relative
-    top: 2px
+    top: 5px
     margin-right: 5px
-    font-size: 20px
+    font-size: 22px
     color: #c3c3c3
     cursor: pointer
     
@@ -38,12 +75,11 @@
       color: #ffc107
   
   .row
-    margin-bottom: 15px
+    margin-bottom: 8px
   
   .label
     color: #777777
     font-weight: lighter
-    margin: 0
   
   .span
     margin-left: 115px
@@ -63,6 +99,7 @@
   &__right
     width: 360px
     float: left
+    margin-top: 10px
     
   .span
     &.opened
@@ -74,7 +111,7 @@
     position: relative
     width: 100%
     white-space: nowrap
-    margin-top: 10px
+    margin-bottom: 20px
 
     &.no-photo
       border: 1px solid #e5e5e5
