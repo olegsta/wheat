@@ -22,6 +22,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when('/messages', {
       templateUrl: Routes.messages_path(),
       controller: 'MessagesCtrl as ctrl',
+      reloadOnSearch: false
     })
     .when('/analytics', {
       templateUrl: Routes.analytics_path(),
@@ -35,7 +36,7 @@ app.config(['$routeProvider', function ($routeProvider) {
       templateUrl: Routes.support_path(),
       controller: 'SupportCtrl as ctrl',
     })
-    .when('/profile', {
+    .when('/profile/:id?', {
       templateUrl: Routes.profile_path(),
       controller: 'ProfileCtrl as ctrl',
     })

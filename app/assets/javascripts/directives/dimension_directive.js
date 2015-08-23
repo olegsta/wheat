@@ -46,6 +46,11 @@ app.directive('afDimension', ['$rootScope', function($rootScope) {
           var id = _.isUndefined($scope.ngModelDimension) ? v[0].id : $scope.ngModelDimension;
           $scope.setActive(id)            
         }
+      });
+
+      $scope.$watch('ngModelDimension', function (id) {
+        if (id)
+          $scope.setActive(id)
       })
 
       angular.element(document.querySelector('body')).bind('click', function () {

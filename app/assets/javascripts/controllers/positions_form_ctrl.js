@@ -3,6 +3,7 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
   ctrl.position = {
     trade_type_id: 1,
     attachments: [],
+    currency_id: gon.user.currency.id
   };
 
   Page.current = $routeParams.id ? 'positions' : 'positions_new'

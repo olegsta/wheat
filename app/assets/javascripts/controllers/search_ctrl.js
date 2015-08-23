@@ -1,5 +1,5 @@
-app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $location, Page, YandexMaps, Search) {
-  var map = this;
+app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$position', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $location, $position, Page, YandexMaps, Search) {
+  var ctrl = this;
 
   Page.isMap = true;
   Page.current = 'search';
@@ -19,8 +19,24 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', 'Page', 'Yand
     return $location.search().id
   }, function (id) {
     if (id) {
-      // alert("Модальное окно позиции " + id)
+      ctrl.spinner = true;
+      ctrl.modalOpened = true;
+      Page.blur = true;
+      $rootScope.overlay = true;
+      $position.get({id: id}, function (res) {
+        ctrl.active_position = res.position;
+        ctrl.spinner = false;
+      });
+    } else {
+      ctrl.spinner = false;
+      ctrl.modalOpened = false;
+      Page.blur = false;
+      $rootScope.overlay = false;
     }
   })
+
+  ctrl.closeModal = function () {
+    $location.search({id: undefined})
+  }
 
 }]);

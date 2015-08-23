@@ -1,0 +1,96 @@
+.position-modal
+  width: 760px
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 230px
+  
+  .ps-scrollbar-y-rail
+    display: none !important
+  
+  .md
+    width: 760px
+    left: 0
+    
+    &:after
+      content: ""
+      display: block
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 315px
+      box-shadow: 0 0 17px 11px #fff
+      margin: 20px
+    
+  
+  .md__close
+    margin-right: 7px
+  
+  .icon-star-fill
+    position: relative
+    top: 2px
+    margin-right: 5px
+    font-size: 20px
+    color: #c3c3c3
+    cursor: pointer
+    
+    &.active, &:hover
+      color: #ffc107
+  
+  .row
+    margin-bottom: 15px
+  
+  .label
+    color: #777777
+    font-weight: lighter
+    margin: 0
+  
+  .span
+    margin-left: 115px
+    
+
+  &__left
+    width: 330px
+    margin: 10px 27px 0 0
+    max-height: 353px
+    position: relative
+    float: left
+    padding-right: 15px
+    
+    .ps-scrollbar-y-rail
+      display: block !important
+  
+  &__right
+    width: 360px
+    float: left
+    
+  .span
+    &.opened
+      color: green
+      
+  &__photos
+    height: 90px
+    border-radius: 4px
+    position: relative
+    width: 100%
+    white-space: nowrap
+    margin-top: 10px
+
+    &.no-photo
+      border: 1px solid #e5e5e5
+
+    .no-result
+      text-align: center
+      padding: 32px 0
+      font-size: 18px
+
+    a
+      cursor: pointer
+      display: inline-block
+      vertical-align: bottom
+      border: 1px solid #e7e7e7
+      padding: 5px
+      margin-right: 5px
+
+      &:hover
+        border-color: #ccc

@@ -1,6 +1,6 @@
 class PositionSerializer < ActiveModel::Serializer
-  attributes :id, :updated_at, :weight, :weight_dimension, :weight_dimension_id, :title, :description, :images,
-             :trade_type, :trade_type_id, :currency, :price, :user, :weight_min, :weight_min_dimension_id, :price_discount,
+  attributes :id, :created_at, :updated_at, :status, :weight, :weight_dimension, :weight_dimension_id, :title, :description, :images,
+             :trade_type, :trade_type_id, :currency, :currency_id, :price, :user_id, :user, :weight_min, :weight_min_dimension_id, :price_discount,
              :weight_min_dimension, :city, :lat, :lng, :address, :price_weight_dimension, :price_weight_dimension_id, :option, :option_id, :category
 
   has_one :option, serializer: OptionSerializer
@@ -17,6 +17,13 @@ class PositionSerializer < ActiveModel::Serializer
     {
       id: object.user.id,
       fullname: object.user.fullname
+    }
+  end
+
+  def status
+    {
+      id: object.status.to_sym,
+      title: I18n.t("position.status")[object.status.to_sym]
     }
   end
 

@@ -16,7 +16,7 @@ script id="dimension.html" type="text/ng-template"
               span
                 | {{currentOption}}
             .dimension__list ng-show="isShow"
-              .dimension__item ng-repeat="option in options" ng-click="setActive(option.id)" ng-class="{active: ngModelDimension==option.id}"
+              .dimension__item ng-repeat="option in options" ng-click="$parent.ngModelDimension = option.id" ng-class="{active: ngModelDimension==option.id}"
                 span ng-show="prefix"
                   | {{prefix}}
                 span

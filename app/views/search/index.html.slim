@@ -4,3 +4,72 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="showSearchFooter = false"
   = render "search/form"
 .p-widget.collapse-widget ng-class="{'collapse-widget': !activeWidget, blur: Page.blur}"
   = render "application/widget"
+
+.position-modal scroll=""
+  .md ng-class="{'md-show': ctrl.modalOpened}"
+    .md__head
+      .md__title
+        i.icon-star-fill
+        | Страница позиции
+      .md__close ng-click="ctrl.closeModal()"
+        a.icon-close
+    .md__body.clearfix
+      .spinner ng-show="ctrl.spinner"
+      .position-modal__left scroll="" ng-hide="ctrl.spinner"
+        .row
+          label.col.label Статус:
+          .span class="{{ctrl.active_position.status.id}}"
+            | {{ctrl.active_position.status.title}}
+        .row
+          label.col.label Дата:
+          .span
+            | {{ctrl.active_position.created_at | date:"dd.MM.yyyy"}}
+        .row
+          label.col.label Пользователь:
+          .span
+            | {{ctrl.active_position.user.fullname}}
+        .row
+          label.col.label Тип:
+          .span
+            | {{ctrl.active_position.trade_type.title}}
+        .row
+          label.col.label Категория:
+          .span
+            | {{ctrl.active_position.category.title}} / {{ctrl.active_position.option.title}}
+        .row
+          label.col.label Название:
+          .span
+            | {{ctrl.active_position.title}}
+        
+        .row
+          label.col.label Регион:
+          .span
+            | {{ctrl.active_position.city}}
+        
+        .row
+          label.col.label Вес (объем):
+          .span
+            | {{ctrl.active_position.weight}}
+        
+        .row
+          label.col.label Мин. заказ:
+          .span
+            | {{ctrl.active_position.weight_min}}
+        
+        .row
+          label.col.label Цена:
+          .span
+            | {{ctrl.active_position.price}}
+        
+        .row
+          label.col.label Описание:
+          .span
+            | {{ctrl.active_position.description}}
+
+      .position-modal__right ng-hide="ctrl.spinner"
+        label.label Прикрепленные документы:
+        .position-modal__photos.dcbox scroll="" axis="x" rebuild="{{Search.position_info.photos.length}}" ng-class="{'no-photo': !Search.position_info.photos.length}"
+          .no-result ng-show="!Search.position_info.photos.length"
+            | #{t "position.dictionary.attached_images_no"}
+          a ng-href="{{photo.photo.url}}" ng-repeat="photo in Search.position_info.photos"
+            img ng-src="{{photo.photo.thumb.url}}" height="70"

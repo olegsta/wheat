@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     delete 'attachments' => 'attachments#destroy'
     resources :positions
     resources :templates
+    resources :correspondences
   end
 
   get '/*path' => 'application#index'

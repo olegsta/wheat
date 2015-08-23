@@ -7,6 +7,9 @@ class Position < ActiveRecord::Base
   has_many :positions, through: :positions_offers
   has_many :offers, through: :positions_offers
   has_many :attachments
+
+  has_many :correspondence_positions, :inverse_of => :position
+  has_many :correspondences, through: :correspondence_positions
   
   belongs_to :user
   belongs_to :currency
@@ -25,6 +28,7 @@ class Position < ActiveRecord::Base
   validates :option_id, inclusion: { in: @@options_ids }
   validates :address, presence: true
   validates :weight, numericality: { greater_than: 0 }
+  validates :weight_min, numericality: { greater_than_or_equal_to: 0 }
   validates :weight_dimension_id, inclusion: { in: @@dimensions_ids }
   validate :less_then_weight
   validate :location
@@ -64,7 +68,7 @@ class Position < ActiveRecord::Base
     end
 
     def less_then_weight
-      errors.add(:weight_min) if self.weight_min.to_f > self.weight.to_f
+      errors.add(:weight_min) if WeightDimension.normalize(self.weight_min, self.weight_min_dimension_id) > WeightDimension.normalize(self.weight, self.weight_dimension_id)
     end
 
     def location

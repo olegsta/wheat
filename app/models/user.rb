@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
 
   belongs_to :currency
 
+  has_many :correspondence_users
+  has_many :correspondences, through: :correspondence_users
+
 
   validates :fullname, presence: true
   validates :phones, presence: true

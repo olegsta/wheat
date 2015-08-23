@@ -7,59 +7,72 @@
           input type="text" placeholder="Поиск"
       .messages__contacts__body.p-messages__contacts__body
         .messages__contacts__tabs
-          af-radio.lg options="[{id: 1, title: 'Позиции'}, {id: 2, title: 'Пользователи'}]"
+          af-radio.lg ng-model="Correspondence.tab" options="[{id: 'positions', title: 'Позиции'}, {id: 'users', title: 'Пользователи'}]"
         table
-          tr.messages__contacts__item ng-repeat="correspondence in [1,2,3]"
+          tr.messages__contacts__item ng-click="Correspondence.set(correspondence)" ng-class="{active: correspondence.id==Correspondence.active.id}" ng-repeat="correspondence in Correspondence.tabPane"
             td.w0.messages__contacts__item__avatar
-              img src="/avatar.png"
+              img ng-src="{{correspondence.user.avatar.thumb.url}}"
             td
               .messages__contacts__item__title
-                | Покупаю молоко
+                | {{gon.group.trade_types[correspondence.position.trade_type_id]}} «{{gon.group.options[correspondence.position.option_id].title}}»
               .messages__contacts__item__description
-                | 644 л, мин.. 434 л, 7.23 €/л
+                | {{correspondence.position.weight}} {{gon.group.weight_dimensions[correspondence.position.weight_dimension_id].title}}, 
+                | мин. {{correspondence.position.weight_min}} {{gon.group.weight_dimensions[correspondence.position.weight_min_dimension_id].title}}, 
+                | {{correspondence.position.price / gon.data.rates[gon.user.currency.id].rate}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[correspondence.position.price_weight_dimension_id].title}}
+
+
+    div ng-show="Correspondence.active"
+      .messages__header.p-messages__header
+        .messages__header__user
+          table
+            tr
+              td.w0
+                a.messages__header__user__avatar ng-href="/profile/{{Correspondence.active.user.id}}"
+                  img ng-src="{{Correspondence.active.user.avatar.thumb.url}}"
+              td
+                .messages__header__user__name
+                  | {{Correspondence.active.user.fullname}}
+                .messages__header__user__theme
+                  | {{gon.group.trade_types[Correspondence.active.position.trade_type_id]}} «{{gon.group.options[Correspondence.active.position.option_id].title}}»
+        .messages__header__info
+          .messages__header__info__position
+            span Моя позиция:  
+            a.link href="" ng-click="showMyPosition = !showMyPosition; $event.stopPropagation()"
+              | #
+              | {{Correspondence.active.positions[gon.user.info.id][0].id}}
+          .messages__header__info__position
+            span Предложение пользователя:  
+            a.link href="" ng-click="showUserPosition = !showUserPosition; $event.stopPropagation()"
+              | #
+              | {{Correspondence.active.positions[Correspondence.active.user.id][0].id}}
+
+      .messages__positions
+        correspondence-position opened="showMyPosition" position="Correspondence.active.positions[gon.user.info.id][0]" title="'Моя позиция'"
+        correspondence-position.user-position opened="showUserPosition" position="Correspondence.active.positions[Correspondence.active.user.id][0]" title="'Предложение пользователя'"
 
 
 
+      .messages__body.p-messages__body
+        .message ng-class="{my: message.user_id==gon.user.info.id}" ng-repeat="message in Correspondence.active.messages"
+          a.message__avatar ng-href="/profile/{{Correspondence.active.user.id}}"
+            img ng-src="{{::Correspondence.active.user.avatar.thumb.url}}"
+          .message__body
+            pre
+              | {{::message.body}}
+          .message__date
+            | {{::message.created_at | date:"dd.MM.yyyy"}}
 
+      .messages__footer.p-messages__footer
+        textarea.message__textarea ng-model="Message.body"
+        .messages__footer__controll.clearfix
+          .pull-left
+            label.messages__footer__file
+              input#upload type="file"
+              .btn.btn-default
+                i.icon-clip25
+                | Прикрепить файл
+          .pull-right
+            span.send-by Отправка по Ctrl+Enter
+            a.btn.btn-primary.messages__send-btn.ripple ng-click="ctrl.sendMessage(ctrl.message.body)" Отправить
 
-    .messages__header.p-messages__header
-      .messages__header__user
-        table
-          tr
-            td.w0
-              .messages__header__user__avatar
-                img src="/avatar.png"
-            td
-              .messages__header__user__name
-                | Павел Кононенко
-              .messages__header__user__theme
-                | Покупаю «Кокос»
-      .messages__header__info
-        .messages__header__info__position
-          span Моя позиция:  
-          a href="" #118
-        .messages__header__info__position
-          span Предложение пользователя:  
-          a href="" #502
-
-
-    .messages__body.p-messages__body
-      .message
-        .message__avatar
-          img src="/avatar.png"
-        .message__body
-          pre Какой-то текст
-        .message__date
-
-    .messages__footer.p-messages__footer
-      textarea
-      .messages__footer__controll.clearfix
-        .pull-left
-          label.messages__footer__file
-            input#upload type="file"
-            .btn.btn-default
-              i.icon-clip25
-              | Прикрепить файл
-        .pull-right
-          span.send-by Отправка по Ctrl+Enter
-          a.btn.btn-primary.messages__send-btn.ripple Отправить
+= render "position"

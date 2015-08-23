@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   layout :false
 
+  serialization_scope :view_context
   
   def index
     currency_name = current_user.currency.name rescue session[:currency]["name"]
