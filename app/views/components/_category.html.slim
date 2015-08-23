@@ -5,7 +5,7 @@ script id="category.html" type="text/ng-template"
         i.icon-search
         input.categories__search__input type="text" placeholder="Поиск" ng-model="search"
 
-      .categories__list
+      .categories__list scroll=""
         .categories__column ng-repeat="column in gon.data.categories | filter:search"
           .categories__item ng-repeat="category in column | filter:search"
             .categories__title
