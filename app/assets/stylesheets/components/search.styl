@@ -135,6 +135,32 @@ $search_height = 38px
   &__tags
     position: relative
     
+    &:before, &:after
+      content: ""
+      display: block
+      opacity: 0
+      transition: opacity .3s
+    
+    &.open
+      &:before, &:after
+        opacity: 1
+        width: 0
+        height: 0
+        border-style: solid
+        border-width: 7.5px 10px 7.5px 0
+        position: absolute
+        right: -1px
+        top: 9px
+        z-index: 5
+      
+      &:before
+        border-color: transparent rgba(204, 204, 204, 0.38) transparent transparent
+        right: 0
+        top: 10px
+
+      &:after
+        border-color: transparent white transparent transparent
+    
     .tags
       border: none
       

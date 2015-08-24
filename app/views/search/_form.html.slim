@@ -8,7 +8,7 @@
       span Найти
   
   .p-search__footer ng-class="{active: showSearchFooter}"
-    .search__tags.p-search__tags
+    .search__tags.p-search__tags ng-class="{open: isShowExtendedSearch}"
       .tags
         a.btn.btn-primary.ripple.add-tag ng-click="isShowExtendedSearch = !isShowExtendedSearch"
           span Добавить условие
