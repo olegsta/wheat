@@ -1,22 +1,37 @@
 .search
   .search__form
     .search__input
-      input type="text" placeholder="Купить пщеницу" ng-focus="showSearchFooter = true"
+      input ng-model="Search.query" ng-model-options="{debounce: 300}" type="text" placeholder="Купить пщеницу" ng-focus="ctrl.showSearchFooter = true"
       .search__addons
-        i.icon-extended ng-click="showSearchFooter=!showSearchFooter"
+        i.icon-extended ng-click="ctrl.showSearchFooter=!ctrl.showSearchFooter"
     .search__btn
       span Найти
   
-  .p-search__footer ng-class="{active: showSearchFooter}"
-    .search__tags.p-search__tags ng-class="{open: isShowExtendedSearch}"
+  .p-search__footer ng-class="{active: ctrl.showSearchFooter}"
+    .search__tags.p-search__tags ng-class="{open: ctrl.isShowExtendedSearch}"
       .tags
-        a.btn.btn-primary.ripple.add-tag ng-click="isShowExtendedSearch = !isShowExtendedSearch"
+        a.btn.btn-primary.ripple.add-tag ng-click="ctrl.isShowExtendedSearch = !ctrl.isShowExtendedSearch"
           span Добавить условие
 
         .tags__area
-          .tag
-            .tag__title Пшеница
-            .delete-tag
+          .tag ng-repeat="tag in Search.tags"
+            .tag__title
+              | {{gon.group.trade_types[tag.trade_type_id]}} &nbsp;
+              | «{{gon.group.options[tag.option_id].title}}» &nbsp;
+              / small
+                | от &nbsp;
+                b
+                  | {{tag.weight_from}} {{gon.group.weight_dimensions[tag.weight_from_dimension_id].title}}
+                |&nbsp; до &nbsp;
+                b
+                  | {{tag.weight_to}} {{gon.group.weight_dimensions[tag.weight_to_dimension_id].title}},
+                |&nbsp; от &nbsp;
+                b
+                  | {{tag.price_from}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[tag.price_from_weight_dimension_id].title}}
+                |&nbsp; до &nbsp;
+                b
+                  | {{tag.price_to}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[tag.price_to_weight_dimension_id].title}}
+            .delete-tag ng-click="Search.tags.splice($index, 1)"
               | &times;
     .search__count
       | Найдено 

@@ -31,7 +31,7 @@ points = [
        ]
 
 lng, lat = 55.831903, 37.411961
-10.times.each do |t|
+100.times.each do |t|
   option = Random.rand(1..327)
   weight = Random.rand(10..1000)
   currency_id = Random.rand(1..8)

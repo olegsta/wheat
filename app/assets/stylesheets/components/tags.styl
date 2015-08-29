@@ -5,14 +5,13 @@
 
   &__area
     background: white
-    height: 38px
+    min-height: 38px
     padding: 5px
 
   .tag
     font-size: 13px
-    height: 27px
+    min-height: 27px
     line-height: 26px
-    white-space: nowrap
     border: 1px solid #F5B800
     background: #FFF09C
     border-radius: 2px
@@ -20,13 +19,21 @@
     display: inline-block
     position: relative
     padding: 0 25px 0 9px
+    margin: 0 5px 5px 0
+    cursor: pointer
+    
+    small
+      display: block
+      font-size: 10px
+      line-height: 13px
+    
     
     .delete-tag
       font-size: 23px
       font-weight: lighter
       position: absolute
       right: 5px
-      top: -2px
+      top: -1px
       cursor: pointer
       
       &:hover

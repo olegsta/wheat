@@ -2,6 +2,8 @@ class Position < ActiveRecord::Base
   include AASM
   
   before_save :set_category_id
+  before_save :set_etalon
+  before_save :set_index_field
 
   has_many :positions_offers
   has_many :positions, through: :positions_offers
@@ -61,11 +63,50 @@ class Position < ActiveRecord::Base
   end
 
 
+  def self.filter filters = []
+    currencies = Currency.all
+    user_currency = currencies.first
+    sql = []
+    filters.each do |filter|
+      query = {}
+      
+      if filter["weight_from"] or filter["weight_to"]
+        weight_from = (filter["weight_from"] || 0).to_f * WeightDimension.dimensions[filter["weight_from_dimension_id"]].convert
+        weight_to = (filter["weight_to"] || Float::INFINITY).to_f * WeightDimension.dimensions[filter["weight_to_dimension_id"]].convert
+        query[:weight_etalon] = (weight_from..weight_to)
+      end
+
+      if filter["price_from"] or filter["price_to"]
+        price_from = (filter["price_from"] || 0).to_f
+        price_to = (filter["price_to"] || Float::INFINITY).to_f
+        
+        query[:price_etalon] = currencies.map do |currency|
+          converted_price_from = price_from / currency.get_rate(user_currency.name) / WeightDimension.dimensions[filter["price_from_weight_dimension_id"]].convert
+          converted_price_to = price_to / currency.get_rate(user_currency.name) / WeightDimension.dimensions[filter["price_to_weight_dimension_id"]].convert
+          (converted_price_from..converted_price_to)
+        end
+      end
+
+      if filter["trade_type_id"]
+        query[:trade_type_id] = filter["trade_type_id"]
+      end
+
+      if filter["option_id"]
+        query[:option_id] = filter["option_id"]
+      end
+
+      sql << self.where(query).to_sql
+    end
+    
+    self.find_by_sql sql.join(" OR ")
+  end
+
+
   private
 
-    def set_category_id
-      self.category_id = Option.find(option_id).category_id
-    end
+    #
+    # ERRORS
+    #
 
     def less_then_weight
       errors.add(:weight_min) if WeightDimension.normalize(self.weight_min, self.weight_min_dimension_id) > WeightDimension.normalize(self.weight, self.weight_dimension_id)
@@ -73,5 +114,29 @@ class Position < ActiveRecord::Base
 
     def location
       errors.add(:lat) unless self.lat && self.lng
+    end
+
+    #
+    # BEFORE ACTION
+    #
+
+    def set_category_id
+      self.category_id = Option.find(option_id).category_id
+    end
+
+    def set_index_field
+      temp = [self.title, self.description]
+      [:en, :ru].each do |locale|
+        temp << I18n.t('position.dictionary.trade_types', :locale => locale)[self.trade_type_id]
+        temp << I18n.t('category.items.'+self.option.category.title, :locale => locale)
+        temp << I18n.t('option.'+Option.find(self.option_id).title, :locale => locale)
+      end
+      self.index_field = temp.join(" ")
+    end
+
+    def set_etalon
+      self.weight_etalon = self.weight * WeightDimension.dimensions[self.weight_dimension_id].convert
+      self.weight_min_etalon = self.weight_min * WeightDimension.dimensions[self.weight_min_dimension_id].convert
+      self.price_etalon = self.price / WeightDimension.dimensions[self.price_weight_dimension_id].convert
     end
 end

@@ -51,6 +51,8 @@ app.directive('afDimension', ['$rootScope', function($rootScope) {
       $scope.$watch('ngModelDimension', function (id) {
         if (id)
           $scope.setActive(id)
+        else
+          $scope.setActive($scope.options[0].id)
       })
 
       angular.element(document.querySelector('body')).bind('click', function () {

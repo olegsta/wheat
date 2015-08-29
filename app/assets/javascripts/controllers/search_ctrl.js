@@ -35,6 +35,31 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$position', 
     }
   })
 
+  $scope.$watch(function () {
+    return Search.tags
+  }, function (n_tags, o_tags) {
+    if (n_tags.length || (n_tags.length == 0 && o_tags.length)) {
+      params = {
+        query: Search.query,
+        filters: JSON.stringify(n_tags)
+      }
+      Search.all(params, function (points) {
+        ctrl.isShowExtendedSearch = false;
+        Search.position = {};
+        YandexMaps.drawMarkers(points, {short: true});
+      })
+    }
+  }, true)
+
+  $scope.$watch(function () {
+    return Search.query
+  }, function (query) {
+    if (query!=undefined)
+      Search.all({query: query}, function (points) {
+        YandexMaps.drawMarkers(points, {short: true});
+      })
+  })
+
   ctrl.closeModal = function () {
     $location.search({id: undefined})
   }

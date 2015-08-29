@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20150818203313) do
     t.float    "weight_min_etalon",         default: 0.0,      null: false
     t.integer  "weight_dimension_id"
     t.integer  "weight_min_dimension_id"
-    t.string   "index_field"
+    t.text     "index_field"
     t.string   "city"
     t.string   "address"
     t.float    "lat"

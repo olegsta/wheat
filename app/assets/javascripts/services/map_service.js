@@ -1,6 +1,8 @@
 app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize, $location, $http) {
   var YandexMaps = this, cluster;
 
+  window.YandexMaps = this;
+
   YandexMaps.registerFilters = function () {
     ymaps.template.filtersStorage.add('position_pluralize', function (data, count, filterValue) {
       return pluralize(count, ["позиция", "позиции", "позиций"]);
@@ -65,9 +67,10 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
     YandexMaps.map = new ymaps.Map(id, {
         center: [55.7, 37.6],
         zoom: 10,
-        controls: []
+        controls: [],
       }, {
-        suppressMapOpenBlock: true
+        maxZoom: 15,
+        suppressMapOpenBlock: true,
     });
 
     YandexMaps.clusterer = new ymaps.Clusterer({
@@ -77,28 +80,38 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
   }
 
   YandexMaps.drawMarkers = function (points, options) {
-    var geoObjects = [];
-    for(var i = 0, len = points.length; i < len; i++) {
-      var coords = options.short ? [points[i][2], points[i][1]] : [points[i].lng, points[i].lat],
-          properties = options.short ? YandexMaps.shortMarkerProperties(points[i]) : YandexMaps.markerProperties(points[i])
+    YandexMaps.map.geoObjects.removeAll();
+    YandexMaps.clusterer.removeAll();
+    if (points.length) {
+      var result;
+      var geoObjects = [];
+      for(var i = 0, len = points.length; i < len; i++) {
+        var coords = options.short ? [points[i][2], points[i][1]] : [points[i].lng, points[i].lat],
+            properties = options.short ? YandexMaps.shortMarkerProperties(points[i]) : YandexMaps.markerProperties(points[i])
 
-      geoObjects.push(new ymaps.Placemark(
-        coords, properties, {
-            iconLayout: YandexMaps.markerLayout,
-            iconPane: 'overlaps',
-            draggable: options.draggable
-        })
-      );
+        geoObjects.push(new ymaps.Placemark(
+          coords, properties, {
+              iconLayout: YandexMaps.markerLayout,
+              iconPane: 'overlaps',
+              draggable: options.draggable
+          })
+        );
+      }
+
+      if (points.length > 1) {
+        YandexMaps.clusterer.add(geoObjects);
+        YandexMaps.map.geoObjects.add(YandexMaps.clusterer);
+        result = geoObjects;
+      } else {
+        YandexMaps.map.geoObjects.add(geoObjects[0]);
+        result = geoObjects[0]
+      }
+
+      YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds())      
+      return result;
     }
 
-    if (points.length > 1) {
-      YandexMaps.clusterer.add(geoObjects);
-      YandexMaps.map.geoObjects.add(YandexMaps.clusterer);
-      return geoObjects;
-    } else {
-      YandexMaps.map.geoObjects.add(geoObjects[0]);
-      return geoObjects[0]
-    }
+    return points
   }
 
   YandexMaps.markerProperties = function (point) {

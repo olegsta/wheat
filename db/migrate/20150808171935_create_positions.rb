@@ -47,7 +47,7 @@ class CreatePositions < ActiveRecord::Migration
       t.integer :weight_min_dimension_id
       t.index :weight_min_dimension_id
 
-      t.string :index_field
+      t.text :index_field
 
       t.string :city
       t.index :city
