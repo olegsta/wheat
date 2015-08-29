@@ -70,6 +70,7 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
         controls: [],
       }, {
         maxZoom: 15,
+        minZoom: 7,
         suppressMapOpenBlock: true,
     });
 
@@ -108,6 +109,7 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
       }
 
       YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds())      
+      YandexMaps.map.setZoom(YandexMaps.map.getZoom()-1)      
       return result;
     }
 

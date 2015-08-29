@@ -95,10 +95,10 @@ class Position < ActiveRecord::Base
         query[:option_id] = filter["option_id"]
       end
 
-      sql << self.where(query).to_sql
+      sql << self.where(query).to_sql.split("WHERE").last
     end
     
-    self.find_by_sql sql.join(" OR ")
+    self.where sql.join(" OR ")
   end
 
 

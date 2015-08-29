@@ -11,9 +11,19 @@ app.service('Search', ['$http', function ($http) {
   }
 
   Search.addTag = function () {
-    var tag = _.clone(Search.position);
+    if (Search.form.id != undefined) {
+      Search.tags[Search.form.id-1] = _.clone(Search.form);
+    } else {
+      var tag = _.clone(Search.form);
 
-    tag.id = Search.tags.length + 1;
-    Search.tags.push(tag);
+      tag.id = Search.tags.length + 1;
+      Search.tags.push(tag);
+    }
+  }
+
+  Search.resetForm = function () {
+    Search.form = {
+      currency_id: gon.user.currency.id
+    }
   }
 }])

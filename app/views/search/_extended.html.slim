@@ -1,5 +1,5 @@
 .modal.p-extended-search ng-class="{show: ctrl.isShowExtendedSearch && ctrl.showSearchFooter}"
-  .close ng-click="isShowExtendedSearch=false"
+  .close ng-click="ctrl.isShowExtendedSearch=false"
     .icon-close
   .modal__title Расширенный поиск
 
@@ -8,43 +8,43 @@
       .col#type
         label.label Тип
         label.input
-          af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]" ng-model="Search.position.trade_type_id"
+          af-radio options="[{id: 1, title: 'Закупка'}, {id: 2, title: 'Продажа'}]" ng-model="Search.form.trade_type_id"
       .col#category
         label.label Категория
         label.input
-          category.right ng-model="Search.position.option_id"
+          category.right ng-model="Search.form.option_id"
     .row
       .col#location
         label.label Местоположение
         label.input
-          input type="text" ng-model="Search.position.region"
+          input type="text" ng-model="Search.form.region"
       .sep
         | ±
       .col#radius
         label.label &nbsp;
         label.input
-          af-dimension.disabled options="[{id: 1, title: 'км'}]" ng-model="Search.position.radius"
+          af-dimension.disabled options="[{id: 1, title: 'км'}]" ng-model="Search.form.radius"
     .row
       .col#price_from
         label.label Вес (объем)
         .input
-          af-dimension options="gon.data.weight_dimensions" before="'от'" ng-model="Search.position.weight_from" ng-model-dimension="Search.position.weight_from_dimension_id"
+          af-dimension options="gon.data.weight_dimensions" before="'от'" ng-model="Search.form.weight_from" ng-model-dimension="Search.form.weight_from_dimension_id"
       .sep
         | —
       .col#price_to
         label.label &nbsp;
         .input
-          af-dimension options="gon.data.weight_dimensions" before="'до'" ng-model="Search.position.weight_to" ng-model-dimension="Search.position.weight_to_dimension_id"
+          af-dimension options="gon.data.weight_dimensions" before="'до'" ng-model="Search.form.weight_to" ng-model-dimension="Search.form.weight_to_dimension_id"
     .row
       .col#price_from
         label.label Цена
         .input
-          af-dimension prefix="gon.user.currency.title + '/'" options="gon.data.weight_dimensions" before="'от'" ng-model="Search.position.price_from" ng-model-dimension="Search.position.price_from_weight_dimension_id"
+          af-dimension prefix="gon.user.currency.title + '/'" options="gon.data.weight_dimensions" before="'от'" ng-model="Search.form.price_from" ng-model-dimension="Search.form.price_from_weight_dimension_id"
       .sep
         | —
       .col#price_to
         label.label &nbsp;
         .input
-          af-dimension prefix="gon.user.currency.title + '/'" options="gon.data.weight_dimensions" before="'до'" ng-model="Search.position.price_to" ng-model-dimension="Search.position.price_to_weight_dimension_id"
+          af-dimension prefix="gon.user.currency.title + '/'" options="gon.data.weight_dimensions" before="'до'" ng-model="Search.form.price_to" ng-model-dimension="Search.form.price_to_weight_dimension_id"
   .modal__footer
     a.btn.btn-primary.pull-right.ripple ng-click="Search.addTag()" Применить

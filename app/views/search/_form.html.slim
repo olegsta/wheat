@@ -10,29 +10,30 @@
   .p-search__footer ng-class="{active: ctrl.showSearchFooter}"
     .search__tags.p-search__tags ng-class="{open: ctrl.isShowExtendedSearch}"
       .tags
-        a.btn.btn-primary.ripple.add-tag ng-click="ctrl.isShowExtendedSearch = !ctrl.isShowExtendedSearch"
+        a.btn.btn-primary.ripple.add-tag ng-click="ctrl.isShowExtendedSearch = true; Search.resetForm()"
           span Добавить условие
 
         .tags__area
-          .tag ng-repeat="tag in Search.tags"
-            .tag__title
-              | {{gon.group.trade_types[tag.trade_type_id]}} &nbsp;
-              | «{{gon.group.options[tag.option_id].title}}» &nbsp;
-              / small
-                | от &nbsp;
-                b
-                  | {{tag.weight_from}} {{gon.group.weight_dimensions[tag.weight_from_dimension_id].title}}
-                |&nbsp; до &nbsp;
-                b
-                  | {{tag.weight_to}} {{gon.group.weight_dimensions[tag.weight_to_dimension_id].title}},
-                |&nbsp; от &nbsp;
-                b
-                  | {{tag.price_from}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[tag.price_from_weight_dimension_id].title}}
-                |&nbsp; до &nbsp;
-                b
-                  | {{tag.price_to}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[tag.price_to_weight_dimension_id].title}}
-            .delete-tag ng-click="Search.tags.splice($index, 1)"
-              | &times;
+          .tags__wrapper
+            .tag ng-repeat="tag in Search.tags" ng-click="ctrl.setActiveTag($index)" ng-class="{active: Search.form.id == tag.id}"
+              .tag__title
+                | {{gon.group.trade_types[tag.trade_type_id]}} &nbsp;
+                | «{{gon.group.options[tag.option_id].title}}» &nbsp;
+                / small
+                  | от &nbsp;
+                  b
+                    | {{tag.weight_from}} {{gon.group.weight_dimensions[tag.weight_from_dimension_id].title}}
+                  |&nbsp; до &nbsp;
+                  b
+                    | {{tag.weight_to}} {{gon.group.weight_dimensions[tag.weight_to_dimension_id].title}},
+                  |&nbsp; от &nbsp;
+                  b
+                    | {{tag.price_from}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[tag.price_from_weight_dimension_id].title}}
+                  |&nbsp; до &nbsp;
+                  b
+                    | {{tag.price_to}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[tag.price_to_weight_dimension_id].title}}
+              .delete-tag ng-click="Search.tags.splice($index, 1)"
+                | &times;
     .search__count
       | Найдено 
       b 100 

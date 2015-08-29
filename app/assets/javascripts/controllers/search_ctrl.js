@@ -45,11 +45,16 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$position', 
       }
       Search.all(params, function (points) {
         ctrl.isShowExtendedSearch = false;
-        Search.position = {};
+        Search.resetForm();
         YandexMaps.drawMarkers(points, {short: true});
       })
     }
   }, true)
+
+  ctrl.setActiveTag = function ($index) {
+    ctrl.isShowExtendedSearch = true;
+    Search.form = _.clone(Search.tags[$index]);
+  }
 
   $scope.$watch(function () {
     return Search.query
