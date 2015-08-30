@@ -30,15 +30,15 @@ class ApplicationController < ActionController::Base
       options: ActiveModel::ArraySerializer.new(Option.all_from_cache, each_serializer: OptionSerializer).as_json,
       rates: Currency.get_rates(gon.user[:currency][:name]),
       locales: [{id: "ru", title: "Русский"},{id: "en", title: "English"}],
-      weight_dimensions: WeightDimension.all_from_cache,
-      positions_offers: [{id: "positions", title: I18n.t("position.dictionary.positions")}, {id: "offers", title: I18n.t("position.dictionary.offers")}]
+      weight_dimensions: ActiveModel::ArraySerializer.new(WeightDimension.all_from_cache, serializer: WeightDimensionSerializer),
+      positions_offers: [{id: "positions", title: I18n.t("position.dictionary.positions")}, {id: "offers", title: I18n.t("position.dictionary.offers")}],
+      currencies: ActiveModel::ArraySerializer.new(Currency.all_from_cache, each_serializer: CurrencySerializer)
     }
 
     gon.group = {
       weight_dimensions: WeightDimension.by_index_from_cache,
       options: Option.by_index_from_cache,
       trade_types: I18n.t('position.dictionary.trade_types'),
-      currencies: ActiveModel::ArraySerializer.new(Currency.all_from_cache, each_serializer: CurrencySerializer)
     }
 
     gon.translation = {

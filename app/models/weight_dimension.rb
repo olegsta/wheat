@@ -16,7 +16,7 @@ class WeightDimension < ActiveRecord::Base
 
   def self.by_index_from_cache
     Rails.cache.fetch("dimensions_by_index_#{I18n.locale}") do
-      WeightDimension.all.index_by {|wd| wd.id}
+      ActiveModel::ArraySerializer.new(WeightDimension.all, serializer: WeightDimensionSerializer).as_json.index_by {|wd| wd[:id]}
     end
   end
 

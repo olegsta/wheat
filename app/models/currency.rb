@@ -67,7 +67,7 @@ class Currency < ActiveRecord::Base
 
   def self.by_index_from_cache
     Rails.cache.fetch("currencies_by_index_#{I18n.locale}") do
-      Currency.all.index_by {|wd| wd.id}
+      ActiveModel::ArraySerializer.new(Currency.all_from_cache, each_serializer: CurrencySerializer).as_json.index_by {|wd| wd[:id]}
     end
   end
 
