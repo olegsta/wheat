@@ -93,8 +93,8 @@ class Position < ActiveRecord::Base
 
         price_sql = []
         currencies.each do |currency|
-          converted_price_from = price_from / currency.get_rate(user_currency.name)
-          converted_price_to = price_to / currency.get_rate(user_currency.name)
+          converted_price_from = price_from / currency.get_rate(user_currency[:name])
+          converted_price_to = price_to / currency.get_rate(user_currency[:name])
           
           position = Position.where currency_id: currency.id, price_etalon: (converted_price_from..converted_price_to)
 
