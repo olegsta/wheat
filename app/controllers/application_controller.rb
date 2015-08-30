@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   before_action :set_locale
-  after_action :user_activity
+  # after_action :user_activity
   # before_filter :user_needed, except: [:index]
   before_action :user_banned
 
@@ -13,33 +13,32 @@ class ApplicationController < ActionController::Base
   serialization_scope :view_context
   
   def index
-    currency_name = current_user.currency.name rescue session[:currency]["name"]
-
-    gon.user = {
-      currency: CurrencySerializer.new(Currency.find_by(name: currency_name)).as_json["currency"]
-    }
 
     if current_user
-      gon.user[:info] = UserSerializer.new(current_user).as_json["user"]
+      gon.user = {
+        currency: CurrencySerializer.new(Currency.get_from_cache(current_user.currency_id), root: false).as_json,
+        info: current_user.info_from_cache
+      }
+    else
+      gon.user = {
+        currency: CurrencySerializer.new(Currency.get_from_cache(session[:currency]["id"]), root: false).as_json
+      }
     end
-
-
-    categories = ActiveModel::ArraySerializer.new(Category.includes(:options), each_serializer: CategoryWithOptionsSerializer)
     
     gon.data = {
-      categories: categories.as_json.each_slice( (categories.as_json.length/3.0).round ).to_a,
-      options: ActiveModel::ArraySerializer.new(Option.all, each_serializer: OptionSerializer),
-      rates: Currency.get_rates(currency_name),
+      categories: Category.chunk_from_cache,
+      options: ActiveModel::ArraySerializer.new(Option.all_from_cache, each_serializer: OptionSerializer).as_json,
+      rates: Currency.get_rates(gon.user[:currency][:name]),
       locales: [{id: "ru", title: "Русский"},{id: "en", title: "English"}],
-      weight_dimensions: ActiveModel::ArraySerializer.new(WeightDimension.all, each_serializer: WeightDimensionSerializer),
+      weight_dimensions: WeightDimension.all_from_cache,
       positions_offers: [{id: "positions", title: I18n.t("position.dictionary.positions")}, {id: "offers", title: I18n.t("position.dictionary.offers")}]
     }
 
     gon.group = {
-      weight_dimensions: gon.data[:weight_dimensions].as_json.index_by{|weight_dimension| weight_dimension[:id]},
-      options: gon.data[:options].as_json.index_by{|option| option[:id]},
+      weight_dimensions: WeightDimension.by_index_from_cache,
+      options: Option.by_index_from_cache,
       trade_types: I18n.t('position.dictionary.trade_types'),
-      currencies: ActiveModel::ArraySerializer.new(Currency.all, each_serializer: CurrencySerializer)
+      currencies: ActiveModel::ArraySerializer.new(Currency.all_from_cache, each_serializer: CurrencySerializer)
     }
 
     gon.translation = {

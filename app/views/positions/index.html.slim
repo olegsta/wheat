@@ -19,38 +19,38 @@
               i.icon-chevron-right ng-hide="isOpen"
               i.icon-chevron-down ng-show="isOpen"
             td.light
-              | {{position.updated_at | date: "dd.MM.yyyy"}}
+              | {{::position.updated_at | date: "dd.MM.yyyy"}}
             td
-              | {{position.trade_type.title}}
+              | {{::position.trade_type.title}}
             td.light
-              | {{position.option.title}}
+              | {{::position.option.title}}
             td
               span ng-show="position.offers.length"
-                | {{position.offers.length | plur: gon.translation.offer.plur}}
+                | {{::position.offers.length | plur: gon.translation.offer.plur}}
 
               span ng-hide="position.offers.length"
                 | Нет предложений
             td.light
-              | {{position.weight}} {{position.weight_dimension.title}}
+              | {{::position.weight}} {{::position.weight_dimension.title}}
             td.light
-              | {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}}
+              | {{::position.price}} {{::position.currency.title}}/{{position.price_weight_dimension.title}}
             td.w0
               a.btn.btn-default ng-href="/positions/{{position.id}}/edit" Редактировать
 
           tr.light ng-repeat="offer in position.offers" ng-class="{'tr-shadow':$index==0}" ng-show="isOpen"
             td
             td
-              | {{offer.updated_at | date: "dd.MM.yyyy"}}
+              | {{::offer.updated_at | date: "dd.MM.yyyy"}}
             td
-              | {{offer.trade_type.title}}
+              | {{::offer.trade_type.title}}
             td
-              | {{offer.option.title}}
+              | {{::offer.option.title}}
             td
-              | {{offer.city}}
+              | {{::offer.city}}
             td
-              | {{offer.weight}} {{offer.weight_dimension.title}}
+              | {{::offer.weight}} {{::offer.weight_dimension.title}}
             td
-              | {{offer.price}} {{offer.currency.title}}/{{offer.price_weight_dimension.title}}
+              | {{::offer.price}} {{::offer.currency.title}}/{{offer.price_weight_dimension.title}}
             td.w0.normal
               a.positions__messages.pull-right.btn.btn-primary.ripple.positions__btn-hover
                 | В чат

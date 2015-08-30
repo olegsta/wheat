@@ -18,7 +18,7 @@
             .tag ng-repeat="tag in Search.tags" ng-click="ctrl.setActiveTag($index)" ng-class="{active: Search.form.id == tag.id}"
               .tag__title
                 | {{gon.group.trade_types[tag.trade_type_id]}} &nbsp;
-                | «{{gon.group.options[tag.option_id].title}}» &nbsp;
+                span ng-show="tag.option_id" «{{gon.group.options[tag.option_id].title}}» &nbsp;
                 / small
                   | от &nbsp;
                   b

@@ -19,6 +19,13 @@ app.service('Position', ['$http', 'Action', function($http, Action) {
       }
     });
   }
+
+  Position.toggleFavorite = function (position) {
+    $http.put(Routes.favorites_positions_path(), {id: position.id})
+      .success(function (res) {
+        Position.favorites = res;
+      })
+  }
 }])
 
 app.factory('$position', ['$resource', function ($resource) {

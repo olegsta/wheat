@@ -11,7 +11,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
 .position-modal scroll="" ng-class="{visible: ctrl.modalOpened}"
   .md ng-class="{'md-show': ctrl.modalOpened}"
     .md__head
-      .md__title
+      .md__title ng-hide="ctrl.spinner"
         .md__image
           img ng-src="{{ctrl.active_position.user.avatar}}"
         | {{ctrl.active_position.user.fullname}}
@@ -20,7 +20,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
           .rating__positive 2
         .md__sep
           | |
-        i.icon-star-fill
+        i.icon-star-fill ng-class="{active: _.pluck(Position.favorites, 'id').indexOf(ctrl.active_position.id)!=-1}" ng-click="Position.toggleFavorite(ctrl.active_position)"
       .md__close ng-click="ctrl.closeModal()"
         a.icon-close
     .md__body.clearfix
@@ -60,17 +60,19 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
         .row
           label.col.label Вес (объем):
           .span
-            | {{ctrl.active_position.weight}}
+            | {{ctrl.active_position.weight}} {{ctrl.active_position.weight_dimension.title}}
         
         .row
           label.col.label Мин. заказ:
           .span
-            | {{ctrl.active_position.weight_min}}
+            | {{ctrl.active_position.weight_min}} {{ctrl.active_position.weight_min_dimension.title}}
         
         .row
           label.col.label Цена:
           .span
-            | {{ctrl.active_position.price}}
+            | {{ctrl.active_position.price}} {{ctrl.active_position.currency.title}}/{{ctrl.active_position.price_weight_dimension.title}}
+            div style="color: green"
+              | по текущему курсу {{ctrl.active_position.price * gon.data.rates[ctrl.active_position.currency.id].rate | number:2}} {{gon.user.currency.title}}/{{ctrl.active_position.price_weight_dimension.title}}
         
         .row
           label.col.label Описание:

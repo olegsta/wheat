@@ -1,9 +1,15 @@
 class PositionsController < ApplicationController
+
   def index
     respond_to do |format|
       format.html
       format.json {
-        render json: current_user.positions.where(status: params[:status]).includes(:offers, :user, :option, :category, :weight_dimension, :price_weight_dimension, :weight_min_dimension, :currency, :attachments), each_serializer: PositionWithOffersSerializer
+        if current_user
+          @positions = current_user.positions_from_cache(params[:status])
+        else
+          @positions = []
+        end
+        render json: MultiJson.dump(@positions)
       }
     end
   end
@@ -12,7 +18,8 @@ class PositionsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: Position.find_by(id: params[:id]), serializer: PositionSerializer
+        @position = Position.from_cache(params[:id])
+        render json: MultiJson.dump(@position)
       }
     end
   end
@@ -23,7 +30,7 @@ class PositionsController < ApplicationController
     if @position.save
       associate_attachment
       save_template
-      render json: {msg: "Позиция успешно создана"}
+      render json: {msg: "Позиция успешно создана", position: @position}
     else
       render json: {errors: @position.errors}, status: 422
     end
@@ -33,10 +40,29 @@ class PositionsController < ApplicationController
     @position = current_user.positions.find params[:id]
     if @position.update(position_params)
       associate_attachment
-      render json: {msg: "Позиция успешно обновлена"}
+      render json: {msg: "Позиция успешно обновлена", position: @position}
     else
       render json: {errors: @position.errors}, status: 422
     end
+  end
+
+  def favorites
+    @favorites = current_user.favorites_from_cache
+    render json: MultiJson.dump(@favorites)
+  end
+
+  def toggle_favorite
+    favorite_position = FavoritePosition.where user_id: current_user.id, position_id: params[:id]
+
+    if favorite_position.any?
+      favorite_position.first.destroy
+    else
+      favorite_position.create
+    end
+    
+    @favorites = current_user.favorites_from_cache
+
+    render json: MultiJson.dump(@favorites)
   end
 
   private
@@ -61,4 +87,6 @@ class PositionsController < ApplicationController
         current_user.templates.create title: params[:position][:template_title], position: @position.attributes
       end
     end
+
+
 end

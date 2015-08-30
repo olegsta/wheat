@@ -21,13 +21,13 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
 
     ctrl.save = function () {
       $position.update({id: $routeParams.id}, {position: ctrl.position}, function (res) {
-        Page.goToPosition(res.id)
+        Page.goToPosition(res.position.id)
       })
     }
   } else {
     ctrl.save = function () {
       $position.create({position: ctrl.position}, function (res) {
-        Page.goToPosition(res.id)
+        Page.goToPosition(res.position.id)
       })
     }
 

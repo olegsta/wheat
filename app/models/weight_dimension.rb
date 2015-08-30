@@ -1,6 +1,6 @@
 class WeightDimension < ActiveRecord::Base
 
-  after_create :regenerate_cache
+  after_commit :regenerate_cache
 
   DIMENSIONS = [
     { id: 1, convert: 1, name: "kg" },
@@ -11,18 +11,25 @@ class WeightDimension < ActiveRecord::Base
   ]
 
   def self.normalize weight, weight_dimension_id
-    weight.to_f * WeightDimension.dimensions[weight_dimension_id].convert
+    weight.to_f * WeightDimension.by_index_from_cache[weight_dimension_id].convert
   end
 
-  def self.dimensions
-    Rails.cache.fetch("dimensions") do
+  def self.by_index_from_cache
+    Rails.cache.fetch("dimensions_by_index_#{I18n.locale}") do
       WeightDimension.all.index_by {|wd| wd.id}
+    end
+  end
+
+  def self.all_from_cache
+    Rails.cache.fetch("dimensions_all_#{I18n.locale}") do
+      WeightDimension.all.load
     end
   end
 
   private
     def regenerate_cache
-      Rails.cache.delete("dimensions")
+      Rails.cache.delete("dimensions_by_index_#{I18n.locale}")
+      Rails.cache.delete("dimensions_all_#{I18n.locale}")
     end
   
 end

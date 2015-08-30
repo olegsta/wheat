@@ -1,4 +1,4 @@
-app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$position', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $location, $position, Page, YandexMaps, Search) {
+app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$position', 'Position', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $http, $location, $position, Position, Page, YandexMaps, Search) {
   var ctrl = this;
 
   Page.isMap = true;
@@ -13,7 +13,16 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$position', 
     Search.all({}, function (points) {
       YandexMaps.drawMarkers(points, {short: true});
     })
+  });
+
+  $position.query({status: 'opened'}, function (res) {
+    ctrl.myPositions = res;
   })
+
+  $http.get(Routes.favorites_positions_path())
+    .success(function (res) {
+      Position.favorites = res;
+    })
 
   $scope.$watch(function () {
     return $location.search().id
@@ -46,6 +55,20 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$position', 
       Search.all(params, function (points) {
         ctrl.isShowExtendedSearch = false;
         Search.resetForm();
+        YandexMaps.drawMarkers(points, {short: true});
+      })
+    }
+  }, true)
+
+  $scope.$watch(function () {
+    return Search.checkedPosition
+  }, function (checkedPosition) {
+    if (checkedPosition != undefined) {
+      var ids = window.pickTrue(checkedPosition);
+      params = {
+        'id[]': ids
+      }
+      Search.all(params, function (points) {
         YandexMaps.drawMarkers(points, {short: true});
       })
     }

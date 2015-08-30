@@ -14,8 +14,8 @@ app.controller('PositionsCtrl', ['$scope', 'Page', 'Position', '$position', '$lo
     var status = findById(gon.translation.position.statuses, id).name;
     $location.search({status: status});
     
-    $position.get({status: status}, function (res) {
-      ctrl.positions = res.positions;
+    $position.query({status: status}, function (res) {
+      ctrl.positions = res;
       ctrl.spinner = false;
     }, function () {
       ctrl.spinner = false;

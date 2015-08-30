@@ -3,21 +3,25 @@
     .widget__title Подходящие
     .close ng-click="activeWidget=''; $event.stopPropagation()"
       .icon-close
-  .widget__body ng-init="myPositions=[1,2,3,4,5]"
+  .widget__body
     .widget__description
       | Выберите свою позицию и мы подберем подходящие для нее
     .position-list scroll="{{myPositions}}"
-      label.position-list__item.noselect ng-repeat="position in myPositions"
+      label.position-list__item.noselect ng-repeat="position in ctrl.myPositions"
         .position-list__left
           .checkbox
-            input type="checkbox"
+            input type="checkbox" ng-model="Search.checkedPosition[position.id]"
             .checker
             .position-list__bg
 
         .position-list__right
-          .position-list__title Закупка баклажанов
-          .position-list__category Зерновые / Пшеница
-          .position-list__info Закупка 644 л, 444.92 руб/л
+          .position-list__title
+            | {{position.title}}
+          .position-list__category
+            | {{position.category.title}} / {{position.option.title}}
+          .position-list__info
+            | {{position.trade_type.title}} {{position.weight}} {{position.weight_dimension.title}}, &nbsp;
+            | {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}} &nbsp;
 
 .widget.z2 ng-class="{active: activeWidget=='favorite'}"
   .widget__header ng-click="activeWidget='favorite'"
@@ -25,7 +29,14 @@
     .close ng-click="activeWidget=''; $event.stopPropagation()"
       .icon-close
   .widget__body
-    label.position-list__item.noselect ng-repeat="position in myPositions"
+    a.position-list__item.noselect ng-click="Page.goToPosition(position.id)" ng-repeat="position in Position.favorites"
+      .position-list__title
+        | {{position.title}}
+      .position-list__category
+        | {{position.category.title}} / {{position.option.title}}
+      .position-list__info
+        | {{position.trade_type.title}} {{position.weight}} {{position.weight_dimension.title}}, &nbsp;
+        | {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}} &nbsp;
 
 .widget.z1 ng-class="{active: activeWidget=='market'}"
   .widget__header ng-click="activeWidget='market'"

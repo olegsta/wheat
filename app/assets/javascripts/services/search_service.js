@@ -1,4 +1,4 @@
-app.service('Search', ['$http', function ($http) {
+app.service('Search', ['$http', 'ngNotify', function ($http, ngNotify) {
   var Search = this;
 
   Search.tags = [];
@@ -6,11 +6,17 @@ app.service('Search', ['$http', function ($http) {
   Search.all = function (params, fn) {
     $http.get(Routes.search_path({format: 'json'}), {params: params})
       .success(function (res) {
-        fn(res.positions)
+        fn(res)
       })
   }
 
   Search.addTag = function () {
+    if (!Search.form.option_id && !Search.form.trade_type_id && !Search.form.city && !Search.form.radius && !Search.form.weight_from && !Search.form.weight_to && !Search.form.price_from && !Search.form.price_to ){
+      ngNotify.set('Нельзя выполнить пустой запрос', 'error');
+      return false;
+    }
+
+
     if (Search.form.id != undefined) {
       Search.tags[Search.form.id-1] = _.clone(Search.form);
     } else {

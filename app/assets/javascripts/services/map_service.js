@@ -146,7 +146,7 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
       title: title ? title.title : "Категория",
       weight: point[5] || 0,
       weight_dimension: weight_dimension,
-      price: point[7] || 0,
+      price: (point[7] * gon.data.rates[point[8]].rate).toFixed(2) || 0,
       currency: gon.user.currency.title,
       price_weight_dimension: price_weight_dimension
     }

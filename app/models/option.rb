@@ -1,4 +1,6 @@
 class Option < ActiveRecord::Base
+  after_save :regenerate_cache
+
   belongs_to :category
   has_many :position
 
@@ -28,4 +30,22 @@ class Option < ActiveRecord::Base
     "wood" => ["firewood", "sawdust"],
     "fertilizers and chemicals" => ["biofertilizers", "herbicides", "primers", "pesticides", "plant protection products", "fertilizers"]
   }
+
+  def self.all_from_cache
+    Rails.cache.fetch("options_all_#{I18n.locale}") do
+      Option.all.load
+    end
+  end
+
+  def self.by_index_from_cache
+    Rails.cache.fetch("options_by_index_#{I18n.locale}") do
+      ActiveModel::ArraySerializer.new(Option.all_from_cache, serializer: OptionSerializer).as_json.index_by {|t| t[:id]}
+    end
+  end
+
+  private
+    def regenerate_cache
+      Rails.cache.delete("options_all_#{I18n.locale}")
+      Rails.cache.delete("options_by_index_#{I18n.locale}")
+    end
 end

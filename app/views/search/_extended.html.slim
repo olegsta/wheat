@@ -1,5 +1,5 @@
 .modal.p-extended-search ng-class="{show: ctrl.isShowExtendedSearch && ctrl.showSearchFooter}"
-  .close ng-click="ctrl.isShowExtendedSearch=false"
+  .close ng-click="ctrl.isShowExtendedSearch=false; Search.resetForm();"
     .icon-close
   .modal__title Расширенный поиск
 
