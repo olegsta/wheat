@@ -3,7 +3,7 @@ development: &generic
   mem_limit: 128M
   # enable_star: 1
   #min_infix_len: 2
-  min_prefix_len: 2
+  # min_prefix_len: 2
   morphology: stem_enru
   charset_table: "0..9, a..z, _, @, A..Z->a..z, U+410..U+42F->U+430..U+44F, U+430..U+458"
   max_matches: 100000
