@@ -82,10 +82,17 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
   $scope.$watch(function () {
     return Search.query
   }, function (query) {
-    if (query!=undefined)
-      Search.all({query: query}, function (points) {
+    if (query!=undefined) {
+      params = {
+        query: Search.query,
+        filters: JSON.stringify(Search.tags)
+      }
+      Search.all(params, function (points) {
+        ctrl.isShowExtendedSearch = false;
+        Search.resetForm();
         YandexMaps.drawMarkers(points, {short: true});
       })
+    }
   })
 
   ctrl.closeModal = function () {
