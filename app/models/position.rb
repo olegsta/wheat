@@ -105,8 +105,7 @@ class Position < ActiveRecord::Base
       end
 
       sql << self.where(query).where(price_sql).to_sql.split("WHERE").last
-    end
-    
+    end 
     self.where sql.join(" OR ")
   end
 
