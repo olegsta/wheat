@@ -81,15 +81,15 @@ class Position < ActiveRecord::Base
 
       
       if filter["weight_from"] or filter["weight_to"]
-        weight_from = (filter["weight_from"] || 0).to_f * WeightDimension.by_index_from_cache[filter["weight_from_dimension_id"]].convert rescue 0
-        weight_to = (filter["weight_to"] || Float::INFINITY).to_f * WeightDimension.by_index_from_cache[filter["weight_to_dimension_id"]].convert rescue Float::INFINITY
+        weight_from = (filter["weight_from"] || 0).to_f * WeightDimension.by_index_from_cache[filter["weight_from_dimension_id"]][:convert] rescue 0
+        weight_to = (filter["weight_to"] || Float::INFINITY).to_f * WeightDimension.by_index_from_cache[filter["weight_to_dimension_id"]][:convert] rescue Float::INFINITY
         query[:weight_min_etalon] = (weight_from..Float::INFINITY)
         query[:weight_etalon] = (weight_from..weight_to)
       end
 
       if filter["price_from"] or filter["price_to"]
-        price_from = (filter["price_from"] || 0).to_f / WeightDimension.by_index_from_cache[filter["price_from_weight_dimension_id"]].convert rescue 0
-        price_to = (filter["price_to"] || Float::INFINITY).to_f / WeightDimension.by_index_from_cache[filter["price_to_weight_dimension_id"]].convert rescue Float::INFINITY
+        price_from = (filter["price_from"] || 0).to_f / WeightDimension.by_index_from_cache[filter["price_from_weight_dimension_id"]][:convert] rescue 0
+        price_to = (filter["price_to"] || Float::INFINITY).to_f / WeightDimension.by_index_from_cache[filter["price_to_weight_dimension_id"]][:convert] rescue Float::INFINITY
 
         price_sql = []
         currencies.each do |currency|
@@ -187,9 +187,9 @@ class Position < ActiveRecord::Base
     end
 
     def set_etalon
-      self.weight_etalon = self.weight * WeightDimension.by_index_from_cache[self.weight_dimension_id].convert
-      self.weight_min_etalon = self.weight_min * WeightDimension.by_index_from_cache[self.weight_min_dimension_id].convert
-      self.price_etalon = self.price / WeightDimension.by_index_from_cache[self.price_weight_dimension_id].convert
+      self.weight_etalon = self.weight * WeightDimension.by_index_from_cache[self.weight_dimension_id][:convert]
+      self.weight_min_etalon = self.weight_min * WeightDimension.by_index_from_cache[self.weight_min_dimension_id][:convert]
+      self.price_etalon = self.price / WeightDimension.by_index_from_cache[self.price_weight_dimension_id][:convert]
       
       if self.trade_type_id == 1
         self.price_etalon *= (1 + self.price_discount/100)

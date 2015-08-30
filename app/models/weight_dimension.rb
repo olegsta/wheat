@@ -11,7 +11,7 @@ class WeightDimension < ActiveRecord::Base
   ]
 
   def self.normalize weight, weight_dimension_id
-    weight.to_f * WeightDimension.by_index_from_cache[weight_dimension_id].convert
+    weight.to_f * WeightDimension.by_index_from_cache[weight_dimension_id][:convert]
   end
 
   def self.by_index_from_cache
