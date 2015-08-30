@@ -4,6 +4,6 @@ app.service('Page', ['$location', function ($location) {
   Page.notMap = true;
 
   Page.goToPosition = function (id) {
-    $location.url("/search").search({id: 1})
+    $location.url("/search").search({id: id})
   }
 }])

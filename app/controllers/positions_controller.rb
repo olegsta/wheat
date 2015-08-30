@@ -47,7 +47,11 @@ class PositionsController < ApplicationController
   end
 
   def favorites
-    @favorites = current_user.favorites_from_cache
+    if current_user
+      @favorites = current_user.favorites_from_cache
+    else
+      @favorites = []
+    end
     render json: MultiJson.dump(@favorites)
   end
 
