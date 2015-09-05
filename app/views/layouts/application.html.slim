@@ -11,7 +11,7 @@ html
   body ng-app="app"
     aside.left scroll=""
       = render partial: "application/logo"
-      .sidebar.p-sidebar ng-class="{'sidebar-map': Page.isMap, 'not-sign': !gon.user.info}"
+      .sidebar.p-sidebar ng-class="{'sidebar-map': Page.current == 'search', 'not-sign': !gon.user.info}"
         = render "application/sidebar"
     
 

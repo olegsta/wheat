@@ -1,6 +1,6 @@
 .extended-search scroll=""
   = render "search/extended"
-map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false; ctrl.isShowExtendedSearch = false"
+map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;"
 
 .p-search ng-class="{blur: Page.blur}"
   = render "search/form"
@@ -20,7 +20,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
           .rating__positive 2
         .md__sep
           | |
-        i.icon-star-fill ng-class="{active: _.pluck(Position.favorites, 'id').indexOf(ctrl.active_position.id)!=-1}" ng-click="Position.toggleFavorite(ctrl.active_position)"
+        i.icon-star-fill ng-class="{active: _.pluck(ctrl.favorites, 'id').indexOf(ctrl.active_position.id)!=-1}" ng-click="ctrl.favorites = Position.favorites.toggle({id: ctrl.active_position.id})"
       .md__close ng-click="ctrl.closeModal()"
         a.icon-close
     .md__body.clearfix

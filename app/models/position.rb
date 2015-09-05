@@ -1,6 +1,8 @@
 class Position < ActiveRecord::Base
   include AASM
-  
+
+  geocoded_by :address, :latitude  => :lat, :longitude => :lng
+
   before_save :set_category_id
   before_save :set_etalon
   before_save :set_index_field
@@ -98,16 +100,40 @@ class Position < ActiveRecord::Base
           
           position = Position.where currency_id: currency.id, price_etalon: (converted_price_from..converted_price_to)
 
-          price_sql << position.to_sql.split("WHERE").last
+          price_sql << position.to_sql.split("WHERE")[1]
         end
 
         price_sql = "(" + price_sql.join(" OR ") + ")"
       end
 
-      sql << self.where(query).where(price_sql).to_sql.split("WHERE").last
-    end 
+      in_radius_sql = ""
+      if filter["coords"] && filter["radius"]
+        # in_radius_sql = "(" + self.near(filter["coords"].reverse, filter["radius"].to_f, :units => :km).to_sql.split("WHERE")[1].split(' ORDER')[0] + ")"
+        lat = filter["coords"][0]
+        lng = filter["coords"][1]
+        radius = filter["radius"] || 10
+        a = "SIN((lat-#{lat})*PI()/360)  *  SIN((lat-#{lat})*PI()/360)  +  COS(#{lat}*PI()/180) * COS(lat*PI()/180) * SIN((lng-#{lng})*PI()/360) * SIN((lng-#{lng})*PI()/360)"
+        in_radius_sql = %{
+          #{radius} >= 2 * ATAN2(SQRT(#{a}), SQRT(1-#{a})) * 6378.137
+        }
+      end
+
+      sql << self.where(query).where(price_sql).where(in_radius_sql).to_sql.split("WHERE")[1]
+    end
     self.where sql.join(" OR ")
+
   end
+
+  # def self.measure lat1, lon1, lat2=37.620393, lon2=55.75396
+  #   r = 6378.137;
+  #   dLat = (lat2 - lat1) * Math::PI / 180;
+  #   dLon = (lon2 - lon1) * Math::PI / 180;
+  #   a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+  #   Math.cos(lat1 * Math::PI / 180) * Math.cos(lat2 * Math::PI / 180) *
+  #   Math.sin(dLon/2) * Math.sin(dLon/2)
+  #   c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+  #   r * c
+  # end
 
   def self.find_suitable id
     positions = self.where(id: id)

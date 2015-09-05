@@ -1,7 +1,8 @@
-app.service('Search', ['$http', 'ngNotify', function ($http, ngNotify) {
+app.service('Search', ['$http', 'ngNotify', '$rootScope', 'YandexMaps', function ($http, ngNotify, $rootScope, YandexMaps) {
   var Search = this;
 
   Search.tags = [];
+  Search.circles = [];
 
   Search.all = function (params, fn) {
     $http.get(Routes.search_path({format: 'json'}), {params: params})
@@ -11,18 +12,21 @@ app.service('Search', ['$http', 'ngNotify', function ($http, ngNotify) {
   }
 
   Search.addTag = function () {
-    if (!Search.form.option_id && !Search.form.trade_type_id && !Search.form.city && !Search.form.radius && !Search.form.weight_from && !Search.form.weight_to && !Search.form.price_from && !Search.form.price_to ){
-      ngNotify.set('Нельзя выполнить пустой запрос', 'error');
+    if (!Search.form.option_id) {
+      ngNotify.set('Укажите категорию', 'error');
       return false;
     }
 
+    var tag = _.clone(Search.form);
+    
 
     if (Search.form.id != undefined) {
-      Search.tags[Search.form.id-1] = _.clone(Search.form);
+      Search.circles[Search.form.id-1] = YandexMaps.createCircle(tag.coords, tag.radius * 1000);
+      Search.circles[Search.form.id-1].updated_at = new Date();
+      Search.tags[Search.form.id-1] = tag;
     } else {
-      var tag = _.clone(Search.form);
-
       tag.id = Search.tags.length + 1;
+      Search.circles.push(YandexMaps.createCircle(tag.coords, tag.radius * 1000));
       Search.tags.push(tag);
     }
   }
@@ -32,4 +36,6 @@ app.service('Search', ['$http', 'ngNotify', function ($http, ngNotify) {
       currency_id: gon.user.currency.id
     }
   }
+  Search.resetForm();
+
 }])

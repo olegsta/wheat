@@ -1,46 +1,37 @@
 app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$position', 'Position', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $http, $location, $position, Position, Page, YandexMaps, Search) {
   var ctrl = this;
 
-  Page.isMap = true;
   Page.current = 'search';
 
-  $scope.$on("$destroy", function(){
-    mapListner();
-    Page.isMap = false;
-  });
+  Search.resetForm();
 
-  var mapListner = $rootScope.$on('map:build', function () {
+  var mapListner = $scope.$on('map:build', function () {
     Search.all({}, function (points) {
       YandexMaps.drawMarkers(points, {short: true});
     })
+
+    YandexMaps.map.events.add('click', function (e) {
+      console.log(e.get('coords'))
+    });
   });
 
   $position.query({status: 'opened'}, function (res) {
     ctrl.myPositions = res;
   })
 
-  $http.get(Routes.favorites_positions_path())
-    .success(function (res) {
-      Position.favorites = res;
-    })
+  ctrl.favorites = Position.favorites.query();
 
   $scope.$watch(function () {
     return $location.search().id
   }, function (id) {
     if (id) {
-      ctrl.spinner = true;
-      ctrl.modalOpened = true;
-      Page.blur = true;
-      $rootScope.overlay = true;
+      visibilityPositionModal(true);
       $position.get({id: id}, function (res) {
         ctrl.active_position = res.position;
         ctrl.spinner = false;
       });
     } else {
-      ctrl.spinner = false;
-      ctrl.modalOpened = false;
-      Page.blur = false;
-      $rootScope.overlay = false;
+      visibilityPositionModal(false);
     }
   })
 
@@ -56,6 +47,7 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
         ctrl.isShowExtendedSearch = false;
         Search.resetForm();
         YandexMaps.drawMarkers(points, {short: true});
+        YandexMaps.addCircleToMap(Search.circles);
       })
     }
   }, true)
@@ -91,12 +83,20 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
         ctrl.isShowExtendedSearch = false;
         Search.resetForm();
         YandexMaps.drawMarkers(points, {short: true});
+        YandexMaps.addCircleToMap(Search.circles);
       })
     }
   })
 
   ctrl.closeModal = function () {
     $location.search({id: undefined})
+  }
+
+  var visibilityPositionModal = function (arg) {
+    ctrl.spinner = arg;
+    ctrl.modalOpened = arg;
+    Page.blur = arg;
+    $rootScope.overlay = arg;
   }
 
 }]);

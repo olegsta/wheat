@@ -3,6 +3,8 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
 
   window.YandexMaps = this;
 
+  YandexMaps.geoObjects = [];
+
   YandexMaps.registerFilters = function () {
     ymaps.template.filtersStorage.add('position_pluralize', function (data, count, filterValue) {
       return pluralize(count, ["позиция", "позиции", "позиций"]);
@@ -36,6 +38,7 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
           this._events.add('click', function (event) {
             if (this.getData().properties.get('id'))
               $location.search({id: this.getData().properties.get('id')})
+            console.log(this.getData().properties.get('coords'))
           }, this);
         },
         
@@ -70,9 +73,11 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
         controls: [],
       }, {
         maxZoom: 15,
-        minZoom: 7,
+        // minZoom: 7,
         suppressMapOpenBlock: true,
     });
+
+    YandexMaps.map.controls.add(new ymaps.control.RulerControl())
 
     YandexMaps.clusterer = new ymaps.Clusterer({
       clusterIconLayout: YandexMaps.clustererLayout,
@@ -83,14 +88,15 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
   YandexMaps.drawMarkers = function (points, options) {
     YandexMaps.map.geoObjects.removeAll();
     YandexMaps.clusterer.removeAll();
+
     if (points.length) {
       var result;
-      var geoObjects = [];
+      YandexMaps.geoObjects = [];
       for(var i = 0, len = points.length; i < len; i++) {
-        var coords = options.short ? [points[i][2], points[i][1]] : [points[i].lng, points[i].lat],
+        var coords = options.short ? [points[i][1], points[i][2]] : [points[i].lat, points[i].lng],
             properties = options.short ? YandexMaps.shortMarkerProperties(points[i]) : YandexMaps.markerProperties(points[i])
 
-        geoObjects.push(new ymaps.Placemark(
+        YandexMaps.geoObjects.push(new ymaps.Placemark(
           coords, properties, {
               iconLayout: YandexMaps.markerLayout,
               iconPane: 'overlaps',
@@ -100,16 +106,13 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
       }
 
       if (points.length > 1) {
-        YandexMaps.clusterer.add(geoObjects);
+        YandexMaps.clusterer.add(YandexMaps.geoObjects);
         YandexMaps.map.geoObjects.add(YandexMaps.clusterer);
-        result = geoObjects;
+        result = YandexMaps.geoObjects;
       } else {
-        YandexMaps.map.geoObjects.add(geoObjects[0]);
-        result = geoObjects[0]
+        YandexMaps.map.geoObjects.add(YandexMaps.geoObjects[0]);
+        result = YandexMaps.geoObjects[0]
       }
-
-      YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds())      
-      YandexMaps.map.setZoom(YandexMaps.map.getZoom()-1)      
       return result;
     }
 
@@ -148,10 +151,38 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
       weight_dimension: weight_dimension,
       price: (point[7] * gon.data.rates[point[8]].rate).toFixed(2) || 0,
       currency: gon.user.currency.title,
-      price_weight_dimension: price_weight_dimension
+      price_weight_dimension: price_weight_dimension,
+      coords: [point[1], point[2]]
     }
 
     return result;
+  }
+
+  YandexMaps.createCircle = function (coords, radius) {
+    var circle = new ymaps.Circle([
+      // Координаты центра круга
+      coords,
+      // Радиус круга в метрах
+      radius
+    ], {}, {
+      fillColor: 'rgba(255, 219, 76, 0.5)',
+      strokeColor: 'rgba(215, 185, 64, 0.6)'
+    });
+
+    return circle;
+  }
+
+  YandexMaps.addCircleToMap = function (circles) {
+    _.each(circles, function (circle) {
+      YandexMaps.map.geoObjects.add(circle);
+    });
+
+    YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds());
+    // YandexMaps.map.setZoom(YandexMaps.map.getZoom()-1);
+  }
+
+  YandexMaps.deleteCircleFromMap = function (circle) {
+    YandexMaps.map.geoObjects.remove(circle);
   }
 
 }])

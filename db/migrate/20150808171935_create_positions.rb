@@ -56,6 +56,7 @@ class CreatePositions < ActiveRecord::Migration
 
       t.float :lat
       t.index :lat
+      
       t.float :lng
       t.index :lng
 

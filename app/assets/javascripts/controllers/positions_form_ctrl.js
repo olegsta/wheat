@@ -8,11 +8,6 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
 
   Page.current = $routeParams.id ? 'positions' : 'positions_new'
 
-  $scope.$on("$destroy", function(){
-    mapListner();
-    Page.isMap = false;
-  });
-
   if ($routeParams.id) {
     $scope.isEdit = true;
     $position.get({id: $routeParams.id}, function (res) {
@@ -72,9 +67,9 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
   }
 
 
-  var mapListner = $rootScope.$on('map:build', function () {
+  var mapListner = $scope.$on('map:build', function () {
     var marker = YandexMaps.drawMarkers(
-      [{lng: 55.6964, lat: 37.5781}],
+      [{lat: 37.5781, lng: 55.6964 }],
       {draggable: true}
     );
 
@@ -82,8 +77,8 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
       ymaps.geocode(coords).then(function (res) {
         ctrl.position.city = res.geoObjects.get(0).properties.get('description');
         ctrl.position.address = res.geoObjects.get(0).properties.get('name');
-        ctrl.position.lng = coords[0];
-        ctrl.position.lat = coords[1];
+        ctrl.position.lat = coords[0];
+        ctrl.position.lng = coords[1];
         $scope.$apply()
       })
     }
@@ -102,11 +97,11 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
     $scope.$watch('ctrl.position', function (val) {
       if (val) {
         var position = _.omit(val, 'id'),
-            coords = [val.lng, val.lat];
+            coords = [val.lat, val.lng];
 
         marker.properties.set(YandexMaps.markerProperties(position));
 
-        if (val.lng && val.lat) {
+        if (val.lat && val.lng) {
           marker.geometry.setCoordinates(coords);
           YandexMaps.map.setCenter(coords);
         }

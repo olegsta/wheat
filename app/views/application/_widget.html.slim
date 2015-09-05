@@ -29,7 +29,7 @@
     .close ng-click="activeWidget=''; $event.stopPropagation()"
       .icon-close
   .widget__body
-    a.position-list__item.noselect ng-click="Page.goToPosition(position.id)" ng-repeat="position in Position.favorites"
+    a.position-list__item.noselect ng-click="Page.goToPosition(position.id)" ng-repeat="position in ctrl.favorites"
       .position-list__title
         | {{position.title}}
       .position-list__category

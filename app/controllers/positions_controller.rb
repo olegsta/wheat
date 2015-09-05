@@ -46,29 +46,6 @@ class PositionsController < ApplicationController
     end
   end
 
-  def favorites
-    if current_user
-      @favorites = current_user.favorites_from_cache
-    else
-      @favorites = []
-    end
-    render json: MultiJson.dump(@favorites)
-  end
-
-  def toggle_favorite
-    favorite_position = FavoritePosition.where user_id: current_user.id, position_id: params[:id]
-
-    if favorite_position.any?
-      favorite_position.first.destroy
-    else
-      favorite_position.create
-    end
-    
-    @favorites = current_user.favorites_from_cache
-
-    render json: MultiJson.dump(@favorites)
-  end
-
   private
     def position_params
       params.require(:position).permit( :title, :trade_type_id, :option_id, :title, :weight,

@@ -19,12 +19,8 @@ Rails.application.routes.draw do
 
     post 'attachments' => 'attachments#upload'
     delete 'attachments' => 'attachments#destroy'
-    resources :positions do
-      collection do
-        get 'favorites' => 'positions#favorites'
-        put 'favorites' => 'positions#toggle_favorite'
-      end
-    end
+    resources :positions
+    resources :favorites
     resources :templates
     resources :correspondences
   end

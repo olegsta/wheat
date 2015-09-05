@@ -1,4 +1,4 @@
-app.service('Position', ['$http', 'Action', function($http, Action) {
+app.service('Position', ['$http', '$resource', 'Action', function($http, $resource, Action) {
   var Position = this;
 
 
@@ -20,12 +20,9 @@ app.service('Position', ['$http', 'Action', function($http, Action) {
     });
   }
 
-  Position.toggleFavorite = function (position) {
-    $http.put(Routes.favorites_positions_path(), {id: position.id})
-      .success(function (res) {
-        Position.favorites = res;
-      })
-  }
+  Position.favorites = $resource(Routes.favorite_path(':id', {format: 'json'}), {id: '@id'}, {
+    toggle: {method: 'PUT', params: {id: '@id'}, isArray: true}
+  })
 }])
 
 app.factory('$position', ['$resource', function ($resource) {
