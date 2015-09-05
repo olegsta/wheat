@@ -6,7 +6,8 @@ app.directive('suggest', ['$timeout', function ($timeout) {
     // terminal: true,
     scope: {
       ngModel: "=ngModel",
-      coords: "=coords"
+      coords: "=coords",
+      rebuild: "=rebuild",
     }, // {} = isolate, true = child, false/undefined = no change
     // controller: function($scope, $element, $attrs, $transclude) {},
     // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
@@ -17,7 +18,8 @@ app.directive('suggest', ['$timeout', function ($timeout) {
     // transclude: true,
     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
     link: function($scope, iElm, iAttrs, controller) {
-      ymaps.ready(function () {
+      var suggestView;
+      function build () {
         suggestView = new ymaps.SuggestView(iElm[0]);
         suggestView.events.add('select', function (e) {
           $scope.ngModel = iElm[0].value;
@@ -33,18 +35,22 @@ app.directive('suggest', ['$timeout', function ($timeout) {
 
           $scope.$apply();
         });
-
+      }
+      ymaps.ready(function () {
+        build();
         $scope.$watch('ngModel', function (model) {
           if (!model) {
             $scope.coords = undefined;
-          } else {
-            $timeout(function () {
-              if (iElm[0] != document.activeElement) {
-                suggestView.state.set('panelClosed', true);
-              }
-            }, 100)
           }
         })
+
+        $scope.$watch('rebuild', function (val) {
+          if (val) {
+            suggestView.destroy();
+            build();
+          }
+        })
+
       });
     }
   };

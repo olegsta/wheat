@@ -77,7 +77,7 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
         suppressMapOpenBlock: true,
     });
 
-    YandexMaps.map.controls.add(new ymaps.control.RulerControl())
+    // YandexMaps.map.controls.add(new ymaps.control.RulerControl())
 
     YandexMaps.clusterer = new ymaps.Clusterer({
       clusterIconLayout: YandexMaps.clustererLayout,

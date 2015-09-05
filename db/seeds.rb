@@ -52,6 +52,4 @@ end
       description: Faker::Lorem.paragraph
   }
   pos = Position.create params
-  ap "#{params}"
-  ap pos
 end
