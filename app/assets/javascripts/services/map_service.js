@@ -174,11 +174,13 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
 
   YandexMaps.addCircleToMap = function (circles) {
     _.each(circles, function (circle) {
-      YandexMaps.map.geoObjects.add(circle);
+      if (circle.geometry.getRadius())
+        YandexMaps.map.geoObjects.add(circle);
     });
 
-    YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds());
-    // YandexMaps.map.setZoom(YandexMaps.map.getZoom()-1);
+    if (YandexMaps.map.geoObjects.getLength())
+      YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds());
+      // YandexMaps.map.setZoom(YandexMaps.map.getZoom()-1);
   }
 
   YandexMaps.deleteCircleFromMap = function (circle) {

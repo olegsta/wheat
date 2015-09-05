@@ -1,4 +1,4 @@
-app.directive('suggest', [function () {
+app.directive('suggest', ['$timeout', function ($timeout) {
   // Runs during compile
   return {
     // name: '',
@@ -18,7 +18,7 @@ app.directive('suggest', [function () {
     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
     link: function($scope, iElm, iAttrs, controller) {
       ymaps.ready(function () {
-        window.suggestView = new ymaps.SuggestView(iElm[0]);
+        suggestView = new ymaps.SuggestView(iElm[0]);
         suggestView.events.add('select', function (e) {
           $scope.ngModel = iElm[0].value;
 
@@ -37,6 +37,12 @@ app.directive('suggest', [function () {
         $scope.$watch('ngModel', function (model) {
           if (!model) {
             $scope.coords = undefined;
+          } else {
+            $timeout(function () {
+              if (iElm[0] != document.activeElement) {
+                suggestView.state.set('panelClosed', true);
+              }
+            }, 100)
           }
         })
       });

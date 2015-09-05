@@ -4,7 +4,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
 
 .p-search ng-class="{blur: Page.blur}"
   = render "search/form"
-.p-widget.collapse-widget ng-class="{'collapse-widget': !activeWidget, blur: Page.blur}"
+.p-widget.collapse-widget ng-class="{'expand-widget': activeWidget, blur: Page.blur}"
   = render "application/widget"
 
 

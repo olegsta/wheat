@@ -107,8 +107,7 @@ class Position < ActiveRecord::Base
       end
 
       in_radius_sql = ""
-      if filter["coords"] && filter["radius"]
-        # in_radius_sql = "(" + self.near(filter["coords"].reverse, filter["radius"].to_f, :units => :km).to_sql.split("WHERE")[1].split(' ORDER')[0] + ")"
+      if filter["coords"]
         lat = filter["coords"][0]
         lng = filter["coords"][1]
         radius = filter["radius"] || 10
