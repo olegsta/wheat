@@ -1,11 +1,13 @@
-.extended-search scroll=""
+.extended-search scroll="" ng-class="{transparent: Page.transparent}"
   = render "search/extended"
+
+.p-widget  scroll="" ng-class="{'expand-widget': activeWidget}"
+  = render "application/widget"
+
 map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;"
 
-.p-search ng-class="{blur: Page.blur}"
+.p-search ng-class="{blur: Page.blur, transparent: Page.transparent}"
   = render "search/form"
-.p-widget.collapse-widget ng-class="{'expand-widget': activeWidget, blur: Page.blur}"
-  = render "application/widget"
 
 
 .position-modal scroll="" ng-class="{visible: ctrl.modalOpened}"
@@ -16,8 +18,8 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
           img ng-src="{{ctrl.active_position.user.avatar}}"
         | {{ctrl.active_position.user.fullname}}
         .rating
-          .rating__negative 1
-          .rating__positive 2
+          .rating__negative 0
+          .rating__positive 0
         .md__sep
           | |
         i.icon-star-fill ng-class="{active: _.pluck(ctrl.favorites, 'id').indexOf(ctrl.active_position.id)!=-1}" ng-click="ctrl.favorites = Position.favorites.toggle({id: ctrl.active_position.id})"
@@ -62,7 +64,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
           .span
             | {{ctrl.active_position.weight}} {{ctrl.active_position.weight_dimension.title}}
         
-        .row
+        .row ng-show="ctrl.active_position.weight_min"
           label.col.label Мин. заказ:
           .span
             | {{ctrl.active_position.weight_min}} {{ctrl.active_position.weight_min_dimension.title}}
@@ -74,7 +76,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
             div style="color: green"
               | по текущему курсу {{ctrl.active_position.price * gon.data.rates[ctrl.active_position.currency.id].rate | number:2}} {{gon.user.currency.title}}/{{ctrl.active_position.price_weight_dimension.title}}
         
-        .row
+        .row ng-show="ctrl.active_position.description"
           label.col.label Описание:
           .span
             | {{ctrl.active_position.description}}
@@ -86,7 +88,8 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
             | #{t "position.dictionary.attached_images_no"}
           a ng-href="{{photo.photo.url}}" ng-repeat="photo in Search.position_info.photos"
             img ng-src="{{photo.photo.thumb.url}}" height="70"
-      
-        label.label Выберите подходящую позицию:
-        suitable positions="[1,2,3]" ng-model="ctrl.suit_position"
-        a.btn.btn-primary.position-modal__send-offer.ripple Отправить предложение
+
+        div ng-hide="ctrl.active_position.user_id == gon.user.info.id"
+          label.label Выберите подходящую позицию:
+          suitable ng-click="ctrl.suit_position ? '' : Page.goToCreateSuitable(ctrl.active_position.id)" positions="ctrl.suit_positions" ng-model="ctrl.suit_position"
+          button.btn.btn-primary.position-modal__send-offer.ripple ng-disabled="!ctrl.suit_position" ng-click="Position.sendOffer(ctrl.active_position.id, ctrl.suit_position)" Отправить предложение

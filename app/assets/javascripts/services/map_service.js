@@ -38,7 +38,6 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
           this._events.add('click', function (event) {
             if (this.getData().properties.get('id'))
               $location.search({id: this.getData().properties.get('id')})
-            console.log(this.getData().properties.get('coords'))
           }, this);
         },
         
@@ -113,6 +112,7 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
         YandexMaps.map.geoObjects.add(YandexMaps.geoObjects[0]);
         result = YandexMaps.geoObjects[0]
       }
+      
       return result;
     }
 
@@ -177,7 +177,6 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
       if (circle.geometry.getRadius())
         YandexMaps.map.geoObjects.add(circle);
     });
-
     if (YandexMaps.map.geoObjects.getLength())
       YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds());
       // YandexMaps.map.setZoom(YandexMaps.map.getZoom()-1);

@@ -1,14 +1,26 @@
 script id="suitable.html" type="text/ng-template"
   .suitable
     .suitable__current ng-click="opened=!opened"
-      i.icon-chevron-down
-      b 30.06.2015
-      b Заголовок
-      span Оливковое масло
-      span 236 л, мин.. 0 л, 3455.5 руб/л
-    ul.suitable__list scroll="" ng-show="opened"
-      li.suitable__list__item ng-repeat="i in [1,2,3,4]"
-        b 30.06.2015
-        b Заголовок
-        span Оливковое масло
-        span 236 л, мин.. 0 л, 3455.5 руб/л
+      .suitable__no-result ng-hide="positions.length"
+        b У вас нет подходящего предложения
+        span Нажмите, чтобы создать
+      div ng-show="positions.length"
+        i.icon-chevron-down
+        b
+          | {{position.created_at | date:"dd.MM.yyyy"}}
+        b
+          | {{position.title}}
+        span
+          | {{position.option.title}}
+        span
+          | {{position.weight}} {{position.weight_dimension.title}}, мин. {{position.weight_min}} {{position.weight_min_dimension.title}}, {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}}
+    ul.suitable__list scroll="" ng-show="opened && positions.length"
+      li.suitable__list__item ng-repeat="position in positions" ng-click="$parent.position = position; $parent.opened = false;" ng-class="{active: $parent.ngModel == position.id}"
+        b
+          | {{position.created_at | date:"dd.MM.yyyy"}}
+        b
+          | {{position.title}}
+        span
+          | {{position.option.title}}
+        span
+          | {{position.weight}} {{position.weight_dimension.title}}, мин. {{position.weight_min}} {{position.weight_min_dimension.title}}, {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}}

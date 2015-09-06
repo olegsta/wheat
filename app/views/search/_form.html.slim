@@ -34,11 +34,12 @@
                     | {{tag.price_to}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[tag.price_to_weight_dimension_id].title}}
               .delete-tag ng-click="Search.tags.splice($index, 1); Search.circles.splice($index, 1)"
                 | &times;
-    .search__count
-      | Найдено 
-      b 100 
-      | позиций. В Ростовской области – 
-      b 12
+    .search__count ng-show="Search.positions_count != undefined"
+      | {{Search.positions_count | plur:['Найдена', 'Найдено', 'Найдены']}}
+      b
+        |  {{Search.positions_count}}
+      |  {{Search.positions_count | plur:['позиция', 'позиции', 'позиций']}}
       | . В области карты – 
-      b 2
+      b
+        | {{Search.visible_count}}
     

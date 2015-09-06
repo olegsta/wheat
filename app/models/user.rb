@@ -43,6 +43,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def position_from_cache id
+    Rails.cache.fetch("user_position_#{self.id}_#{id}_#{I18n.locale}") do
+      self.positions.find(id)
+    end
+  end
+
   private
     def regenerate_cache
       Rails.cache.delete("user_info_#{self.id}_#{I18n.locale}")

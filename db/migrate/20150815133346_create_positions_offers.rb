@@ -9,7 +9,7 @@ class CreatePositionsOffers < ActiveRecord::Migration
 
       t.index [:offer_id, :position_id]
 
-      t.string :status
+      t.string :status, default: "new"
 
       t.timestamps null: false
     end

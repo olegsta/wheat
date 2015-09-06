@@ -1,4 +1,4 @@
-.widget.z3 ng-class="{active: activeWidget=='suit'}"
+.widget.z3 ng-class="{active: activeWidget=='suit', blur: Page.blur, transparent: Page.transparent}" 
   .widget__header ng-click="activeWidget='suit'"
     .widget__title Подходящие
     .close ng-click="activeWidget=''; $event.stopPropagation()"
@@ -23,22 +23,25 @@
             | {{position.trade_type.title}} {{position.weight}} {{position.weight_dimension.title}}, &nbsp;
             | {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}} &nbsp;
 
-.widget.z2 ng-class="{active: activeWidget=='favorite'}"
+.widget.z2 ng-class="{active: activeWidget=='favorite', blur: Page.blur, transparent: Page.transparent}"
   .widget__header ng-click="activeWidget='favorite'"
     .widget__title Избранное
     .close ng-click="activeWidget=''; $event.stopPropagation()"
       .icon-close
   .widget__body
     a.position-list__item.noselect ng-click="Page.goToPosition(position.id)" ng-repeat="position in ctrl.favorites"
-      .position-list__title
-        | {{position.title}}
-      .position-list__category
-        | {{position.category.title}} / {{position.option.title}}
-      .position-list__info
-        | {{position.trade_type.title}} {{position.weight}} {{position.weight_dimension.title}}, &nbsp;
-        | {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}} &nbsp;
+      .position-list__left
+        .icon-star-fill
+      .position-list__right
+        .position-list__title
+          | {{position.title}}
+        .position-list__category
+          | {{position.category.title}} / {{position.option.title}}
+        .position-list__info
+          | {{position.trade_type.title}} {{position.weight}} {{position.weight_dimension.title}}, &nbsp;
+          | {{position.price}} {{position.currency.title}}/{{position.price_weight_dimension.title}} &nbsp;
 
-.widget.z1 ng-class="{active: activeWidget=='market'}"
+.widget.z1 ng-class="{active: activeWidget=='market', blur: Page.blur, transparent: Page.transparent}"
   .widget__header ng-click="activeWidget='market'"
     .widget__title Отслеживание
     .close ng-click="activeWidget=''; $event.stopPropagation()"

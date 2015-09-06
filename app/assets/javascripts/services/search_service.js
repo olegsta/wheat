@@ -7,7 +7,18 @@ app.service('Search', ['$http', 'ngNotify', '$rootScope', 'YandexMaps', function
   Search.all = function (params, fn) {
     $http.get(Routes.search_path({format: 'json'}), {params: params})
       .success(function (res) {
+        Search.positions_count = res.length;
         fn(res)
+        Search.visible_count = ymaps.geoQuery(YandexMaps.geoObjects).searchIntersect(YandexMaps.map).getLength();
+      })
+  }
+
+  Search.suitable = function (params, fn) {
+    $http.get(Routes.suitable_path({format: 'json'}), {params: params})
+      .success(function (res) {
+        Search.positions_count = res.length;
+        fn(res)
+        Search.visible_count = ymaps.geoQuery(YandexMaps.geoObjects).searchIntersect(YandexMaps.map).getLength();
       })
   }
 

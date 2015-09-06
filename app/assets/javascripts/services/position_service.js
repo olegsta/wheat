@@ -20,6 +20,13 @@ app.service('Position', ['$http', '$resource', 'Action', function($http, $resour
     });
   }
 
+  Position.sendOffer = function (position_id, offer_id) {
+    $http.post(Routes.send_offer_positions_path(), {position_id: position_id, offer_id: offer_id})
+      .success(function (res) {
+        // body...
+      })
+  }
+
   Position.favorites = $resource(Routes.favorite_path(':id', {format: 'json'}), {id: '@id'}, {
     toggle: {method: 'PUT', params: {id: '@id'}, isArray: true}
   })

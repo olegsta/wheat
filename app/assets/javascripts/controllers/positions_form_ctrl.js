@@ -1,4 +1,4 @@
-app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', '$position', '$rootScope', 'YandexMaps', 'Position', function ($scope, $http, Page, $routeParams, $position, $rootScope, YandexMaps, Position) {
+app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', '$position', '$rootScope', 'YandexMaps', 'Position', '$location', function ($scope, $http, Page, $routeParams, $position, $rootScope, YandexMaps, Position, $location) {
   var ctrl = this;
   ctrl.position = {
     trade_type_id: 1,
@@ -35,6 +35,21 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
       ctrl.is_show_template = false;
       ctrl.position = position;
     }
+
+    if ($location.search().position_id) {
+      $position.get({id: $location.search().position_id}, function (res) {
+        ctrl.position = _.extend(ctrl.position, {
+          trade_type_id: (res.position.trade_type_id == 1) ? 2 : 1,
+          option_id: res.position.option_id,
+          weight: res.position.weight,
+          weight_dimension: res.position.weight_dimension,
+          weight_min: res.position.weight_min,
+          weight_min_dimension: res.position.weight_min_dimension,
+          price: (res.position.price * gon.data.rates[res.position.currency_id].rate).toFixed(2),
+          price_weight_dimension_id: res.position.price_weight_dimension_id
+        })
+      })
+    }
   }
 
   $scope.$watch('files', function (files) {
@@ -69,7 +84,7 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
 
   var mapListner = $scope.$on('map:build', function () {
     var marker = YandexMaps.drawMarkers(
-      [{lat: 37.5781, lng: 55.6964 }],
+      [{lat: 55.6964, lng: 37.5781}],
       {draggable: true}
     );
 

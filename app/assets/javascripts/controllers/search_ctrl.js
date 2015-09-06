@@ -5,6 +5,10 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
 
   Search.resetForm();
 
+  $scope.$on('$destroy', function () {
+    visibilityPositionModal(false)
+  })
+
   var mapListner = $scope.$on('map:build', function () {
     Search.all({}, function (points) {
       YandexMaps.drawMarkers(points, {short: true});
@@ -13,6 +17,22 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
     YandexMaps.map.events.add('click', function (e) {
       console.log(e.get('coords'))
     });
+
+    YandexMaps.map.behaviors.events.add('dragstart', function (e) {
+      Page.transparent = true;
+      $scope.$apply();
+    });
+
+    YandexMaps.map.behaviors.events.add('dragend', function (e) {
+      Page.transparent = false;
+      $scope.$apply();
+    });
+
+    YandexMaps.map.events.add('boundschange', function (e) {
+      Search.visible_count = ymaps.geoQuery(YandexMaps.geoObjects).searchIntersect(YandexMaps.map).getLength();
+      $scope.$apply();
+    });
+
   });
 
   $position.query({status: 'opened'}, function (res) {
@@ -26,8 +46,9 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
   }, function (id) {
     if (id) {
       visibilityPositionModal(true);
-      $position.get({id: id}, function (res) {
+      $position.get({id: id, with_suitable: true}, function (res) {
         ctrl.active_position = res.position;
+        ctrl.suit_positions = res.suit_positions;
         ctrl.spinner = false;
       });
     } else {
@@ -57,12 +78,25 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
   }, function (checkedPosition) {
     if (checkedPosition != undefined) {
       var ids = window.pickTrue(checkedPosition);
-      params = {
-        'id[]': ids
+
+      if (ids.length) {
+        params = {
+          'id[]': ids
+        }
+        
+        Search.suitable(params, function (points) {
+          YandexMaps.drawMarkers(points, {short: true});
+          if (points.length)
+            YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds());
+        })
+      } else {
+        Search.all(params, function (points) {
+          ctrl.isShowExtendedSearch = false;
+          Search.resetForm();
+          YandexMaps.drawMarkers(points, {short: true});
+          YandexMaps.addCircleToMap(Search.circles);
+        })
       }
-      Search.all(params, function (points) {
-        YandexMaps.drawMarkers(points, {short: true});
-      })
     }
   }, true)
 

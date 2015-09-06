@@ -10,16 +10,23 @@ Rails.application.routes.draw do
     get 'offers' => 'offers#index'
     get 'messages' => 'messages#index'
     get 'analytics' => 'analytics#index'
-    get 'search' => 'search#index'
     get 'support' => 'support#index'
     get 'help' => 'help#index'
     get 'profile' => 'profile#index'
     get 'settings' => 'settings#index'
 
+    scope :search do
+      get '/' => 'search#index', as: :search
+      get 'suitable' => 'search#suitable'
+    end
 
     post 'attachments' => 'attachments#upload'
     delete 'attachments' => 'attachments#destroy'
-    resources :positions
+    resources :positions do
+      collection do
+        post 'send_offer' => 'positions#send_offer'
+      end
+    end
     resources :favorites
     resources :templates
     resources :correspondences

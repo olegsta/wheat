@@ -1,6 +1,8 @@
 class Position < ActiveRecord::Base
   include AASM
 
+  TRADE_TYPES_ASOCIATION = {1 => 2, 2 => 1}
+
   geocoded_by :address, :latitude  => :lat, :longitude => :lng
 
   before_save :set_category_id
@@ -11,7 +13,7 @@ class Position < ActiveRecord::Base
 
   has_many :positions_offers
   has_many :positions, through: :positions_offers
-  has_many :offers, through: :positions_offers
+  has_many :offers, through: :positions_offers, source: "offer"
   has_many :attachments
 
   has_many :correspondence_positions, :inverse_of => :position
@@ -40,7 +42,7 @@ class Position < ActiveRecord::Base
   validate :location
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validates :price_weight_dimension_id, inclusion: { in: @@dimensions_ids }
-  validates :price_discount, :allow_blank => true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 50 }
+  validates :price_discount, :allow_blank => true, numericality: { greater_than_or_equal_to: 5, less_than_or_equal_to: 50 }
 
 
   aasm :column => :status do
@@ -85,7 +87,7 @@ class Position < ActiveRecord::Base
       if filter["weight_from"] or filter["weight_to"]
         weight_from = (filter["weight_from"] || 0).to_f * WeightDimension.by_index_from_cache[filter["weight_from_dimension_id"]][:convert] rescue 0
         weight_to = (filter["weight_to"] || Float::INFINITY).to_f * WeightDimension.by_index_from_cache[filter["weight_to_dimension_id"]][:convert] rescue Float::INFINITY
-        query[:weight_min_etalon] = (weight_from..Float::INFINITY)
+        # query[:weight_min_etalon] = (weight_from..Float::INFINITY)
         query[:weight_etalon] = (weight_from..weight_to)
       end
 
@@ -97,7 +99,6 @@ class Position < ActiveRecord::Base
         currencies.each do |currency|
           converted_price_from = price_from / currency.get_rate(user_currency[:name])
           converted_price_to = price_to / currency.get_rate(user_currency[:name])
-          
           position = Position.where currency_id: currency.id, price_etalon: (converted_price_from..converted_price_to)
 
           price_sql << position.to_sql.split("WHERE")[1]
@@ -134,9 +135,7 @@ class Position < ActiveRecord::Base
   #   r * c
   # end
 
-  def self.find_suitable id
-    positions = self.where(id: id)
-    
+  def self.find_suitable positions
     filters = positions.map do |position|
       res = {
         option_id: position.option_id,
@@ -147,14 +146,13 @@ class Position < ActiveRecord::Base
 
       if position.trade_type_id == 1
         res[:trade_type_id] = 2
-        res[:price_to] = position.price * (1 - position.price_discount/100)
+        res[:price_to] = position.price * (1 + position.price_discount/100.0)
         res[:price_to_weight_dimension_id] = position.price_weight_dimension_id
       elsif position.trade_type_id == 2
         res[:trade_type_id] = 1
-        res[:price_from] = position.price * (1 + position.price_discount/100)
+        res[:price_from] = position.price * (1 - position.price_discount/100.0)
         res[:price_from_weight_dimension_id] = position.price_weight_dimension_id
       end
-      
       res.with_indifferent_access
     end
 
@@ -167,12 +165,18 @@ class Position < ActiveRecord::Base
 
   def self.from_cache id
     Rails.cache.fetch("position_#{id}_#{I18n.locale}") do
-      PositionSerializer.new(Position.find(id)).as_json
+      Position.find(id)
+    end
+  end
+
+  def self.serialize_from_cache id
+    Rails.cache.fetch("serialize_position_#{id}_#{I18n.locale}") do
+      PositionSerializer.new(Position.from_cache(id), root: false).as_json
     end
   end
 
   def self.all_from_cache
-    Rails.cache.fetch("position_all_#{I18n.locale}") do
+    Rails.cache.fetch("positions_all_#{I18n.locale}") do
       Position.all.pluck_fields
     end
   end
@@ -214,12 +218,6 @@ class Position < ActiveRecord::Base
       self.weight_etalon = self.weight * WeightDimension.by_index_from_cache[self.weight_dimension_id][:convert]
       self.weight_min_etalon = self.weight_min * WeightDimension.by_index_from_cache[self.weight_min_dimension_id][:convert]
       self.price_etalon = self.price / WeightDimension.by_index_from_cache[self.price_weight_dimension_id][:convert]
-      
-      if self.trade_type_id == 1
-        self.price_etalon *= (1 + self.price_discount/100)
-      elsif self.trade_type_id == 2
-        self.price_etalon *= (1 - self.price_discount/100)
-      end
     end
     
     #
@@ -227,9 +225,11 @@ class Position < ActiveRecord::Base
     #
 
     def regenerate_cache
+      Rails.cache.delete("user_position_#{self.user_id}_#{self.id}_#{I18n.locale}")
       Rails.cache.delete("user_positions_#{self.user_id}_#{self.status}_#{I18n.locale}")
       Rails.cache.delete("user_positions_#{self.user_id}_#{self.status_was}_#{I18n.locale}")
-      Rails.cache.delete("positions_#{self.id}_#{I18n.locale}")
+      Rails.cache.delete("position_#{self.id}_#{I18n.locale}")
+      Rails.cache.delete("serialize_position_#{self.id}_#{I18n.locale}")
       Rails.cache.delete("positions_all_#{I18n.locale}")
     end
 
