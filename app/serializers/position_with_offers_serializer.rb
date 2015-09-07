@@ -1,4 +1,5 @@
 class PositionWithOffersSerializer < PositionSerializer
-  has_many :offers, serializer: OfferSerializer
+  attributes :offers
 
+  has_many :offers
 end

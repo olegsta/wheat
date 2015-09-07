@@ -25,8 +25,8 @@
             td.light
               | {{::position.option.title}}
             td
-              span ng-show="position.offers.length"
-                | {{::position.offers.length | plur: gon.translation.offer.plur}}
+              b ng-show="position.offers.length"
+                | {{::position.offers.length}} {{::position.offers.length | plur: gon.translation.offer.plur}}
 
               span ng-hide="position.offers.length"
                 | Нет предложений

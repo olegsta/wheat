@@ -1,6 +1,6 @@
 class PositionsOffer < ActiveRecord::Base
-  belongs_to :position
-  belongs_to :offer, :class_name => "Position"
+  belongs_to :position, touch: true
+  belongs_to :offer, :class_name => "Position", touch: true
 
   validate :trade_type_validate
   validate :user_validate

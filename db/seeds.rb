@@ -25,6 +25,8 @@ Currency::CURRENCY.each do |currency|
   Currency.where(name: currency[:name]).first_or_create
 end
 
+i = 0
+
 10.times do
   u = User.create({
     email: Faker::Internet.free_email,
@@ -34,6 +36,7 @@ end
   })
 
   10.times do
+    i += 1
     lat = 55.831903 + Random.rand(-1.0..1.0)
     lng = 37.411961 + Random.rand(-1.0..1.0)
     option = Random.rand(1..327)
@@ -61,5 +64,7 @@ end
         description: Faker::Lorem.paragraph
     }
     pos = Position.create params
+
+    ap "Позиция №#{i} создана"
   end
 end

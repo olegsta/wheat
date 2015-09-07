@@ -51,20 +51,6 @@ class PositionsController < ApplicationController
     end
   end
 
-  def send_offer
-    position_offers = PositionsOffer.where(position_id: params[:position_id], offer_id: params[:offer_id])
-    if position_offers.any?
-      render json: {msg: "Предложение было отправлено ранее"}, status: 422
-    else
-      position_offer = PositionsOffer.new(position_id: params[:position_id], offer_id: params[:offer_id])
-      if position_offer.save
-        render json: {msg: "Предложение было успешно отправлено"}
-      else
-        render json: {msg: position_offer.errors.first.last}, status: 422
-      end
-    end
-  end
-
   private
     def position_params
       params.require(:position).permit( :title, :trade_type_id, :option_id, :title, :weight,

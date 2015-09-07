@@ -42,9 +42,9 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
           trade_type_id: (res.position.trade_type_id == 1) ? 2 : 1,
           option_id: res.position.option_id,
           weight: res.position.weight,
-          weight_dimension: res.position.weight_dimension,
+          weight_dimension_id: res.position.weight_dimension_id,
           weight_min: res.position.weight_min,
-          weight_min_dimension: res.position.weight_min_dimension,
+          weight_min_dimension_id: res.position.weight_min_dimension_id,
           price: (res.position.price * gon.data.rates[res.position.currency_id].rate).toFixed(2),
           price_weight_dimension_id: res.position.price_weight_dimension_id
         })

@@ -10,40 +10,45 @@
             i.icon-search
             input type="text" placeholder="Поиск"
       table.positions__table
-        tbody ng-class="{opened: isOpen}" ng-repeat="item in [1,2,3]"
-          tr ng-click="isOpen = !isOpen"
-            td.align-center
-              i.icon-chevron-right ng-hide="isOpen"
-              i.icon-chevron-down ng-show="isOpen"
-            td.light
-              | 30.06.2015
-            td
-              | Продаю
-            td.light
-              | Кокос
-            td
-              | Нет предложений
-            td.light
-              | 644 л
-            td.light
-              | 555 руб/л
-            td.w0
-              a.btn.btn-default Редактировать
+        table.positions__table
+          tbody ng-class="{opened: isOpen}" ng-repeat="offer in ctrl.offers | filter:search"
+            tr ng-click="isOpen = offer.positions.length ? !isOpen : false"
+              td.align-center
+                i.icon-chevron-right ng-hide="isOpen"
+                i.icon-chevron-down ng-show="isOpen"
+              td.light
+                | {{::offer.updated_at | date: "dd.MM.yyyy"}}
+              td
+                | {{::offer.trade_type.title}}
+              td.light
+                | {{::offer.option.title}}
+              td
+                b ng-show="offers.positions.length"
+                  | {{::offer.positions.length}} {{::offer.positions.length | plur: gon.translation.offer.plur}}
 
-          tr.light ng-repeat="item in [1,2,3]" ng-class="{'tr-shadow':$index==0}" ng-show="isOpen"
-            td
-            td
-              | 30.06.2015
-            td
-              | Продаю
-            td
-              | Кокос
-            td
-              | Нет предложений
-            td
-              | 644 л
-            td
-              | 555 руб/л
-            td.w0.normal
-              a.btn.btn-danger.ripple.pull-right.positions__btn-hover
-                | Отозвать
+                span ng-hide="offers.positions.length"
+                  | Нет предложений
+              td.light
+                | {{::offer.weight}} {{::offer.weight_dimension.title}}
+              td.light
+                | {{::offer.price}} {{::offer.currency.title}}/{{offer.price_weight_dimension.title}}
+              td.w0
+                a.btn.btn-default ng-href="/search?id={{offer.id}}" ng-click="$event.stopPropagation()" Просмотр
+
+            tr.light ng-repeat="position in offer.positions" ng-class="{'tr-shadow':$index==0}" ng-show="isOpen"
+              td
+              td
+                | {{::position.updated_at | date: "dd.MM.yyyy"}}
+              td
+                | {{::position.trade_type.title}}
+              td
+                | {{::position.option.title}}
+              td
+                | {{::position.city}}
+              td
+                | {{::position.weight}} {{::position.weight_dimension.title}}
+              td
+                | {{::position.price}} {{::position.currency.title}}/{{position.price_weight_dimension.title}}
+              td.w0.normal
+                a.pull-right.btn.btn-danger.ripple.positions__btn-hover
+                  | Отозвать

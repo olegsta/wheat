@@ -39,7 +39,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
         .row
           label.col.label Пользователь:
           .span
-            a.link href=""
+            a.link ng-href="/profile/{{ctrl.active_position.user.id}}"
               | {{ctrl.active_position.user.fullname}}
         .row
           label.col.label Тип:
@@ -92,4 +92,4 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
         div ng-hide="ctrl.active_position.user_id == gon.user.info.id"
           label.label Выберите подходящую позицию:
           suitable ng-click="ctrl.suit_position ? '' : Page.goToCreateSuitable(ctrl.active_position.id)" positions="ctrl.suit_positions" ng-model="ctrl.suit_position"
-          button.btn.btn-primary.position-modal__send-offer.ripple ng-disabled="!ctrl.suit_position" ng-click="Position.sendOffer(ctrl.active_position.id, ctrl.suit_position)" Отправить предложение
+          button.btn.btn-primary.position-modal__send-offer.ripple ng-disabled="!ctrl.suit_position" ng-click="ctrl.sendOffer(ctrl.active_position.id, ctrl.suit_position)" Отправить предложение

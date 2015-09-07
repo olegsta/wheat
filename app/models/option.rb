@@ -39,7 +39,7 @@ class Option < ActiveRecord::Base
 
   def self.by_index_from_cache
     Rails.cache.fetch("options_by_index_#{I18n.locale}") do
-      ActiveModel::ArraySerializer.new(Option.all_from_cache, serializer: OptionSerializer).as_json.index_by {|t| t[:id]}
+      ActiveModel::ArraySerializer.new(Option.all_from_cache, each_serializer: OptionSerializer).as_json.index_by {|t| t[:id]}
     end
   end
 

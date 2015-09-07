@@ -1,4 +1,4 @@
-app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$position', 'Position', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $http, $location, $position, Position, Page, YandexMaps, Search) {
+app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$position', '$offer', 'Position', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $http, $location, $position, $offer, Position, Page, YandexMaps, Search) {
   var ctrl = this;
 
   Page.current = 'search';
@@ -103,6 +103,12 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
   ctrl.setActiveTag = function ($index) {
     ctrl.isShowExtendedSearch = true;
     Search.form = _.clone(Search.tags[$index]);
+  }
+
+  ctrl.sendOffer = function (position_id, offer_id) {
+    $offer.save({position_id: position_id, offer_id: offer_id}, function (res) {
+      visibilityPositionModal(false)
+    })
   }
 
   $scope.$watch(function () {

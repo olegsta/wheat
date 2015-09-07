@@ -11,10 +11,10 @@ class Position < ActiveRecord::Base
 
   after_commit :regenerate_cache
 
-  has_many :positions_offers
+  has_many :positions_offers, foreign_key: :offer_id
   has_many :positions, through: :positions_offers
   
-  has_many :offers_positions, class_name: PositionsOffer, foreign_key: :offer_id
+  has_many :offers_positions, foreign_key: :position_id, class_name: PositionsOffer
   has_many :offers, through: :offers_positions
   
   has_many :attachments
@@ -72,7 +72,7 @@ class Position < ActiveRecord::Base
   end
 
   def self.full
-    includes(:offers, :user, :option, :category, :weight_dimension, :price_weight_dimension, :weight_min_dimension, :currency, :attachments)
+    includes(:offers, :positions_offers, :user, :option, :category, :weight_dimension, :price_weight_dimension, :weight_min_dimension, :currency, :attachments)
   end
 
 
@@ -229,6 +229,7 @@ class Position < ActiveRecord::Base
 
     def regenerate_cache
       Rails.cache.delete("user_position_#{self.user_id}_#{self.id}_#{I18n.locale}")
+      Rails.cache.delete("user_offers_#{self.id}_#{I18n.locale}")
       Rails.cache.delete("user_positions_#{self.user_id}_#{self.status}_#{I18n.locale}")
       Rails.cache.delete("user_positions_#{self.user_id}_#{self.status_was}_#{I18n.locale}")
       Rails.cache.delete("position_#{self.id}_#{I18n.locale}")
