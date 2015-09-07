@@ -13,9 +13,12 @@ class Position < ActiveRecord::Base
 
   has_many :positions_offers
   has_many :positions, through: :positions_offers
-  has_many :offers, through: :positions_offers, source: "offer"
+  
+  has_many :offers_positions, class_name: PositionsOffer, foreign_key: :offer_id
+  has_many :offers, through: :offers_positions
+  
   has_many :attachments
-
+  
   has_many :correspondence_positions, :inverse_of => :position
   has_many :correspondences, through: :correspondence_positions
   

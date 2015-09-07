@@ -1,6 +1,6 @@
 class PositionsOffer < ActiveRecord::Base
   belongs_to :position
-  belongs_to :offer, :class_name => "Position", :foreign_key => "offer_id"
+  belongs_to :offer, :class_name => "Position"
 
   validate :trade_type_validate
   validate :user_validate
