@@ -65,6 +65,6 @@ i = 0
     }
     pos = Position.create params
 
-    ap "Позиция №#{i} создана"
+    puts "Позиция №#{i} создана"
   end
 end
