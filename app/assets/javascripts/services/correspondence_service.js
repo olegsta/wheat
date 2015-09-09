@@ -2,8 +2,8 @@ app.service('Correspondence', ['$http', '$correspondence', '$location', '$timeou
   var Correspondence = this;
 
   Correspondence.query = function () {
-    $correspondence.get(function (res) {
-      Correspondence.byTabs = _.groupBy(res.correspondences, 'correspondence_type');
+    $correspondence.query(function (res) {
+      Correspondence.byTabs = _.groupBy(res, 'correspondence_type');
       Correspondence.tab = 'positions';
     })
   }

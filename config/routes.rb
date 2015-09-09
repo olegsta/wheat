@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   root "application#index"
 
   scope :ajax do
-    get 'messages' => 'messages#index'
     get 'analytics' => 'analytics#index'
     get 'support' => 'support#index'
     get 'help' => 'help#index'
@@ -28,6 +27,7 @@ Rails.application.routes.draw do
     end
     resources :favorites
     resources :templates
+    resources :messages
     resources :correspondences
     resources :offers
   end

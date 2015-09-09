@@ -1,4 +1,4 @@
-app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$position', '$offer', 'Position', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $http, $location, $position, $offer, Position, Page, YandexMaps, Search) {
+app.controller('SearchCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$location', '$position', '$offer', 'Position', 'Page', 'YandexMaps', 'Search', function($scope, $rootScope, $timeout, $http, $location, $position, $offer, Position, Page, YandexMaps, Search) {
   var ctrl = this;
 
   Page.current = 'search';
@@ -86,15 +86,19 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
         
         Search.suitable(params, function (points) {
           YandexMaps.drawMarkers(points, {short: true});
-          if (points.length)
-            YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds());
+          $timeout(function () {
+            if (points.length)
+              YandexMaps.map.setBounds(YandexMaps.map.geoObjects.getBounds());
+          })
         })
       } else {
         Search.all(params, function (points) {
           ctrl.isShowExtendedSearch = false;
           Search.resetForm();
           YandexMaps.drawMarkers(points, {short: true});
-          YandexMaps.addCircleToMap(Search.circles);
+          $timeout(function () {
+            YandexMaps.addCircleToMap(Search.circles);
+          })
         })
       }
     }
