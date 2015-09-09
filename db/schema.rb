@@ -143,9 +143,9 @@ ActiveRecord::Schema.define(version: 20150830173805) do
   create_table "positions_offers", force: :cascade do |t|
     t.integer  "position_id"
     t.integer  "offer_id"
-    t.string   "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "status",      default: "new"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "positions_offers", ["offer_id", "position_id"], name: "index_positions_offers_on_offer_id_and_position_id", using: :btree

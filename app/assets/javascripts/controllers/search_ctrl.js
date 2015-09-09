@@ -129,7 +129,7 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
   })
 
   ctrl.closeModal = function () {
-    $location.search({id: undefined})
+    visibilityPositionModal(false)
   }
 
   var visibilityPositionModal = function (arg) {
@@ -137,6 +137,8 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$http', '$location', '$po
     ctrl.modalOpened = arg;
     Page.blur = arg;
     $rootScope.overlay = arg;
+    if (!arg)
+      $location.search({id: undefined})
   }
 
 }]);

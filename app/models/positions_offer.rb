@@ -1,4 +1,6 @@
 class PositionsOffer < ActiveRecord::Base
+  after_commit :regenerate_cache
+
   belongs_to :position, touch: true
   belongs_to :offer, :class_name => "Position", touch: true
 
@@ -41,5 +43,10 @@ class PositionsOffer < ActiveRecord::Base
 
     def weight_validate
       errors.add(:user_id) if offer.weight_etalon < position.weight_min_etalon
+    end
+
+    def regenerate_cache
+      Rails.cache.delete("user_offers_#{self.offer.user_id}_#{I18n.locale}")
+      # Rails.cache.delete("user_offers_#{self.position_id}_#{I18n.locale}")
     end
 end

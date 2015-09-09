@@ -1,4 +1,4 @@
-app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize, $location, $http) {
+app.service('YandexMaps', ['pluralize', '$location', '$http', '$rootScope', function(pluralize, $location, $http, $rootScope) {
   var YandexMaps = this, cluster;
 
   window.YandexMaps = this;
@@ -36,8 +36,10 @@ app.service('YandexMaps', ['pluralize', '$location', '$http', function(pluralize
           YandexMaps.markerLayout.superclass.build.call(this);
           this._events = ymaps.domEvent.manager.group(this.getElement());
           this._events.add('click', function (event) {
-            if (this.getData().properties.get('id'))
+            if (this.getData().properties.get('id')) {
               $location.search({id: this.getData().properties.get('id')})
+              $rootScope.$apply();
+            }
           }, this);
         },
         
