@@ -8,47 +8,55 @@
         .col
           .positions__search
             i.icon-search
-            input type="text" placeholder="Поиск"
-      table.positions__table
-        table.positions__table
-          tbody ng-class="{opened: isOpen}" ng-repeat="offer in ctrl.offers | filter:search"
-            tr ng-click="isOpen = offer.positions.length ? !isOpen : false"
-              td.align-center
-                i.icon-chevron-right ng-hide="isOpen"
-                i.icon-chevron-down ng-show="isOpen"
-              td.light
-                | {{::offer.updated_at | date: "dd.MM.yyyy"}}
-              td
-                | {{::offer.trade_type.title}}
-              td.light
-                | {{::offer.option.title}}
-              td
-                b ng-show="offers.positions.length"
-                  | {{::offer.positions.length}} {{::offer.positions.length | plur: gon.translation.offer.plur}}
+            input type="text" placeholder="Поиск" ng-model="search"
 
-                span ng-hide="offers.positions.length"
-                  | Нет предложений
-              td.light
-                | {{::offer.weight}} {{::offer.weight_dimension.title}}
-              td.light
-                | {{::offer.price}} {{::offer.currency.title}}/{{offer.price_weight_dimension.title}}
-              td.w0
-                a.btn.btn-default ng-href="/search?id={{offer.id}}" ng-click="$event.stopPropagation()" Просмотр
 
-            tr.light ng-repeat="position in offer.positions" ng-class="{'tr-shadow':$index==0}" ng-show="isOpen"
-              td
-              td
-                | {{::position.updated_at | date: "dd.MM.yyyy"}}
-              td
-                | {{::position.trade_type.title}}
-              td
-                | {{::position.option.title}}
-              td
-                | {{::position.city}}
-              td
-                | {{::position.weight}} {{::position.weight_dimension.title}}
-              td
-                | {{::position.price}} {{::position.currency.title}}/{{position.price_weight_dimension.title}}
-              td.w0.normal
-                a.pull-right.btn.btn-danger.ripple.positions__btn-hover
-                  | Отозвать
+      .positions__no ng-show="ctrl.offers.length==0"
+        | Вы не отправили ни одного предложения
+      .positions__no ng-show="offers.length==0 && ctrl.offers.length"
+        | Ничего не найдено
+
+      .spinner ng-show="ctrl.spinner"
+      
+      table.positions__table ng-show="ctrl.offers.length"
+        tbody ng-class="{opened: isOpen}" ng-repeat="offer in offers=(ctrl.offers | filter:search)"
+          tr ng-click="isOpen = offer.positions.length ? !isOpen : false"
+            td.align-center
+              i.icon-chevron-right ng-hide="isOpen"
+              i.icon-chevron-down ng-show="isOpen"
+            td.light
+              | {{::offer.updated_at | date: "dd.MM.yyyy"}}
+            td
+              | {{::offer.trade_type.title}}
+            td.light
+              | {{::offer.option.title}}
+            td
+              b ng-show="offers.positions.length"
+                | {{::offer.positions.length}} {{::offer.positions.length | plur: gon.translation.offer.plur}}
+
+              span ng-hide="offers.positions.length"
+                | Нет предложений
+            td.light
+              | {{::offer.weight}} {{::offer.weight_dimension.title}}
+            td.light
+              | {{::offer.price}} {{::offer.currency.title}}/{{offer.price_weight_dimension.title}}
+            td.w0
+              a.btn.btn-default ng-click="Page.goToPosition(offer.id); $event.stopPropagation()" Просмотр
+
+          tr.light ng-repeat="position in offer.positions" ng-class="{'tr-shadow':$index==0}" ng-show="isOpen"
+            td
+            td
+              | {{::position.updated_at | date: "dd.MM.yyyy"}}
+            td
+              | {{::position.trade_type.title}}
+            td
+              | {{::position.option.title}}
+            td
+              | {{::position.city}}
+            td
+              | {{::position.weight}} {{::position.weight_dimension.title}}
+            td
+              | {{::position.price}} {{::position.currency.title}}/{{position.price_weight_dimension.title}}
+            td.w0.normal
+              a.pull-right.btn.btn-danger.ripple.positions__btn-hover
+                | Отозвать

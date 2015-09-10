@@ -10,7 +10,7 @@ app.controller('MessagesCtrl', ['$scope', 'Page', '$http', '$location', 'Message
     return Correspondence.tab
   }, function (tab) {
     if (tab) {
-      Correspondence.tabPane = Correspondence.byTabs[tab];
+      Correspondence.tabPane = Correspondence.byTabs[tab] || [];
     }
   })
 

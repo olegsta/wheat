@@ -8,8 +8,8 @@ app.controller('PositionsCtrl', ['$scope', 'Page', 'Position', '$position', '$lo
 
 
   $scope.$watch('ctrl.tab', function (id) {
-    ctrl.positions = [];
     ctrl.spinner = true;
+    ctrl.positions = undefined;
 
     var status = findById(gon.translation.position.statuses, id).name;
     $location.search({status: status});

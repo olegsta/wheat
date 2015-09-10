@@ -35,4 +35,5 @@ app.run(['$rootScope', 'Page', 'Action', 'User', 'Correspondence', 'Message', 'S
   $rootScope.User = User;
   $rootScope.Correspondence = Correspondence;
   $rootScope.Message = Message;
+  $rootScope.findById = findById;
 }])

@@ -11,9 +11,17 @@
             input type="text" placeholder="Поиск" ng-model="search"
         .col.pull-right
           af-radio.lg options="gon.translation.position.statuses" ng-model="ctrl.tab"
+
+      .positions__no ng-show="ctrl.positions.length==0"
+        | У вас нет ни одной позиции со статусом
+        b  «{{findById(gon.translation.position.statuses, ctrl.tab).title}}»
+      .positions__no ng-show="positions.length==0 && ctrl.positions.length"
+        | Ничего не найдено
+      
       .spinner ng-show="ctrl.spinner"
+
       table.positions__table
-        tbody ng-class="{opened: isOpen}" ng-repeat="position in ctrl.positions | filter:search"
+        tbody ng-class="{opened: isOpen}" ng-repeat="position in positions=(ctrl.positions | filter:search)"
           tr ng-click="isOpen = position.offers.length ? !isOpen : false"
             td.align-center
               i.icon-chevron-right ng-hide="isOpen"
@@ -35,7 +43,7 @@
             td.light
               | {{::position.price}} {{::position.currency.title}}/{{position.price_weight_dimension.title}}
             td.w0
-              a.btn.btn-default ng-href="/positions/{{position.id}}/edit" Редактировать
+              a.btn.btn-default ng-click="Page.goToEditPosition(position.id); $event.stopPropagation()" Редактировать
 
           tr.light ng-repeat="offer in position.offers" ng-class="{'tr-shadow':$index==0}" ng-show="isOpen"
             td

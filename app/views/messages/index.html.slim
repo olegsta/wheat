@@ -8,7 +8,9 @@
       .messages__contacts__body.p-messages__contacts__body
         .messages__contacts__tabs
           af-radio.lg ng-model="Correspondence.tab" options="[{id: 'positions', title: 'Позиции'}, {id: 'users', title: 'Пользователи'}]"
-        table
+        .messages__contacts__no ng-show="Correspondence.tabPane.length==0"
+          | У вас нет переписок
+        table ng-show="Correspondence.tabPane.length"
           tr.messages__contacts__item ng-click="Correspondence.set(correspondence)" ng-class="{active: correspondence.id==Correspondence.active.id}" ng-repeat="correspondence in Correspondence.tabPane"
             td.w0.messages__contacts__item__avatar
               img ng-src="{{correspondence.user.avatar.thumb.url}}"

@@ -2,6 +2,11 @@ app.controller('OffersCtrl', ['$scope', 'Page', '$offer', function ($scope, Page
   var ctrl = this;
 
   Page.current = 'offers';
+  
+  ctrl.spinner = true;
 
-  ctrl.offers = $offer.query();
+  $offer.query({}, function (res) {
+    ctrl.offers = res;
+    ctrl.spinner = false;
+  });
 }])

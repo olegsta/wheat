@@ -1,6 +1,7 @@
 app.service('Correspondence', ['$http', '$correspondence', '$location', '$timeout', function ($http, $correspondence, $location, $timeout) {
   var Correspondence = this;
 
+  
   Correspondence.query = function () {
     $correspondence.query(function (res) {
       Correspondence.byTabs = _.groupBy(res, 'correspondence_type');
