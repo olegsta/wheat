@@ -16,7 +16,7 @@ app.service('Page', ['$location', 'User', function ($location, User) {
   }
 
   Page.checkForAuth = function ($event) {
-    if (!gon.user.data) {
+    if (!gon.user.info) {
       $location.url('/search');
       User.isShowSign = 'in';
       if ($event) {
