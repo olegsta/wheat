@@ -2,6 +2,7 @@ app.controller('PositionsCtrl', ['$scope', 'Page', 'Position', '$position', '$lo
   var ctrl = this;
   ctrl.spinner = true;
 
+  Page.checkForAuth();
   Page.current = 'positions';
 
   ctrl.tab = 0;

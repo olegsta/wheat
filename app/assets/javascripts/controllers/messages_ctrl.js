@@ -2,6 +2,8 @@ app.controller('MessagesCtrl', ['$scope', 'Page', '$http', '$location', 'Message
   var ctrl = this;
 
   Page.current = 'messages';
+  Page.checkForAuth();
+  
   Correspondence.query();
 
   Correspondence.scrollBottom();

@@ -1,12 +1,14 @@
 app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', '$position', '$rootScope', 'YandexMaps', 'Position', '$location', function ($scope, $http, Page, $routeParams, $position, $rootScope, YandexMaps, Position, $location) {
   var ctrl = this;
+  
+  Page.checkForAuth();
+  Page.current = $routeParams.id ? 'positions' : 'positions_new'
+
   ctrl.position = {
     trade_type_id: 1,
     attachments: [],
     currency_id: gon.user.currency.id
   };
-
-  Page.current = $routeParams.id ? 'positions' : 'positions_new'
 
   if ($routeParams.id) {
     $scope.isEdit = true;
