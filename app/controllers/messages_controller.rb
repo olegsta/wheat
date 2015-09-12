@@ -15,6 +15,6 @@ class MessagesController < ApplicationController
 
   private
     def set_correspondence
-      @correspondence = current_user.correspondences.find(params[:id])
+      @correspondence = current_user.correspondences.find(params[:correspondence_id])
     end
 end

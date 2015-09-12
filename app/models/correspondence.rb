@@ -1,7 +1,4 @@
 class Correspondence < ActiveRecord::Base
-  before_save :set_users
-  before_save :set_positions
-
   has_many :correspondence_positions
   has_many :positions, through: :correspondence_positions
 

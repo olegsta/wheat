@@ -28,4 +28,8 @@ app.service('User', ['$http', '$rootScope', function ($http, $rootScope) {
     $rootScope.blurContent =  !!User.isShowSign;
     $rootScope.overlay = !!User.isShowSign;
   })
+}]);
+
+app.factory('$user', ['$resource', function ($resource) {
+  return $resource(Routes.profile_path(":id"), {id: "@id"})
 }])

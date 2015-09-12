@@ -37,7 +37,7 @@ app.config(['$routeProvider', function ($routeProvider) {
       controller: 'SupportCtrl as ctrl',
     })
     .when('/profile/:id?', {
-      templateUrl: Routes.profile_path(),
+      templateUrl: Routes.profile_index_path(),
       controller: 'ProfileCtrl as ctrl',
     })
     .when('/settings', {

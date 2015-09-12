@@ -5,7 +5,6 @@ app.controller('MessagesCtrl', ['$scope', 'Page', '$http', '$location', 'Message
   Page.checkForAuth();
   
   Correspondence.query();
-
   Correspondence.scrollBottom();
 
   $scope.$watch(function () {

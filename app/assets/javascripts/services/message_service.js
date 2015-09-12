@@ -1,4 +1,4 @@
-app.service('Message', ['Correspondence', '$http', function (Correspondence, $http) {
+app.service('Message', ['Correspondence', '$message', function (Correspondence, $message) {
   var Message = this;
 
   Message.send = function () {
@@ -10,9 +10,13 @@ app.service('Message', ['Correspondence', '$http', function (Correspondence, $ht
         created_at: new Date()
       })
 
-      $http.put(Routes.correspondence_path(Correspondence.active.id), {body: Message.body})
+      $message.save({body: Message.body, correspondence_id: Correspondence.active.id})
       Correspondence.scrollBottom();
       Message.body = "";
     }
   }
+}])
+
+app.factory('$message', ['$resource', function ($resource) {
+  return $resource(Routes.message_path(":id"), {id: "@id"})
 }])

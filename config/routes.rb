@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     get 'analytics' => 'analytics#index'
     get 'support' => 'support#index'
     get 'help' => 'help#index'
-    get 'profile' => 'profile#index'
     get 'settings' => 'settings#index'
 
     scope :search do
@@ -25,6 +24,8 @@ Rails.application.routes.draw do
         post 'send_offer' => 'positions#send_offer'
       end
     end
+
+    resources :profile
     resources :favorites
     resources :templates
     resources :messages

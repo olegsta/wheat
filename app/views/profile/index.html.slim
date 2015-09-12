@@ -6,22 +6,26 @@
     .profile
       .user.clearfix
         .user__avatar
-          img ng-src="{{gon.user.info.avatar.original}}"
-          a.btn.btn-primary.ripple Загрузить
+          img ng-src="{{ctrl.user.avatar.original}}"
+          a.btn.btn-primary.ripple ng-show="ctrl.user.id==gon.user.info.id" Загрузить
+          a.btn.btn-primary.ripple ng-hide="ctrl.user.id==gon.user.info.id" ng-click="ctrl.createCorrespondence(ctrl.user.id)" Написать
         .user__info
           .user__fullname.user__field
-            | {{gon.user.info.fullname}}
+            | {{ctrl.user.fullname}}
           .user__company.user__field
-            | {{gon.user.info.company}}
+            | {{ctrl.user.company}}
           a.user__address.user__field
-            | {{gon.user.info.city}}, {{gon.user.info.address}}
+            | {{ctrl.user.city}}
+            span ng-show="ctrl.user.address"
+              | , {{ctrl.user.address}}
           .user__description.user__field
-            | {{gon.user.info.about}}
+            | {{ctrl.user.about}}
           hr
           .user__phone.user__field
-            span ng-repeat="phone in gon.user.info.phones"
+            span ng-repeat="phone in ctrl.user.phones"
               | {{phone}}
           .user__email.user__field
-            a href="mailto:" storuky@gmail.com
+            a href="mailto:"
+              | {{ctrl.user.email}}
 
       .profile__positions
