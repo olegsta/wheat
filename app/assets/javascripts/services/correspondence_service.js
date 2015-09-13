@@ -5,7 +5,7 @@ app.service('Correspondence', ['$http', '$correspondence', '$location', '$timeou
   Correspondence.query = function () {
     $correspondence.query(function (res) {
       Correspondence.byTabs = _.groupBy(res, 'correspondence_type');
-      Correspondence.tab = $location.search().tab;
+      Correspondence.tab = Correspondence.tab || $location.search().tab || 'positions';
     })
   }
 

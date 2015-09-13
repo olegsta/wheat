@@ -5,6 +5,8 @@ app.controller('PositionsCtrl', ['$scope', 'Page', 'Position', '$position', '$lo
   Page.checkForAuth();
   Page.current = 'positions';
 
+  
+
   $scope.$watch(function () {
     return $location.search().status
   }, function (tab) {

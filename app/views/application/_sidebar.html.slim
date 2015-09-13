@@ -3,7 +3,7 @@
 nav
   a ng-click="Page.checkForAuth($event)" ng-class="{active: Page.current == 'positions'}" href="/positions?status=opened" Мои позиции
   a ng-click="Page.checkForAuth($event)" ng-class="{active: Page.current == 'offers'}" href="/offers" Мои предложения
-  a ng-click="Page.checkForAuth($event)" ng-class="{active: Page.current == 'messages'}" href="/messages?tab=positions" Сообщения
+  a ng-click="Page.checkForAuth($event)" ng-class="{active: Page.current == 'messages'}" href="/messages" Сообщения
   a ng-click="Page.checkForAuth($event)" ng-class="{active: Page.current == 'analytics'}" href="/analytics" Аналитика
   a ng-click="Page.checkForAuth($event)" ng-class="{active: Page.current == 'help'}" href="/help" Справка
   a ng-click="Page.checkForAuth($event)" ng-class="{active: Page.current == 'support'}" href="/support" Поддержка
