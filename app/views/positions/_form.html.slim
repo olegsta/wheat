@@ -80,5 +80,9 @@ form.form.positions__form
 
       input#template ng-disabled="!ctrl.position.is_template" type="text" placeholder="Название шаблона" ng-model="ctrl.position.template_title"
   .row
+    .col ng-show="ctrl.position.status.id=='opened'"
+      a.btn.btn-default.btn-lg.ripple ng-click="ctrl.close()" Закрыть
+    .col ng-show="ctrl.position.status.id=='archive'"
+      a.btn.btn-default.btn-lg.ripple ng-click="ctrl.restore()" Восстановить
     .col
       a.btn.btn-primary.btn-lg.ripple ng-click="ctrl.save()" Сохранить

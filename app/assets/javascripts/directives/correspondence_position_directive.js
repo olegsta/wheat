@@ -1,4 +1,4 @@
-app.directive('correspondencePosition', [function () {
+app.directive('correspondencePosition', ['Page', function (Page) {
   // Runs during compile
   return {
     // name: '',
@@ -18,6 +18,8 @@ app.directive('correspondencePosition', [function () {
     // transclude: true,
     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
     link: function($scope, iElm, iAttrs, controller) {
+      $scope.Page = Page;
+
       iElm.bind('click', function ($event) {
         $event.stopPropagation();
       })

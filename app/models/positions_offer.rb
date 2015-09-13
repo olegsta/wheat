@@ -47,6 +47,5 @@ class PositionsOffer < ActiveRecord::Base
 
     def regenerate_cache
       Rails.cache.delete("user_offers_#{self.offer.user_id}_#{I18n.locale}")
-      # Rails.cache.delete("user_offers_#{self.position_id}_#{I18n.locale}")
     end
 end

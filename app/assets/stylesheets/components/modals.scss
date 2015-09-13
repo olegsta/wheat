@@ -84,7 +84,7 @@
     z-index: 1;
     line-height: 40px;
     text-align: center;
-    padding: 12px;
+    padding: 7px 12px;
 
     &:hover {
       color: red;
@@ -150,6 +150,10 @@
   margin-top: -110px;
   left: 50%;
   top: 50%;
+
+  .md__title {
+    font-weight: 500;
+  }
   
   .md__head__title {
     padding: 10px 0 0 20px;
@@ -157,8 +161,8 @@
   }
 
   &__content {
-    padding: 32px 20px 20px 20px;
-    font-size: 19px;
+    padding: 25px 20px 20px 20px;
+    font-size: 17px;
     line-height: 20px;
 
     &__main {}

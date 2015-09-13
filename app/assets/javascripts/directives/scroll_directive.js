@@ -25,6 +25,7 @@ app.directive('scroll', ['$timeout', function($timeout) {
       }, function(val) {
         $timeout(function () {
           Ps.update(el[0]);
+          el[0].scrollTop = 0;
         })
       });
 

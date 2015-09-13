@@ -52,14 +52,18 @@ ActiveRecord::Schema.define(version: 20150830173805) do
   add_index "correspondence_users", ["user_id"], name: "index_correspondence_users_on_user_id", using: :btree
 
   create_table "correspondences", force: :cascade do |t|
-    t.json     "json_users"
-    t.json     "json_positions"
-    t.string   "correspondence_type"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.integer  "users_ids",           default: [],                   array: true
+    t.integer  "positions_ids",       default: [],                   array: true
+    t.json     "json_users",          default: []
+    t.json     "json_positions",      default: []
+    t.string   "correspondence_type", default: "users"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "correspondences", ["correspondence_type"], name: "index_correspondences_on_correspondence_type", using: :btree
+  add_index "correspondences", ["positions_ids"], name: "index_correspondences_on_positions_ids", using: :gin
+  add_index "correspondences", ["users_ids"], name: "index_correspondences_on_users_ids", using: :gin
 
   create_table "currencies", force: :cascade do |t|
     t.string   "name"

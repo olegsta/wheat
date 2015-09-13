@@ -71,10 +71,15 @@ class Position < ActiveRecord::Base
     end
   end
 
+  def self.statuses
+    Position.aasm.states.map do |state|
+      {id: state.name, title: I18n.t('position.status.'+state.name.to_s)}
+    end
+  end
+
   def self.full
     includes(:offers, :positions_offers, :user, :option, :category, :weight_dimension, :price_weight_dimension, :weight_min_dimension, :currency, :attachments)
   end
-
 
   def self.filter filters = []
     currencies = Currency.all
@@ -230,11 +235,19 @@ class Position < ActiveRecord::Base
     def regenerate_cache
       Rails.cache.delete("user_position_#{self.user_id}_#{self.id}_#{I18n.locale}")
       Rails.cache.delete("user_offers_#{self.id}_#{I18n.locale}")
-      Rails.cache.delete("user_positions_#{self.user_id}_#{self.status}_#{I18n.locale}")
-      Rails.cache.delete("user_positions_#{self.user_id}_#{self.status_was}_#{I18n.locale}")
+
+      Position.statuses.each do |status|
+        Rails.cache.delete("user_positions_#{self.user_id}_#{status[:id]}_#{I18n.locale}")
+      end
+      
       Rails.cache.delete("position_#{self.id}_#{I18n.locale}")
       Rails.cache.delete("serialize_position_#{self.id}_#{I18n.locale}")
       Rails.cache.delete("positions_all_#{I18n.locale}")
+
+      self.correspondences.pluck(:id).each do |correspondence_id|
+        Rails.cache.delete("correspondence_position_#{correspondence_id}_#{I18n.locale}")
+        Rails.cache.delete("correspondence_positions_#{correspondence_id}_#{I18n.locale}")
+      end
     end
 
 end

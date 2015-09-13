@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     delete 'attachments' => 'attachments#destroy'
     resources :positions do
       collection do
-        post 'send_offer' => 'positions#send_offer'
+        put 'restore' => 'positions#restore'
       end
     end
 

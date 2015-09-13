@@ -31,11 +31,11 @@
             td.light
               | {{::offer.option.title}}
             td
-              b ng-show="offers.positions.length"
-                | {{::offer.positions.length}} {{::offer.positions.length | plur: gon.translation.offer.plur}}
+              b ng-show="offer.positions.length"
+                | {{::offer.positions.length}} {{::offer.positions.length | plur: gon.translation.position.plur}}
 
-              span ng-hide="offers.positions.length"
-                | Нет предложений
+              span ng-hide="offer.positions.length"
+                | Нет позиций
             td.light
               | {{::offer.weight}} {{::offer.weight_dimension.title}}
             td.light

@@ -6,7 +6,11 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$loc
   Search.resetForm();
 
   $scope.$on('$destroy', function () {
-    visibilityPositionModal(false)
+    visibilityPositionModal(false);
+    Search.resetForm();
+    Search.checkedPosition = {};
+    Search.tags = [];
+    Search.query = "";
   })
 
   var mapListner = $scope.$on('map:build', function () {
@@ -60,16 +64,22 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$loc
     return Search.tags
   }, function (n_tags, o_tags) {
     if (n_tags.length || (n_tags.length == 0 && o_tags.length)) {
+      
       params = {
         query: Search.query,
         filters: JSON.stringify(n_tags)
       }
-      Search.all(params, function (points) {
-        ctrl.isShowExtendedSearch = false;
-        Search.resetForm();
-        YandexMaps.drawMarkers(points, {short: true});
-        YandexMaps.addCircleToMap(Search.circles);
-      })
+      
+      if (n_tags.length)
+        Search.checkedPosition = {}
+      
+      if (n_tags.length || (!n_tags.length && !window.pickTrue(Search.checkedPosition).length))
+        Search.all(params, function (points) {
+          ctrl.isShowExtendedSearch = false;
+          Search.resetForm();
+          YandexMaps.drawMarkers(points, {short: true});
+          YandexMaps.addCircleToMap(Search.circles);
+        })
     }
   }, true)
 
@@ -80,6 +90,8 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$loc
       var ids = window.pickTrue(checkedPosition);
 
       if (ids.length) {
+        Search.tags = []
+
         params = {
           'id[]': ids
         }
@@ -111,7 +123,8 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$loc
 
   ctrl.sendOffer = function (position_id, offer_id) {
     $offer.save({position_id: position_id, offer_id: offer_id}, function (res) {
-      visibilityPositionModal(false)
+      visibilityPositionModal(false);
+      $location.search({id: undefined});
     })
   }
 
@@ -141,8 +154,8 @@ app.controller('SearchCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$loc
     ctrl.modalOpened = arg;
     Page.blur = arg;
     $rootScope.overlay = arg;
-    if (!arg)
-      $location.search({id: undefined})
+    // if (!arg)
+    //   $location.search({id: undefined})
   }
 
 }]);

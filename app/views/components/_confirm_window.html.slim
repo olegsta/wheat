@@ -1,8 +1,7 @@
 .md.md__center.confirm-modal ng-class="{'md-show': Action.confirm_show}"
   .md__content
     .md__head
-      .md__title
-        = t "confirm.confirm_action"
+      .md__title Подтвердите действие
       .md__close ng-click="Action.confirm_show = false"
         i.icon-close
     .confirm-modal__content
@@ -11,4 +10,5 @@
       .confirm-modal__content__description
         | {{Action.confirm_message.description}}
     .confirm-modal__footer
+      a.btn.btn-default#confirm_no ng-click="Action.confirm_show = false" = t "confirm.confirm_no"
       a.btn.btn-primary#confirm_yes = t "confirm.confirm_yes"

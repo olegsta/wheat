@@ -27,7 +27,7 @@ map#map.bg ng-class="{blur: Page.blur}" ng-click="ctrl.showSearchFooter = false;
         a.icon-close
     .md__body.clearfix
       .spinner ng-show="ctrl.spinner"
-      .position-modal__left scroll="" ng-hide="ctrl.spinner"
+      .position-modal__left scroll="" ng-hide="ctrl.spinner" rebuld="{{ctrl.active_position}}"
         .row
           label.col.label Статус:
           .span class="{{ctrl.active_position.status.id}}"

@@ -10,17 +10,24 @@
           af-radio.lg ng-model="Correspondence.tab" options="[{id: 'positions', title: 'Позиции'}, {id: 'users', title: 'Пользователи'}]"
         .messages__contacts__no ng-show="Correspondence.tabPane.length==0"
           | У вас нет переписок
-        table ng-show="Correspondence.tabPane.length"
-          tr.messages__contacts__item ng-click="Correspondence.set(correspondence)" ng-class="{active: correspondence.id==Correspondence.active.id}" ng-repeat="correspondence in Correspondence.tabPane"
-            td.w0.messages__contacts__item__avatar
-              img ng-src="{{correspondence.user.avatar.thumb.url}}"
-            td
-              .messages__contacts__item__title
-                | {{gon.group.trade_types[correspondence.position.trade_type_id]}} «{{gon.group.options[correspondence.position.option_id].title}}»
-              .messages__contacts__item__description
-                | {{correspondence.position.weight}} {{gon.group.weight_dimensions[correspondence.position.weight_dimension_id].title}}, 
-                | мин. {{correspondence.position.weight_min}} {{gon.group.weight_dimensions[correspondence.position.weight_min_dimension_id].title}}, 
-                | {{correspondence.position.price / gon.data.rates[gon.user.currency.id].rate}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[correspondence.position.price_weight_dimension_id].title}}
+        .messages__contacts__scroll scroll="" rebuild="{{Correspondence.tabPane.length}}"
+          table ng-show="Correspondence.tabPane.length"
+            tr.messages__contacts__item ng-click="Correspondence.set(correspondence)" ng-class="{active: correspondence.id==Correspondence.active.id}" ng-repeat="correspondence in Correspondence.tabPane"
+              td.w0.messages__contacts__item__avatar
+                img ng-src="{{correspondence.user.avatar.thumb}}"
+              td ng-show="correspondence.correspondence_type == 'positions'"
+                .messages__contacts__item__title
+                  | {{gon.group.trade_types[correspondence.position.trade_type_id]}} «{{gon.group.options[correspondence.position.option_id].title}}»
+                .messages__contacts__item__description
+                  | {{correspondence.position.weight}} {{gon.group.weight_dimensions[correspondence.position.weight_dimension_id].title}}, 
+                  | мин. {{correspondence.position.weight_min}} {{gon.group.weight_dimensions[correspondence.position.weight_min_dimension_id].title}}, 
+                  | {{correspondence.position.price / gon.data.rates[gon.user.currency.id].rate}} {{gon.user.currency.title}}/{{gon.group.weight_dimensions[correspondence.position.price_weight_dimension_id].title}}
+
+              td ng-show="correspondence.correspondence_type == 'users'"
+                .messages__contacts__item__title
+                  | {{correspondence.user.fullname}}
+                .messages__contacts__item__description
+                  | {{correspondence.user.company}}
 
 
     div ng-show="Correspondence.active"
@@ -30,13 +37,15 @@
             tr
               td.w0
                 a.messages__header__user__avatar ng-href="/profile/{{Correspondence.active.user.id}}"
-                  img ng-src="{{Correspondence.active.user.avatar.thumb.url}}"
+                  img ng-src="{{Correspondence.active.user.avatar.thumb}}"
               td
                 .messages__header__user__name
                   | {{Correspondence.active.user.fullname}}
-                .messages__header__user__theme
+                .messages__header__user__theme ng-show="Correspondence.active.position"
                   | {{gon.group.trade_types[Correspondence.active.position.trade_type_id]}} «{{gon.group.options[Correspondence.active.position.option_id].title}}»
-        .messages__header__info
+                .messages__header__user__theme ng-hide="Correspondence.active.position"
+                  | {{Correspondence.active.user.company || "Индивидуальный предприниматель"}}
+        .messages__header__info ng-show="Correspondence.active.position"
           .messages__header__info__position
             span Моя позиция:  
             a.link href="" ng-click="showMyPosition = !showMyPosition; $event.stopPropagation()"
@@ -48,7 +57,7 @@
               | #
               | {{Correspondence.active.positions[Correspondence.active.user.id][0].id}}
 
-      .messages__positions
+      .messages__positions ng-show="Correspondence.active.position"
         correspondence-position opened="showMyPosition" position="Correspondence.active.positions[gon.user.info.id][0]" title="'Моя позиция'"
         correspondence-position.user-position opened="showUserPosition" position="Correspondence.active.positions[Correspondence.active.user.id][0]" title="'Предложение пользователя'"
 

@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
     gon.translation = {
       position: {
         plur: I18n.t('position.plur'),
-        statuses: I18n.t('position.status').each_with_index.map{|obj, index| {id: index, title: obj[1], name: obj[0]}}
+        statuses: I18n.t('position.status').map{|obj| {id: obj[0], title: obj[1]}}
       },
       offer: {
         plur: I18n.t('offer.plur')

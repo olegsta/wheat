@@ -1,4 +1,5 @@
 class PositionsController < ApplicationController
+  before_action :set_position, only: [:destroy, :update, :restore]
 
   def index
     respond_to do |format|
@@ -42,13 +43,27 @@ class PositionsController < ApplicationController
   end
 
   def update
-    @position = current_user.positions.find params[:id]
     if @position.update(position_params)
       associate_attachment
       render json: {msg: "Позиция успешно обновлена", position: @position}
     else
       render json: {errors: @position.errors}, status: 422
     end
+  end
+
+  def destroy
+    @position.move_to_archive!
+    @correspondences = Correspondence.where("#{@position.id} = ANY(positions_ids)")
+    @correspondences.each do |correspondence|
+      Message.create(correspondence_id: correspondence.id, user_id: current_user.id, body: "Пользователь перенес свою позицию в архив.")
+    end
+    PositionsOffer.destroy_all("offer_id = #{@position.id} OR position_id = #{@position.id}")
+    render json: {msg: "Позиция была перемещена в архив"}
+  end
+
+  def restore
+    @position.open!
+    render json: {msg: "Позиция была восстановлена в рынок"}
   end
 
   private
@@ -74,5 +89,7 @@ class PositionsController < ApplicationController
       end
     end
 
-
+    def set_position
+      @position = current_user.positions.find params[:id]
+    end
 end

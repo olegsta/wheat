@@ -24,6 +24,21 @@ class OffersController < ApplicationController
         else
           position_offer = PositionsOffer.new(position_id: params[:position_id], offer_id: params[:offer_id])
           if position_offer.save
+            
+            user_ids = [current_user.id, Position.find(params[:position_id]).user_id]
+            position_ids = [params[:position_id], params[:offer_id]]
+
+            unless Correspondence.between_users(user_ids)
+              Correspondence.create_between_users user_ids
+            end
+
+            unless @correspondence = Correspondence.between_positions(position_ids)
+              @correspondence = Correspondence.create_between_users user_ids
+              @correspondence.associate_with_positions position_ids
+            end
+
+            Message.create(correspondence_id: @correspondence.id, body: "Новое предложение", user_id: current_user.id)
+            
             render json: {msg: "Предложение было успешно отправлено"}
           else
             render json: {msg: position_offer.errors.first.last}, status: 422

@@ -42,4 +42,4 @@ script id="correspondence_position.html" type="text/ng-template"
           | /
           | {{position.price_weight_dimension.title}}
     .messages__position__footer
-      a.btn.btn-default ng-href="/search?id={{position.id}}" На страницу позиции
+      a.btn.btn-default ng-click="Page.goToPosition(position.id)" На страницу позиции

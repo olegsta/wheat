@@ -1,4 +1,4 @@
-app.service('Position', ['$http', '$resource', 'Action', function($http, $resource, Action) {
+app.service('Position', ['$http', '$resource', '$position', 'Action', function($http, $resource, $position, Action) {
   var Position = this;
 
 
@@ -7,6 +7,26 @@ app.service('Position', ['$http', '$resource', 'Action', function($http, $resour
       .success(function (res) {
         fn(res.points)
       })
+  }
+
+  Position.close = function (id, callback) {
+    Action.confirm({main: "Вы действительно хотите переместить позицию в архив?"}, function (confirmed) {
+      if (confirmed) {
+        $position.delete({id: id}, function () {
+          callback();
+        })
+      }
+    });
+  }
+
+  Position.restore = function (id, callback) {
+    Action.confirm({main: "Вы действительно хотите восстановить позицию в рынок?"}, function (confirmed) {
+      if (confirmed) {
+        $position.restore({id: id}, function () {
+          callback();
+        })
+      }
+    });
   }
 
   Position.deleteAttachment = function (id, callback) {
@@ -30,7 +50,8 @@ app.factory('$position', ['$resource', function ($resource) {
     get: {method:'GET', params: {id: '@id'}},
     create: {method: 'POST'},
     update: {method: 'PUT', params: {id: '@id'}},
-    destroy: {method:'DELETE', params: {id: '@id'}}
+    destroy: {method:'DELETE', params: {id: '@id'}},
+    restore: {method: 'PUT', params: {id: 'restore'}}
   });
 }])
 

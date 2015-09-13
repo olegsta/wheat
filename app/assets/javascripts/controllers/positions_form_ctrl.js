@@ -21,6 +21,18 @@ app.controller('PositionsFormCtrl', ['$scope', '$http', 'Page', '$routeParams', 
         Page.goToPosition(res.position.id)
       })
     }
+
+    ctrl.close = function () {
+      Position.close($routeParams.id, function () {
+        $location.url('/positions?status=archive')
+      })
+    }
+
+    ctrl.restore = function () {
+      Position.restore($routeParams.id, function () {
+        $location.url('/positions?status=opened')
+      })
+    }
   } else {
     ctrl.save = function () {
       $position.create({position: ctrl.position}, function (res) {

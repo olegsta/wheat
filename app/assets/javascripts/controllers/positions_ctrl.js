@@ -5,21 +5,27 @@ app.controller('PositionsCtrl', ['$scope', 'Page', 'Position', '$position', '$lo
   Page.checkForAuth();
   Page.current = 'positions';
 
-  ctrl.tab = 0;
+  $scope.$watch(function () {
+    return $location.search().status
+  }, function (tab) {
+    ctrl.tab = tab;
+  })
 
 
   $scope.$watch('ctrl.tab', function (id) {
-    ctrl.spinner = true;
-    ctrl.positions = undefined;
+    if (id) {
+      ctrl.spinner = true;
+      ctrl.positions = undefined;
 
-    var status = findById(gon.translation.position.statuses, id).name;
-    $location.search({status: status});
-    
-    $position.query({status: status}, function (res) {
-      ctrl.positions = res;
-      ctrl.spinner = false;
-    }, function () {
-      ctrl.spinner = false;
-    });
+      var status = findById(gon.translation.position.statuses, id).id;
+      $location.search({status: status});
+      
+      $position.query({status: status}, function (res) {
+        ctrl.positions = res;
+        ctrl.spinner = false;
+      }, function () {
+        ctrl.spinner = false;
+      });
+    }
   })
 }])
